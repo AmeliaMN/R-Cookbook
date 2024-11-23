@@ -371,7 +371,7 @@ and `last` to select data by number of days, weeks, months, or even
 years:
 
 ``` {r}
-first(ibm, "2 week")
+xts::first(ibm, "2 week")
 ```
 
 
@@ -386,7 +386,7 @@ We can see from the calendar that the first week of January 2000 has only one da
 
 Similarly, we can ask `last` to give us the last month's worth of data:
 ```{r}
-last(ibm, "month")
+xts::last(ibm, "month")
 ```
 
 If we had been using `zoo` objects here, we would need to have converted them to `xts` objects before passing the objects to `first` or `last`, as those are `xts` functions.
@@ -398,7 +398,12 @@ and `last` functions, respectively.
 
 > **Warning**
 >
-> The `tidyverse` package `dplyr` also has functions called `first` and `last`. If your workflow involves loading both `xts` and `dplyr` packages, make sure to be explicit about which function you are calling by using the `*package*::*function*` notation (for example, `xts::first`). 
+> The `tidyverse` package `dplyr` also has functions called `first` and `last`. If your workflow involves loading both `xts` and `dplyr` packages, make sure to be explicit about which function you are calling by using the `*package*::*function*` notation (for example, `xts::first`). If you want to always use a particular version, you can also use the `conflicted` package to make this explicit. 
+
+```{r}
+library(conflicted)
+conflicts_prefer(xts::first, xts::last)
+```
 
 
 Subsetting a Time Series {#recipe-id281}
@@ -706,7 +711,7 @@ Use the `lag` function. The second argument, `k`, is the number of periods
 to shift the data:
 
 ``` {r, eval=FALSE}
-lag(ts, k)
+stats::lag(ts, k)
 ```
 
 Use positive `k` to shift the data forward in time (tomorrow’s data
@@ -724,7 +729,7 @@ ibm.daily
 To shift the data forward one day, we use `k = +1`:
 
 ``` {r}
-lag(ibm.daily, k = +1, na.pad = TRUE)
+stats::lag(ibm.daily, k = +1, na.pad = TRUE)
 ```
 
 We also set `na.pad = TRUE` to fill the trailing dates with `NA`. Otherwise,
@@ -734,7 +739,7 @@ To shift the data backward one day, we use `k = -1`. Again we use
 `na.pad = TRUE` to pad the beginning with `NA`s:
 
 ``` {r}
-lag(ibm.daily, k = -1, na.pad = TRUE)
+stats::lag(ibm.daily, k = -1, na.pad = TRUE)
 ```
 
 If the sign convention for `k` seems odd to you, you are not alone.
@@ -753,7 +758,13 @@ dplyr::lag(ibm.daily, n = 1)
 ```
 > **Warning**
 >
-> If you want to load `dplyr`, you should use the namespace to be explicit about which `lag` function you are using. The Base R function is `stats::lag`, while the dplyr function is, naturally, `dplyr::lag`. 
+> If you want to load `dplyr`, you should use the namespace to be explicit about which `lag` function you are using. The Base R function is `stats::lag`, while the dplyr function is, naturally, `dplyr::lag`. You can use the `conflicted` package to make it explicit which version you want to use,
+
+```{r}
+library(conflicted)
+conflicts_prefer(stats::lag)
+```
+
 
 Computing Successive Differences {#recipe-id141}
 --------------------------------

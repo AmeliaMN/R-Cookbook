@@ -1246,7 +1246,7 @@ To use `furrr` to parallelize our code, we call the `furrr::future_map` in place
 ```{r, eval=FALSE}
 library(furrr)
 
-plan(multiprocess)
+plan(multisession)
 
 future_map(my_list, some_function)
 ```
@@ -1296,7 +1296,7 @@ set.seed(42)
 ```
 ```{r, warning=FALSE}
 library(furrr)
-plan(multiprocess)
+plan(multisession)
 
 tic("simulate pi - parallel")
 sims_list <- future_map(draw_list, simulate_pi)

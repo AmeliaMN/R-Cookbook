@@ -186,7 +186,7 @@ that is, it must return a single, logical value of either `TRUE` or `FALSE`.
 A common problem is mistakenly using a *vector* of logical values,
 such as this example:
 
-```{r, eval=TRUE, warning=TRUE}
+```{r, eval=TRUE, warning=TRUE, error=TRUE}
 x <- c(-2, -1, 0, 1, 2)
 
 if (x < 0) {
