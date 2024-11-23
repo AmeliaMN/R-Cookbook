@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Page not found | R Cookbook, 2nd Edition</title>
+  <meta name="description" content="Second edition of R Cookbook" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Page not found | R Cookbook, 2nd Edition" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Second edition of R Cookbook" />
+  <meta name="github-repo" content="CerebralMastication/R-Cookbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Page not found | R Cookbook, 2nd Edition" />
+  
+  <meta name="twitter:description" content="Second edition of R Cookbook" />
+  
+
+<meta name="author" content="James (JD) Long" />
+<meta name="author" content="Paul Teetor" />
+
+
+<meta name="date" content="2024-11-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129487349-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-129487349-3');
+</script>
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">R Cookbook 2nd Edition</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome to the R Cookbook 2nd Edition</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#the-recipes"><i class="fa fa-check"></i>The Recipes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-note-on-terminology"><i class="fa fa-check"></i>A Note on Terminology</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-and-platform-notes"><i class="fa fa-check"></i>Software and Platform Notes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#other-resources"><i class="fa fa-check"></i>Other Resources</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#conventions-used-in-this-book"><i class="fa fa-check"></i>Conventions Used in This Book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#using-code-examples"><i class="fa fa-check"></i>Using Code Examples</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#safari-books-online"><i class="fa fa-check"></i>Safari® Books Online</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-contact-us"><i class="fa fa-check"></i>How to Contact Us</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="GettingStarted.html"><a href="GettingStarted.html"><i class="fa fa-check"></i><b>1</b> Getting Started and Getting Help</a>
+<ul>
+<li class="chapter" data-level="" data-path="GettingStarted.html"><a href="GettingStarted.html#intro-GettingStarted"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1.1" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id001"><i class="fa fa-check"></i><b>1.1</b> Downloading and Installing R</a></li>
+<li class="chapter" data-level="1.2" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id002b"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-startingrstudio"><i class="fa fa-check"></i><b>1.3</b> Starting RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id007"><i class="fa fa-check"></i><b>1.4</b> Entering Commands</a></li>
+<li class="chapter" data-level="1.5" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id097"><i class="fa fa-check"></i><b>1.5</b> Exiting from RStudio</a></li>
+<li class="chapter" data-level="1.6" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id100"><i class="fa fa-check"></i><b>1.6</b> Interrupting R</a></li>
+<li class="chapter" data-level="1.7" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id265"><i class="fa fa-check"></i><b>1.7</b> Viewing the Supplied Documentation</a></li>
+<li class="chapter" data-level="1.8" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id003"><i class="fa fa-check"></i><b>1.8</b> Getting Help on a Function</a></li>
+<li class="chapter" data-level="1.9" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id267"><i class="fa fa-check"></i><b>1.9</b> Searching the Supplied Documentation</a></li>
+<li class="chapter" data-level="1.10" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id266"><i class="fa fa-check"></i><b>1.10</b> Getting Help on a Package</a></li>
+<li class="chapter" data-level="1.11" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id005"><i class="fa fa-check"></i><b>1.11</b> Searching the Web for Help</a></li>
+<li class="chapter" data-level="1.12" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id270"><i class="fa fa-check"></i><b>1.12</b> Finding Relevant Functions and Packages</a></li>
+<li class="chapter" data-level="1.13" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id268"><i class="fa fa-check"></i><b>1.13</b> Searching the Mailing Lists</a></li>
+<li class="chapter" data-level="1.14" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id269"><i class="fa fa-check"></i><b>1.14</b> Submitting Questions to Stack Overflow or Elsewhere in the Community</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="SomeBasics.html"><a href="SomeBasics.html"><i class="fa fa-check"></i><b>2</b> Some Basics</a>
+<ul>
+<li class="chapter" data-level="" data-path="SomeBasics.html"><a href="SomeBasics.html#intro-SomeBasics"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="2.1" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id017"><i class="fa fa-check"></i><b>2.1</b> Printing Something to the Screen</a></li>
+<li class="chapter" data-level="2.2" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id016"><i class="fa fa-check"></i><b>2.2</b> Setting Variables</a></li>
+<li class="chapter" data-level="2.3" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id091"><i class="fa fa-check"></i><b>2.3</b> Listing Variables</a></li>
+<li class="chapter" data-level="2.4" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id075"><i class="fa fa-check"></i><b>2.4</b> Deleting Variables</a></li>
+<li class="chapter" data-level="2.5" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id038"><i class="fa fa-check"></i><b>2.5</b> Creating a Vector</a></li>
+<li class="chapter" data-level="2.6" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id101"><i class="fa fa-check"></i><b>2.6</b> Computing Basic Statistics</a></li>
+<li class="chapter" data-level="2.7" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id021"><i class="fa fa-check"></i><b>2.7</b> Creating Sequences</a></li>
+<li class="chapter" data-level="2.8" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id020"><i class="fa fa-check"></i><b>2.8</b> Comparing Vectors</a></li>
+<li class="chapter" data-level="2.9" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id039"><i class="fa fa-check"></i><b>2.9</b> Selecting Vector Elements</a></li>
+<li class="chapter" data-level="2.10" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id019"><i class="fa fa-check"></i><b>2.10</b> Performing Vector Arithmetic</a></li>
+<li class="chapter" data-level="2.11" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id018"><i class="fa fa-check"></i><b>2.11</b> Getting Operator Precedence Right</a></li>
+<li class="chapter" data-level="2.12" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id022"><i class="fa fa-check"></i><b>2.12</b> Typing Less and Accomplishing More</a></li>
+<li class="chapter" data-level="2.13" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-pipe-2"><i class="fa fa-check"></i><b>2.13</b> Creating a Pipeline of Function Calls</a></li>
+<li class="chapter" data-level="2.14" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id025"><i class="fa fa-check"></i><b>2.14</b> Avoiding Some Common Mistakes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html"><i class="fa fa-check"></i><b>3</b> Navigating the Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#intro-NavigatingTheSoftware"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="3.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id008"><i class="fa fa-check"></i><b>3.1</b> Getting and Setting the Working Directory</a></li>
+<li class="chapter" data-level="3.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-CreateProject"><i class="fa fa-check"></i><b>3.2</b> Creating a New RStudio Project</a></li>
+<li class="chapter" data-level="3.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id009"><i class="fa fa-check"></i><b>3.3</b> Saving Your Workspace</a></li>
+<li class="chapter" data-level="3.4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id023"><i class="fa fa-check"></i><b>3.4</b> Viewing Your Command History</a></li>
+<li class="chapter" data-level="3.5" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id024"><i class="fa fa-check"></i><b>3.5</b> Saving the Result of the Previous Command</a></li>
+<li class="chapter" data-level="3.6" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id010"><i class="fa fa-check"></i><b>3.6</b> Displaying Loaded Packages via the Search Path</a></li>
+<li class="chapter" data-level="3.7" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id094"><i class="fa fa-check"></i><b>3.7</b> Viewing the List of Installed Packages</a></li>
+<li class="chapter" data-level="3.8" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id013"><i class="fa fa-check"></i><b>3.8</b> Accessing the Functions in a Package</a></li>
+<li class="chapter" data-level="3.9" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id257"><i class="fa fa-check"></i><b>3.9</b> Accessing Built-in Datasets</a></li>
+<li class="chapter" data-level="3.10" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id012"><i class="fa fa-check"></i><b>3.10</b> Installing Packages from CRAN</a></li>
+<li class="chapter" data-level="3.11" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-installGH"><i class="fa fa-check"></i><b>3.11</b> Installing a Package from GitHub</a></li>
+<li class="chapter" data-level="3.12" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id272"><i class="fa fa-check"></i><b>3.12</b> Setting or Changing a Default CRAN Mirror</a></li>
+<li class="chapter" data-level="3.13" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id014"><i class="fa fa-check"></i><b>3.13</b> Running a Script</a></li>
+<li class="chapter" data-level="3.14" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id015"><i class="fa fa-check"></i><b>3.14</b> Running a Batch Script</a></li>
+<li class="chapter" data-level="3.15" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id102"><i class="fa fa-check"></i><b>3.15</b> Locating the R Home Directory</a></li>
+<li class="chapter" data-level="3.16" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id099"><i class="fa fa-check"></i><b>3.16</b> Customizing R Startup</a></li>
+<li class="chapter" data-level="3.17" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-Rcloud"><i class="fa fa-check"></i><b>3.17</b> Using R and RStudio in the Cloud</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="InputAndOutput.html"><a href="InputAndOutput.html"><i class="fa fa-check"></i><b>4</b> Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="InputAndOutput.html"><a href="InputAndOutput.html#intro-InputAndOutput"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="4.1" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id035"><i class="fa fa-check"></i><b>4.1</b> Entering Data from the Keyboard</a></li>
+<li class="chapter" data-level="4.2" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id036"><i class="fa fa-check"></i><b>4.2</b> Printing Fewer Digits (or More Digits)</a></li>
+<li class="chapter" data-level="4.3" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id034"><i class="fa fa-check"></i><b>4.3</b> Redirecting Output to a File</a></li>
+<li class="chapter" data-level="4.4" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id030"><i class="fa fa-check"></i><b>4.4</b> Listing Files</a></li>
+<li class="chapter" data-level="4.5" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id033"><i class="fa fa-check"></i><b>4.5</b> Dealing with “Cannot Open File” in Windows</a></li>
+<li class="chapter" data-level="4.6" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id136"><i class="fa fa-check"></i><b>4.6</b> Reading Fixed-Width Records</a></li>
+<li class="chapter" data-level="4.7" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id245"><i class="fa fa-check"></i><b>4.7</b> Reading Tabular Data Files</a></li>
+<li class="chapter" data-level="4.8" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id027"><i class="fa fa-check"></i><b>4.8</b> Reading from CSV Files</a></li>
+<li class="chapter" data-level="4.9" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id028"><i class="fa fa-check"></i><b>4.9</b> Writing to CSV Files</a></li>
+<li class="chapter" data-level="4.10" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id031"><i class="fa fa-check"></i><b>4.10</b> Reading Tabular or CSV Data from the Web</a></li>
+<li class="chapter" data-level="4.11" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-readexcel"><i class="fa fa-check"></i><b>4.11</b> Reading Data from Excel</a></li>
+<li class="chapter" data-level="4.12" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-writeexcel"><i class="fa fa-check"></i><b>4.12</b> Writing a Data Frame to Excel</a></li>
+<li class="chapter" data-level="4.13" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-readsas"><i class="fa fa-check"></i><b>4.13</b> Reading Data from a SAS file</a></li>
+<li class="chapter" data-level="4.14" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id246"><i class="fa fa-check"></i><b>4.14</b> Reading Data from HTML Tables</a></li>
+<li class="chapter" data-level="4.15" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id098"><i class="fa fa-check"></i><b>4.15</b> Reading Files with a Complex Structure</a></li>
+<li class="chapter" data-level="4.16" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id037"><i class="fa fa-check"></i><b>4.16</b> Reading from MySQL Databases</a></li>
+<li class="chapter" data-level="4.17" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-dbplyr"><i class="fa fa-check"></i><b>4.17</b> Accessing a Database with dbplyr</a></li>
+<li class="chapter" data-level="4.18" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id029"><i class="fa fa-check"></i><b>4.18</b> Saving and Transporting Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="DataStructures.html"><a href="DataStructures.html"><i class="fa fa-check"></i><b>5</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="DataStructures.html"><a href="DataStructures.html#intro-DataStructures"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="5.1" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id048"><i class="fa fa-check"></i><b>5.1</b> Appending Data to a Vector</a></li>
+<li class="chapter" data-level="5.2" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id049"><i class="fa fa-check"></i><b>5.2</b> Inserting Data into a Vector</a></li>
+<li class="chapter" data-level="5.3" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id050"><i class="fa fa-check"></i><b>5.3</b> Understanding the Recycling Rule</a></li>
+<li class="chapter" data-level="5.4" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id051"><i class="fa fa-check"></i><b>5.4</b> Creating a Factor (Categorical Variable)</a></li>
+<li class="chapter" data-level="5.5" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id227"><i class="fa fa-check"></i><b>5.5</b> Combining Multiple Vectors into One Vector and a Factor</a></li>
+<li class="chapter" data-level="5.6" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id053"><i class="fa fa-check"></i><b>5.6</b> Creating a List</a></li>
+<li class="chapter" data-level="5.7" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id054"><i class="fa fa-check"></i><b>5.7</b> Selecting List Elements by Position</a></li>
+<li class="chapter" data-level="5.8" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id253"><i class="fa fa-check"></i><b>5.8</b> Selecting List Elements by Name</a></li>
+<li class="chapter" data-level="5.9" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id158"><i class="fa fa-check"></i><b>5.9</b> Building a Name/Value Association List</a></li>
+<li class="chapter" data-level="5.10" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id056"><i class="fa fa-check"></i><b>5.10</b> Removing an Element from a List</a></li>
+<li class="chapter" data-level="5.11" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id152"><i class="fa fa-check"></i><b>5.11</b> Flatten a List into a Vector</a></li>
+<li class="chapter" data-level="5.12" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id058"><i class="fa fa-check"></i><b>5.12</b> Removing NULL Elements from a List</a></li>
+<li class="chapter" data-level="5.13" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id060"><i class="fa fa-check"></i><b>5.13</b> Removing List Elements Using a Condition</a></li>
+<li class="chapter" data-level="5.14" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id062"><i class="fa fa-check"></i><b>5.14</b> Initializing a Matrix</a></li>
+<li class="chapter" data-level="5.15" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id139"><i class="fa fa-check"></i><b>5.15</b> Performing Matrix Operations</a></li>
+<li class="chapter" data-level="5.16" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id063"><i class="fa fa-check"></i><b>5.16</b> Giving Descriptive Names to the Rows and Columns of a Matrix</a></li>
+<li class="chapter" data-level="5.17" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id250"><i class="fa fa-check"></i><b>5.17</b> Selecting One Row or Column from a Matrix</a></li>
+<li class="chapter" data-level="5.18" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id251"><i class="fa fa-check"></i><b>5.18</b> Initializing a Data Frame from Column Data</a></li>
+<li class="chapter" data-level="5.19" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id252"><i class="fa fa-check"></i><b>5.19</b> Initializing a Data Frame from Row Data</a></li>
+<li class="chapter" data-level="5.20" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id071"><i class="fa fa-check"></i><b>5.20</b> Appending Rows to a Data Frame</a></li>
+<li class="chapter" data-level="5.21" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id068"><i class="fa fa-check"></i><b>5.21</b> Selecting Data Frame Columns by Position</a></li>
+<li class="chapter" data-level="5.22" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id254"><i class="fa fa-check"></i><b>5.22</b> Selecting Data Frame Columns by Name</a></li>
+<li class="chapter" data-level="5.23" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id069"><i class="fa fa-check"></i><b>5.23</b> Changing the Names of Data Frame Columns</a></li>
+<li class="chapter" data-level="5.24" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id249"><i class="fa fa-check"></i><b>5.24</b> Removing NAs from a Data Frame</a></li>
+<li class="chapter" data-level="5.25" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id072"><i class="fa fa-check"></i><b>5.25</b> Excluding Columns by Name</a></li>
+<li class="chapter" data-level="5.26" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id155"><i class="fa fa-check"></i><b>5.26</b> Combining Two Data Frames</a></li>
+<li class="chapter" data-level="5.27" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id057"><i class="fa fa-check"></i><b>5.27</b> Merging Data Frames by Common Column</a></li>
+<li class="chapter" data-level="5.28" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id248"><i class="fa fa-check"></i><b>5.28</b> Converting One Atomic Value into Another</a></li>
+<li class="chapter" data-level="5.29" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id074"><i class="fa fa-check"></i><b>5.29</b> Converting One Structured Data Type into Another</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="DataTransformations.html"><a href="DataTransformations.html"><i class="fa fa-check"></i><b>6</b> Data Transformations</a>
+<ul>
+<li class="chapter" data-level="" data-path="DataTransformations.html"><a href="DataTransformations.html#intro-DataTransformations"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="6.1" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id149"><i class="fa fa-check"></i><b>6.1</b> Applying a Function to Each List Element</a></li>
+<li class="chapter" data-level="6.2" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-row_df"><i class="fa fa-check"></i><b>6.2</b> Applying a Function to Every Row of a Data Frame</a></li>
+<li class="chapter" data-level="6.3" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id146"><i class="fa fa-check"></i><b>6.3</b> Applying a Function to Every Row of a Matrix</a></li>
+<li class="chapter" data-level="6.4" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id157"><i class="fa fa-check"></i><b>6.4</b> Applying a Function to Every Column</a></li>
+<li class="chapter" data-level="6.5" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id275"><i class="fa fa-check"></i><b>6.5</b> Applying a Function to Parallel Vectors or Lists</a></li>
+<li class="chapter" data-level="6.6" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id148"><i class="fa fa-check"></i><b>6.6</b> Applying a Function to Groups of Data</a></li>
+<li class="chapter" data-level="6.7" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-casewhen"><i class="fa fa-check"></i><b>6.7</b> Creating a New Column Based on Some Condition</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="StringsAndDates.html"><a href="StringsAndDates.html"><i class="fa fa-check"></i><b>7</b> Strings and Dates</a>
+<ul>
+<li class="chapter" data-level="" data-path="StringsAndDates.html"><a href="StringsAndDates.html#I_sect17_d1e17434"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="7.1" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id093"><i class="fa fa-check"></i><b>7.1</b> Getting the Length of a String</a></li>
+<li class="chapter" data-level="7.2" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id040"><i class="fa fa-check"></i><b>7.2</b> Concatenating Strings</a></li>
+<li class="chapter" data-level="7.3" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id041"><i class="fa fa-check"></i><b>7.3</b> Extracting Substrings</a></li>
+<li class="chapter" data-level="7.4" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id276"><i class="fa fa-check"></i><b>7.4</b> Splitting a String According to a Delimiter</a></li>
+<li class="chapter" data-level="7.5" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id277"><i class="fa fa-check"></i><b>7.5</b> Replacing Substrings</a></li>
+<li class="chapter" data-level="7.6" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id109"><i class="fa fa-check"></i><b>7.6</b> Generating All Pairwise Combinations of Strings</a></li>
+<li class="chapter" data-level="7.7" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id045"><i class="fa fa-check"></i><b>7.7</b> Getting the Current Date</a></li>
+<li class="chapter" data-level="7.8" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id043"><i class="fa fa-check"></i><b>7.8</b> Converting a String into a Date</a></li>
+<li class="chapter" data-level="7.9" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id044"><i class="fa fa-check"></i><b>7.9</b> Converting a Date into a String</a></li>
+<li class="chapter" data-level="7.10" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id241"><i class="fa fa-check"></i><b>7.10</b> Converting Year, Month, and Day into a Date</a></li>
+<li class="chapter" data-level="7.11" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id042"><i class="fa fa-check"></i><b>7.11</b> Getting the Julian Date</a></li>
+<li class="chapter" data-level="7.12" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id046"><i class="fa fa-check"></i><b>7.12</b> Extracting the Parts of a Date</a></li>
+<li class="chapter" data-level="7.13" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id047"><i class="fa fa-check"></i><b>7.13</b> Creating a Sequence of Dates</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="Probability.html"><a href="Probability.html"><i class="fa fa-check"></i><b>8</b> Probability</a>
+<ul>
+<li class="chapter" data-level="" data-path="Probability.html"><a href="Probability.html#intro-Probability"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="8.1" data-path="Probability.html"><a href="Probability.html#recipe-id163"><i class="fa fa-check"></i><b>8.1</b> Counting the Number of Combinations</a></li>
+<li class="chapter" data-level="8.2" data-path="Probability.html"><a href="Probability.html#recipe-id198"><i class="fa fa-check"></i><b>8.2</b> Generating Combinations</a></li>
+<li class="chapter" data-level="8.3" data-path="Probability.html"><a href="Probability.html#recipe-id165"><i class="fa fa-check"></i><b>8.3</b> Generating Random Numbers</a></li>
+<li class="chapter" data-level="8.4" data-path="Probability.html"><a href="Probability.html#recipe-id201"><i class="fa fa-check"></i><b>8.4</b> Generating Reproducible Random Numbers</a></li>
+<li class="chapter" data-level="8.5" data-path="Probability.html"><a href="Probability.html#recipe-id199"><i class="fa fa-check"></i><b>8.5</b> Generating a Random Sample</a></li>
+<li class="chapter" data-level="8.6" data-path="Probability.html"><a href="Probability.html#recipe-id200"><i class="fa fa-check"></i><b>8.6</b> Generating Random Sequences</a></li>
+<li class="chapter" data-level="8.7" data-path="Probability.html"><a href="Probability.html#recipe-id151"><i class="fa fa-check"></i><b>8.7</b> Randomly Permuting a Vector</a></li>
+<li class="chapter" data-level="8.8" data-path="Probability.html"><a href="Probability.html#recipe-id196"><i class="fa fa-check"></i><b>8.8</b> Calculating Probabilities for Discrete Distributions</a></li>
+<li class="chapter" data-level="8.9" data-path="Probability.html"><a href="Probability.html#recipe-id197"><i class="fa fa-check"></i><b>8.9</b> Calculating Probabilities for Continuous Distributions</a></li>
+<li class="chapter" data-level="8.10" data-path="Probability.html"><a href="Probability.html#recipe-id168"><i class="fa fa-check"></i><b>8.10</b> Converting Probabilities to Quantiles</a></li>
+<li class="chapter" data-level="8.11" data-path="Probability.html"><a href="Probability.html#recipe-id166"><i class="fa fa-check"></i><b>8.11</b> Plotting a Density Function</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html"><i class="fa fa-check"></i><b>9</b> General Statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#intro-GeneralStatistics"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="9.1" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id119"><i class="fa fa-check"></i><b>9.1</b> Summarizing Your Data</a></li>
+<li class="chapter" data-level="9.2" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id229"><i class="fa fa-check"></i><b>9.2</b> Calculating Relative Frequencies</a></li>
+<li class="chapter" data-level="9.3" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id124"><i class="fa fa-check"></i><b>9.3</b> Tabulating Factors and Creating Contingency Tables</a></li>
+<li class="chapter" data-level="9.4" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id125"><i class="fa fa-check"></i><b>9.4</b> Testing Categorical Variables for Independence</a></li>
+<li class="chapter" data-level="9.5" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id143"><i class="fa fa-check"></i><b>9.5</b> Calculating Quantiles (and Quartiles) of a Dataset</a></li>
+<li class="chapter" data-level="9.6" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id142"><i class="fa fa-check"></i><b>9.6</b> Inverting a Quantile</a></li>
+<li class="chapter" data-level="9.7" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id133"><i class="fa fa-check"></i><b>9.7</b> Converting Data to z-Scores</a></li>
+<li class="chapter" data-level="9.8" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id121"><i class="fa fa-check"></i><b>9.8</b> Testing the Mean of a Sample (t Test)</a></li>
+<li class="chapter" data-level="9.9" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id123"><i class="fa fa-check"></i><b>9.9</b> Forming a Confidence Interval for a Mean</a></li>
+<li class="chapter" data-level="9.10" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id135"><i class="fa fa-check"></i><b>9.10</b> Forming a Confidence Interval for a Median</a></li>
+<li class="chapter" data-level="9.11" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id225"><i class="fa fa-check"></i><b>9.11</b> Testing a Sample Proportion</a></li>
+<li class="chapter" data-level="9.12" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id226"><i class="fa fa-check"></i><b>9.12</b> Forming a Confidence Interval for a Proportion</a></li>
+<li class="chapter" data-level="9.13" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id126"><i class="fa fa-check"></i><b>9.13</b> Testing for Normality</a></li>
+<li class="chapter" data-level="9.14" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id131"><i class="fa fa-check"></i><b>9.14</b> Testing for Runs</a></li>
+<li class="chapter" data-level="9.15" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id122"><i class="fa fa-check"></i><b>9.15</b> Comparing the Means of Two Samples</a></li>
+<li class="chapter" data-level="9.16" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id130"><i class="fa fa-check"></i><b>9.16</b> Comparing the Locations of Two Samples Nonparametrically</a></li>
+<li class="chapter" data-level="9.17" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id132"><i class="fa fa-check"></i><b>9.17</b> Testing a Correlation for Significance</a></li>
+<li class="chapter" data-level="9.18" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id134"><i class="fa fa-check"></i><b>9.18</b> Testing Groups for Equal Proportions</a></li>
+<li class="chapter" data-level="9.19" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id127"><i class="fa fa-check"></i><b>9.19</b> Performing Pairwise Comparisons Between Group Means</a></li>
+<li class="chapter" data-level="9.20" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id129"><i class="fa fa-check"></i><b>9.20</b> Testing Two Samples for the Same Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="Graphics.html"><a href="Graphics.html"><i class="fa fa-check"></i><b>10</b> Graphics</a>
+<ul>
+<li class="chapter" data-level="" data-path="Graphics.html"><a href="Graphics.html#intro-Graphics"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="10.1" data-path="Graphics.html"><a href="Graphics.html#recipe-id171"><i class="fa fa-check"></i><b>10.1</b> Creating a Scatter Plot</a></li>
+<li class="chapter" data-level="10.2" data-path="Graphics.html"><a href="Graphics.html#recipe-id259"><i class="fa fa-check"></i><b>10.2</b> Adding a Title and Labels</a></li>
+<li class="chapter" data-level="10.3" data-path="Graphics.html"><a href="Graphics.html#recipe-id261"><i class="fa fa-check"></i><b>10.3</b> Adding (or Removing) a Grid</a></li>
+<li class="chapter" data-level="10.4" data-path="Graphics.html"><a href="Graphics.html#recipe-theme"><i class="fa fa-check"></i><b>10.4</b> Applying a Theme to a ggplot Figure</a></li>
+<li class="chapter" data-level="10.5" data-path="Graphics.html"><a href="Graphics.html#recipe-id262"><i class="fa fa-check"></i><b>10.5</b> Creating a Scatter Plot of Multiple Groups</a></li>
+<li class="chapter" data-level="10.6" data-path="Graphics.html"><a href="Graphics.html#recipe-id260"><i class="fa fa-check"></i><b>10.6</b> Adding (or Removing) a Legend</a></li>
+<li class="chapter" data-level="10.7" data-path="Graphics.html"><a href="Graphics.html#recipe-id217"><i class="fa fa-check"></i><b>10.7</b> Plotting the Regression Line of a Scatter Plot</a></li>
+<li class="chapter" data-level="10.8" data-path="Graphics.html"><a href="Graphics.html#recipe-id184"><i class="fa fa-check"></i><b>10.8</b> Plotting All Variables Against All Other Variables</a></li>
+<li class="chapter" data-level="10.9" data-path="Graphics.html"><a href="Graphics.html#recipe-id185"><i class="fa fa-check"></i><b>10.9</b> Creating One Scatter Plot for Each Group</a></li>
+<li class="chapter" data-level="10.10" data-path="Graphics.html"><a href="Graphics.html#recipe-id175"><i class="fa fa-check"></i><b>10.10</b> Creating a Bar Chart</a></li>
+<li class="chapter" data-level="10.11" data-path="Graphics.html"><a href="Graphics.html#recipe-id177"><i class="fa fa-check"></i><b>10.11</b> Adding Confidence Intervals to a Bar Chart</a></li>
+<li class="chapter" data-level="10.12" data-path="Graphics.html"><a href="Graphics.html#recipe-id176"><i class="fa fa-check"></i><b>10.12</b> Coloring a Bar Chart</a></li>
+<li class="chapter" data-level="10.13" data-path="Graphics.html"><a href="Graphics.html#recipe-id174"><i class="fa fa-check"></i><b>10.13</b> Plotting a Line from x and y Points</a></li>
+<li class="chapter" data-level="10.14" data-path="Graphics.html"><a href="Graphics.html#recipe-id256"><i class="fa fa-check"></i><b>10.14</b> Changing the Type, Width, or Color of a Line</a></li>
+<li class="chapter" data-level="10.15" data-path="Graphics.html"><a href="Graphics.html#recipe-id263"><i class="fa fa-check"></i><b>10.15</b> Plotting Multiple Datasets</a></li>
+<li class="chapter" data-level="10.16" data-path="Graphics.html"><a href="Graphics.html#recipe-id186"><i class="fa fa-check"></i><b>10.16</b> Adding Vertical or Horizontal Lines</a></li>
+<li class="chapter" data-level="10.17" data-path="Graphics.html"><a href="Graphics.html#recipe-id178"><i class="fa fa-check"></i><b>10.17</b> Creating a Boxplot</a></li>
+<li class="chapter" data-level="10.18" data-path="Graphics.html"><a href="Graphics.html#recipe-id179"><i class="fa fa-check"></i><b>10.18</b> Creating One Boxplot for Each Factor Level</a></li>
+<li class="chapter" data-level="10.19" data-path="Graphics.html"><a href="Graphics.html#recipe-id182"><i class="fa fa-check"></i><b>10.19</b> Creating a Histogram</a></li>
+<li class="chapter" data-level="10.20" data-path="Graphics.html"><a href="Graphics.html#recipe-id183"><i class="fa fa-check"></i><b>10.20</b> Adding a Density Estimate to a Histogram</a></li>
+<li class="chapter" data-level="10.21" data-path="Graphics.html"><a href="Graphics.html#recipe-id180"><i class="fa fa-check"></i><b>10.21</b> Creating a Normal Quantile–Quantile Plot</a></li>
+<li class="chapter" data-level="10.22" data-path="Graphics.html"><a href="Graphics.html#recipe-id181"><i class="fa fa-check"></i><b>10.22</b> Creating Other Quantile–Quantile Plots</a></li>
+<li class="chapter" data-level="10.23" data-path="Graphics.html"><a href="Graphics.html#recipe-id191"><i class="fa fa-check"></i><b>10.23</b> Plotting a Variable in Multiple Colors</a></li>
+<li class="chapter" data-level="10.24" data-path="Graphics.html"><a href="Graphics.html#recipe-id192"><i class="fa fa-check"></i><b>10.24</b> Graphing a Function</a></li>
+<li class="chapter" data-level="10.25" data-path="Graphics.html"><a href="Graphics.html#recipe-id190"><i class="fa fa-check"></i><b>10.25</b> Displaying Several Figures on One Page</a></li>
+<li class="chapter" data-level="10.26" data-path="Graphics.html"><a href="Graphics.html#recipe-id188"><i class="fa fa-check"></i><b>10.26</b> Writing Your Plot to a File</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html"><i class="fa fa-check"></i><b>11</b> Linear Regression and ANOVA</a>
+<ul>
+<li class="chapter" data-level="" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#intro-LinearRegressionAndANOVA"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="11.1" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id203"><i class="fa fa-check"></i><b>11.1</b> Performing Simple Linear Regression</a></li>
+<li class="chapter" data-level="11.2" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id204"><i class="fa fa-check"></i><b>11.2</b> Performing Multiple Linear Regression</a></li>
+<li class="chapter" data-level="11.3" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id231"><i class="fa fa-check"></i><b>11.3</b> Getting Regression Statistics</a></li>
+<li class="chapter" data-level="11.4" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id240"><i class="fa fa-check"></i><b>11.4</b> Understanding the Regression Summary</a></li>
+<li class="chapter" data-level="11.5" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id205"><i class="fa fa-check"></i><b>11.5</b> Performing Linear Regression Without an Intercept</a></li>
+<li class="chapter" data-level="11.6" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#title-highcor"><i class="fa fa-check"></i><b>11.6</b> Regressing Only Variables That Highly Correlate with Your Dependent Variable</a></li>
+<li class="chapter" data-level="11.7" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id206"><i class="fa fa-check"></i><b>11.7</b> Performing Linear Regression with Interaction Terms</a></li>
+<li class="chapter" data-level="11.8" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id236"><i class="fa fa-check"></i><b>11.8</b> Selecting the Best Regression Variables</a></li>
+<li class="chapter" data-level="11.9" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id209"><i class="fa fa-check"></i><b>11.9</b> Regressing on a Subset of Your Data</a></li>
+<li class="chapter" data-level="11.10" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id244"><i class="fa fa-check"></i><b>11.10</b> Using an Expression Inside a Regression Formula</a></li>
+<li class="chapter" data-level="11.11" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id243"><i class="fa fa-check"></i><b>11.11</b> Regressing on a Polynomial</a></li>
+<li class="chapter" data-level="11.12" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id208"><i class="fa fa-check"></i><b>11.12</b> Regressing on Transformed Data</a></li>
+<li class="chapter" data-level="11.13" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id210"><i class="fa fa-check"></i><b>11.13</b> Finding the Best Power Transformation (Box–Cox Procedure)</a></li>
+<li class="chapter" data-level="11.14" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id211"><i class="fa fa-check"></i><b>11.14</b> Forming Confidence Intervals for Regression Coefficients</a></li>
+<li class="chapter" data-level="11.15" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id216"><i class="fa fa-check"></i><b>11.15</b> Plotting Regression Residuals</a></li>
+<li class="chapter" data-level="11.16" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id212"><i class="fa fa-check"></i><b>11.16</b> Diagnosing a Linear Regression</a></li>
+<li class="chapter" data-level="11.17" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id233"><i class="fa fa-check"></i><b>11.17</b> Identifying Influential Observations</a></li>
+<li class="chapter" data-level="11.18" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id213"><i class="fa fa-check"></i><b>11.18</b> Testing Residuals for Autocorrelation (Durbin–Watson Test)</a></li>
+<li class="chapter" data-level="11.19" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id214"><i class="fa fa-check"></i><b>11.19</b> Predicting New Values</a></li>
+<li class="chapter" data-level="11.20" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id215"><i class="fa fa-check"></i><b>11.20</b> Forming Prediction Intervals</a></li>
+<li class="chapter" data-level="11.21" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id218"><i class="fa fa-check"></i><b>11.21</b> Performing One-Way ANOVA</a></li>
+<li class="chapter" data-level="11.22" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id221"><i class="fa fa-check"></i><b>11.22</b> Creating an Interaction Plot</a></li>
+<li class="chapter" data-level="11.23" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id220"><i class="fa fa-check"></i><b>11.23</b> Finding Differences Between Means of Groups</a></li>
+<li class="chapter" data-level="11.24" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id228"><i class="fa fa-check"></i><b>11.24</b> Performing Robust ANOVA (Kruskal–Wallis Test)</a></li>
+<li class="chapter" data-level="11.25" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id232"><i class="fa fa-check"></i><b>11.25</b> Comparing Models by Using ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="UsefulTricks.html"><a href="UsefulTricks.html"><i class="fa fa-check"></i><b>12</b> Useful Tricks</a>
+<ul>
+<li class="chapter" data-level="" data-path="UsefulTricks.html"><a href="UsefulTricks.html#intro-UsefulTricks"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="12.1" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id278"><i class="fa fa-check"></i><b>12.1</b> Peeking at Your Data</a></li>
+<li class="chapter" data-level="12.2" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id271"><i class="fa fa-check"></i><b>12.2</b> Printing the Result of an Assignment</a></li>
+<li class="chapter" data-level="12.3" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id138"><i class="fa fa-check"></i><b>12.3</b> Summing Rows and Columns</a></li>
+<li class="chapter" data-level="12.4" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id112"><i class="fa fa-check"></i><b>12.4</b> Printing Data in Columns</a></li>
+<li class="chapter" data-level="12.5" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id137"><i class="fa fa-check"></i><b>12.5</b> Binning Your Data</a></li>
+<li class="chapter" data-level="12.6" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id116"><i class="fa fa-check"></i><b>12.6</b> Finding the Position of a Particular Value</a></li>
+<li class="chapter" data-level="12.7" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id103"><i class="fa fa-check"></i><b>12.7</b> Selecting Every nth Element of a Vector</a></li>
+<li class="chapter" data-level="12.8" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id107"><i class="fa fa-check"></i><b>12.8</b> Finding Minimums or Maximums</a></li>
+<li class="chapter" data-level="12.9" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id110"><i class="fa fa-check"></i><b>12.9</b> Generating All Combinations of Several Variables</a></li>
+<li class="chapter" data-level="12.10" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id153"><i class="fa fa-check"></i><b>12.10</b> Flattening a Data Frame</a></li>
+<li class="chapter" data-level="12.11" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id247"><i class="fa fa-check"></i><b>12.11</b> Sorting a Data Frame</a></li>
+<li class="chapter" data-level="12.12" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id223"><i class="fa fa-check"></i><b>12.12</b> Stripping Attributes from a Variable</a></li>
+<li class="chapter" data-level="12.13" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id202"><i class="fa fa-check"></i><b>12.13</b> Revealing the Structure of an Object</a></li>
+<li class="chapter" data-level="12.14" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id224"><i class="fa fa-check"></i><b>12.14</b> Timing Your Code</a></li>
+<li class="chapter" data-level="12.15" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id113"><i class="fa fa-check"></i><b>12.15</b> Suppressing Warnings and Error Messages</a></li>
+<li class="chapter" data-level="12.16" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id118"><i class="fa fa-check"></i><b>12.16</b> Taking Function Arguments from a List</a></li>
+<li class="chapter" data-level="12.17" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id114"><i class="fa fa-check"></i><b>12.17</b> Defining Your Own Binary Operators</a></li>
+<li class="chapter" data-level="12.18" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id111"><i class="fa fa-check"></i><b>12.18</b> Suppressing the Startup Message</a></li>
+<li class="chapter" data-level="12.19" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id106"><i class="fa fa-check"></i><b>12.19</b> Getting and Setting Environment Variables</a></li>
+<li class="chapter" data-level="12.20" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-codesections"><i class="fa fa-check"></i><b>12.20</b> Use Code Sections</a></li>
+<li class="chapter" data-level="12.21" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-parallel_local"><i class="fa fa-check"></i><b>12.21</b> Executing R in Parallel Locally</a></li>
+<li class="chapter" data-level="12.22" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-parallel_remote"><i class="fa fa-check"></i><b>12.22</b> Executing R in Parallel Remotely</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="BeyondBasics.html"><a href="BeyondBasics.html"><i class="fa fa-check"></i><b>13</b> Beyond Basic Numerics and Statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="BeyondBasics.html"><a href="BeyondBasics.html#intro-BeyondBasics"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="13.1" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id234"><i class="fa fa-check"></i><b>13.1</b> Minimizing or Maximizing a Single-Parameter Function</a></li>
+<li class="chapter" data-level="13.2" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id235"><i class="fa fa-check"></i><b>13.2</b> Minimizing or Maximizing a Multiparameter Function</a></li>
+<li class="chapter" data-level="13.3" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id140"><i class="fa fa-check"></i><b>13.3</b> Calculating Eigenvalues and Eigenvectors</a></li>
+<li class="chapter" data-level="13.4" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id162"><i class="fa fa-check"></i><b>13.4</b> Performing Principal Component Analysis</a></li>
+<li class="chapter" data-level="13.5" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id264"><i class="fa fa-check"></i><b>13.5</b> Performing Simple Orthogonal Regression</a></li>
+<li class="chapter" data-level="13.6" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id160"><i class="fa fa-check"></i><b>13.6</b> Finding Clusters in Your Data</a></li>
+<li class="chapter" data-level="13.7" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id161"><i class="fa fa-check"></i><b>13.7</b> Predicting a Binary-Valued Variable (Logistic Regression)</a></li>
+<li class="chapter" data-level="13.8" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id159"><i class="fa fa-check"></i><b>13.8</b> Bootstrapping a Statistic</a></li>
+<li class="chapter" data-level="13.9" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id193"><i class="fa fa-check"></i><b>13.9</b> Factor Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html"><i class="fa fa-check"></i><b>14</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="14.1" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id076"><i class="fa fa-check"></i><b>14.1</b> Representing Time Series Data</a></li>
+<li class="chapter" data-level="14.2" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id089"><i class="fa fa-check"></i><b>14.2</b> Plotting Time Series Data</a></li>
+<li class="chapter" data-level="14.3" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id077"><i class="fa fa-check"></i><b>14.3</b> Extracting the Oldest or Newest Observations</a></li>
+<li class="chapter" data-level="14.4" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id281"><i class="fa fa-check"></i><b>14.4</b> Subsetting a Time Series</a></li>
+<li class="chapter" data-level="14.5" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id079"><i class="fa fa-check"></i><b>14.5</b> Merging Several Time Series</a></li>
+<li class="chapter" data-level="14.6" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id239"><i class="fa fa-check"></i><b>14.6</b> Filling or Padding a Time Series</a></li>
+<li class="chapter" data-level="14.7" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id280"><i class="fa fa-check"></i><b>14.7</b> Lagging a Time Series</a></li>
+<li class="chapter" data-level="14.8" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id141"><i class="fa fa-check"></i><b>14.8</b> Computing Successive Differences</a></li>
+<li class="chapter" data-level="14.9" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id080"><i class="fa fa-check"></i><b>14.9</b> Performing Calculations on Time Series</a></li>
+<li class="chapter" data-level="14.10" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id279"><i class="fa fa-check"></i><b>14.10</b> Computing a Moving Average</a></li>
+<li class="chapter" data-level="14.11" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id282"><i class="fa fa-check"></i><b>14.11</b> Applying a Function by Calendar Period</a></li>
+<li class="chapter" data-level="14.12" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id081"><i class="fa fa-check"></i><b>14.12</b> Applying a Rolling Function</a></li>
+<li class="chapter" data-level="14.13" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id082"><i class="fa fa-check"></i><b>14.13</b> Plotting the Autocorrelation Function</a></li>
+<li class="chapter" data-level="14.14" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id104"><i class="fa fa-check"></i><b>14.14</b> Testing a Time Series for Autocorrelation</a></li>
+<li class="chapter" data-level="14.15" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id083"><i class="fa fa-check"></i><b>14.15</b> Plotting the Partial Autocorrelation Function</a></li>
+<li class="chapter" data-level="14.16" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id084"><i class="fa fa-check"></i><b>14.16</b> Finding Lagged Correlations Between Two Time Series</a></li>
+<li class="chapter" data-level="14.17" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id088"><i class="fa fa-check"></i><b>14.17</b> Detrending a Time Series</a></li>
+<li class="chapter" data-level="14.18" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id085"><i class="fa fa-check"></i><b>14.18</b> Fitting an ARIMA Model</a></li>
+<li class="chapter" data-level="14.19" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id237"><i class="fa fa-check"></i><b>14.19</b> Removing Insignificant ARIMA Coefficients</a></li>
+<li class="chapter" data-level="14.20" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id238"><i class="fa fa-check"></i><b>14.20</b> Running Diagnostics on an ARIMA Model</a></li>
+<li class="chapter" data-level="14.21" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id086"><i class="fa fa-check"></i><b>14.21</b> Making Forecasts from an ARIMA Model</a></li>
+<li class="chapter" data-level="14.22" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-plotting_forecast"><i class="fa fa-check"></i><b>14.22</b> Plotting a Forecast</a></li>
+<li class="chapter" data-level="14.23" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id087"><i class="fa fa-check"></i><b>14.23</b> Testing for Mean Reversion</a></li>
+<li class="chapter" data-level="14.24" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id195"><i class="fa fa-check"></i><b>14.24</b> Smoothing a Time Series</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html"><i class="fa fa-check"></i><b>15</b> Simple Programming</a>
+<ul>
+<li class="chapter" data-level="" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#intro-SimpleProgramming"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="15.1" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-creating_if_logic"><i class="fa fa-check"></i><b>15.1</b> Choosing Between Two Alternatives: if-else</a></li>
+<li class="chapter" data-level="15.2" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-for_loop"><i class="fa fa-check"></i><b>15.2</b> Iterating with a Loop</a></li>
+<li class="chapter" data-level="15.3" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-id117"><i class="fa fa-check"></i><b>15.3</b> Defining a Function</a></li>
+<li class="chapter" data-level="15.4" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-variable"><i class="fa fa-check"></i><b>15.4</b> Creating a Local Variable</a></li>
+<li class="chapter" data-level="15.5" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#choosing-between-multiple-alternatives-switch"><i class="fa fa-check"></i><b>15.5</b> Choosing Between Multiple Alternatives: switch</a></li>
+<li class="chapter" data-level="15.6" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-title"><i class="fa fa-check"></i><b>15.6</b> Defining Defaults for Function Parameters</a></li>
+<li class="chapter" data-level="15.7" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#signaling-errors"><i class="fa fa-check"></i><b>15.7</b> Signaling Errors</a></li>
+<li class="chapter" data-level="15.8" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#protecting-against-errors"><i class="fa fa-check"></i><b>15.8</b> Protecting Against Errors</a></li>
+<li class="chapter" data-level="15.9" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-anon-function"><i class="fa fa-check"></i><b>15.9</b> Creating an Anonymous Function</a></li>
+<li class="chapter" data-level="15.10" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#creating-a-collection-of-reusable-functions"><i class="fa fa-check"></i><b>15.10</b> Creating a Collection of Reusable Functions</a></li>
+<li class="chapter" data-level="15.11" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-indent"><i class="fa fa-check"></i><b>15.11</b> Automatically Reindent Code</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="RMarkdown.html"><a href="RMarkdown.html"><i class="fa fa-check"></i><b>16</b> R Markdown and Publishing</a>
+<ul>
+<li class="chapter" data-level="" data-path="RMarkdown.html"><a href="RMarkdown.html#intro-Rmd_pub"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="16.1" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-new_doc"><i class="fa fa-check"></i><b>16.1</b> Creating a New Document</a></li>
+<li class="chapter" data-level="16.2" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-metadata"><i class="fa fa-check"></i><b>16.2</b> Adding a Title, Author, or Date</a></li>
+<li class="chapter" data-level="16.3" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-doc-text"><i class="fa fa-check"></i><b>16.3</b> Formatting Document Text</a></li>
+<li class="chapter" data-level="16.4" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-headings"><i class="fa fa-check"></i><b>16.4</b> Inserting Document Headings</a></li>
+<li class="chapter" data-level="16.5" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-list"><i class="fa fa-check"></i><b>16.5</b> Inserting a List</a></li>
+<li class="chapter" data-level="16.6" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-exec_r"><i class="fa fa-check"></i><b>16.6</b> Showing Output from R Code</a></li>
+<li class="chapter" data-level="16.7" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-code-results"><i class="fa fa-check"></i><b>16.7</b> Controlling Which Code and Results Are Shown</a></li>
+<li class="chapter" data-level="16.8" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-doc_plot"><i class="fa fa-check"></i><b>16.8</b> Inserting a Plot</a></li>
+<li class="chapter" data-level="16.9" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-static-table"><i class="fa fa-check"></i><b>16.9</b> Inserting a Table</a></li>
+<li class="chapter" data-level="16.10" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-tables"><i class="fa fa-check"></i><b>16.10</b> Inserting a Table of Data</a></li>
+<li class="chapter" data-level="16.11" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-equations"><i class="fa fa-check"></i><b>16.11</b> Inserting Math Equations</a></li>
+<li class="chapter" data-level="16.12" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-html"><i class="fa fa-check"></i><b>16.12</b> Generating HTML Output</a></li>
+<li class="chapter" data-level="16.13" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-pdf"><i class="fa fa-check"></i><b>16.13</b> Generating PDF Output</a></li>
+<li class="chapter" data-level="16.14" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-word"><i class="fa fa-check"></i><b>16.14</b> Generating Microsoft Word Output</a></li>
+<li class="chapter" data-level="16.15" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-prez"><i class="fa fa-check"></i><b>16.15</b> Generating Presentation Output</a></li>
+<li class="chapter" data-level="16.16" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-param_report"><i class="fa fa-check"></i><b>16.16</b> Creating a Parameterized Report</a></li>
+<li class="chapter" data-level="16.17" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-rmd_org"><i class="fa fa-check"></i><b>16.17</b> Organizing Your R Markdown Workflow</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Cookbook, 2nd Edition</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": true,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/CerebralMastication/R-Cookbook/edit/master/%s",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

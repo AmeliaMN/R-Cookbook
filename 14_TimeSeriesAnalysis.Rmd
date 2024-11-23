@@ -3,6 +3,15 @@
 Introduction {-}
 ------------
 
+```{r}
+#| echo: false
+library(conflicted)
+conflict_prefer("lag", "stats")
+conflict_prefer("first", "xts")
+conflict_prefer("last", "xts")
+```
+
+
 Time series analysis has become a hot topic with the rise of
 quantitative finance and automated trading of securities. Many of the
 facilities described in this chapter were invented by practitioners and

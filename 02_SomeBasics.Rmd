@@ -408,7 +408,7 @@ ls.str()
 
 The function is called `ls.str` because it is both listing your
 variables and applying the `str` function to them, showing their
-structure (see Recipe @ref(recipe-id202), ["Revealing the Structure of an Object"](#recipe-id202)).
+structure (see Recipe \@ref(recipe-id202), ["Revealing the Structure of an Object"](#recipe-id202)).
 
 Ordinarily, `ls` does not return any name that begins with a dot (`.`).
 Such names are considered hidden and are not normally of interest to

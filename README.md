@@ -10,3 +10,9 @@ You can buy a copy of the book at [Amazon](https://amzn.to/2Y9JVe7) or wherever 
 
 [![R Cookbook Cover](/images_v2/book_cover.jpg)](https://amzn.to/2Y9JVe7)
 
+I had to install the following packages in order to get the book to compile:
+
+
+```
+install.packages(c("tseries", "openxlsx", "RSQLite", "tictoc", "forecast", "fpp2"))
+```

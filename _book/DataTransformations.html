@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Data Transformations | R Cookbook, 2nd Edition</title>
+  <meta name="description" content="Second edition of R Cookbook" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Data Transformations | R Cookbook, 2nd Edition" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Second edition of R Cookbook" />
+  <meta name="github-repo" content="CerebralMastication/R-Cookbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Data Transformations | R Cookbook, 2nd Edition" />
+  
+  <meta name="twitter:description" content="Second edition of R Cookbook" />
+  
+
+<meta name="author" content="James (JD) Long" />
+<meta name="author" content="Paul Teetor" />
+
+
+<meta name="date" content="2024-11-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="DataStructures.html"/>
+<link rel="next" href="StringsAndDates.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129487349-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-129487349-3');
+</script>
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">R Cookbook 2nd Edition</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome to the R Cookbook 2nd Edition</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#the-recipes"><i class="fa fa-check"></i>The Recipes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-note-on-terminology"><i class="fa fa-check"></i>A Note on Terminology</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-and-platform-notes"><i class="fa fa-check"></i>Software and Platform Notes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#other-resources"><i class="fa fa-check"></i>Other Resources</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#conventions-used-in-this-book"><i class="fa fa-check"></i>Conventions Used in This Book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#using-code-examples"><i class="fa fa-check"></i>Using Code Examples</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#safari-books-online"><i class="fa fa-check"></i>Safari® Books Online</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-contact-us"><i class="fa fa-check"></i>How to Contact Us</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="GettingStarted.html"><a href="GettingStarted.html"><i class="fa fa-check"></i><b>1</b> Getting Started and Getting Help</a>
+<ul>
+<li class="chapter" data-level="" data-path="GettingStarted.html"><a href="GettingStarted.html#intro-GettingStarted"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1.1" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id001"><i class="fa fa-check"></i><b>1.1</b> Downloading and Installing R</a></li>
+<li class="chapter" data-level="1.2" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id002b"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-startingrstudio"><i class="fa fa-check"></i><b>1.3</b> Starting RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id007"><i class="fa fa-check"></i><b>1.4</b> Entering Commands</a></li>
+<li class="chapter" data-level="1.5" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id097"><i class="fa fa-check"></i><b>1.5</b> Exiting from RStudio</a></li>
+<li class="chapter" data-level="1.6" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id100"><i class="fa fa-check"></i><b>1.6</b> Interrupting R</a></li>
+<li class="chapter" data-level="1.7" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id265"><i class="fa fa-check"></i><b>1.7</b> Viewing the Supplied Documentation</a></li>
+<li class="chapter" data-level="1.8" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id003"><i class="fa fa-check"></i><b>1.8</b> Getting Help on a Function</a></li>
+<li class="chapter" data-level="1.9" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id267"><i class="fa fa-check"></i><b>1.9</b> Searching the Supplied Documentation</a></li>
+<li class="chapter" data-level="1.10" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id266"><i class="fa fa-check"></i><b>1.10</b> Getting Help on a Package</a></li>
+<li class="chapter" data-level="1.11" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id005"><i class="fa fa-check"></i><b>1.11</b> Searching the Web for Help</a></li>
+<li class="chapter" data-level="1.12" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id270"><i class="fa fa-check"></i><b>1.12</b> Finding Relevant Functions and Packages</a></li>
+<li class="chapter" data-level="1.13" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id268"><i class="fa fa-check"></i><b>1.13</b> Searching the Mailing Lists</a></li>
+<li class="chapter" data-level="1.14" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id269"><i class="fa fa-check"></i><b>1.14</b> Submitting Questions to Stack Overflow or Elsewhere in the Community</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="SomeBasics.html"><a href="SomeBasics.html"><i class="fa fa-check"></i><b>2</b> Some Basics</a>
+<ul>
+<li class="chapter" data-level="" data-path="SomeBasics.html"><a href="SomeBasics.html#intro-SomeBasics"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="2.1" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id017"><i class="fa fa-check"></i><b>2.1</b> Printing Something to the Screen</a></li>
+<li class="chapter" data-level="2.2" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id016"><i class="fa fa-check"></i><b>2.2</b> Setting Variables</a></li>
+<li class="chapter" data-level="2.3" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id091"><i class="fa fa-check"></i><b>2.3</b> Listing Variables</a></li>
+<li class="chapter" data-level="2.4" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id075"><i class="fa fa-check"></i><b>2.4</b> Deleting Variables</a></li>
+<li class="chapter" data-level="2.5" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id038"><i class="fa fa-check"></i><b>2.5</b> Creating a Vector</a></li>
+<li class="chapter" data-level="2.6" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id101"><i class="fa fa-check"></i><b>2.6</b> Computing Basic Statistics</a></li>
+<li class="chapter" data-level="2.7" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id021"><i class="fa fa-check"></i><b>2.7</b> Creating Sequences</a></li>
+<li class="chapter" data-level="2.8" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id020"><i class="fa fa-check"></i><b>2.8</b> Comparing Vectors</a></li>
+<li class="chapter" data-level="2.9" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id039"><i class="fa fa-check"></i><b>2.9</b> Selecting Vector Elements</a></li>
+<li class="chapter" data-level="2.10" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id019"><i class="fa fa-check"></i><b>2.10</b> Performing Vector Arithmetic</a></li>
+<li class="chapter" data-level="2.11" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id018"><i class="fa fa-check"></i><b>2.11</b> Getting Operator Precedence Right</a></li>
+<li class="chapter" data-level="2.12" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id022"><i class="fa fa-check"></i><b>2.12</b> Typing Less and Accomplishing More</a></li>
+<li class="chapter" data-level="2.13" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-pipe-2"><i class="fa fa-check"></i><b>2.13</b> Creating a Pipeline of Function Calls</a></li>
+<li class="chapter" data-level="2.14" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id025"><i class="fa fa-check"></i><b>2.14</b> Avoiding Some Common Mistakes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html"><i class="fa fa-check"></i><b>3</b> Navigating the Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#intro-NavigatingTheSoftware"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="3.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id008"><i class="fa fa-check"></i><b>3.1</b> Getting and Setting the Working Directory</a></li>
+<li class="chapter" data-level="3.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-CreateProject"><i class="fa fa-check"></i><b>3.2</b> Creating a New RStudio Project</a></li>
+<li class="chapter" data-level="3.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id009"><i class="fa fa-check"></i><b>3.3</b> Saving Your Workspace</a></li>
+<li class="chapter" data-level="3.4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id023"><i class="fa fa-check"></i><b>3.4</b> Viewing Your Command History</a></li>
+<li class="chapter" data-level="3.5" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id024"><i class="fa fa-check"></i><b>3.5</b> Saving the Result of the Previous Command</a></li>
+<li class="chapter" data-level="3.6" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id010"><i class="fa fa-check"></i><b>3.6</b> Displaying Loaded Packages via the Search Path</a></li>
+<li class="chapter" data-level="3.7" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id094"><i class="fa fa-check"></i><b>3.7</b> Viewing the List of Installed Packages</a></li>
+<li class="chapter" data-level="3.8" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id013"><i class="fa fa-check"></i><b>3.8</b> Accessing the Functions in a Package</a></li>
+<li class="chapter" data-level="3.9" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id257"><i class="fa fa-check"></i><b>3.9</b> Accessing Built-in Datasets</a></li>
+<li class="chapter" data-level="3.10" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id012"><i class="fa fa-check"></i><b>3.10</b> Installing Packages from CRAN</a></li>
+<li class="chapter" data-level="3.11" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-installGH"><i class="fa fa-check"></i><b>3.11</b> Installing a Package from GitHub</a></li>
+<li class="chapter" data-level="3.12" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id272"><i class="fa fa-check"></i><b>3.12</b> Setting or Changing a Default CRAN Mirror</a></li>
+<li class="chapter" data-level="3.13" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id014"><i class="fa fa-check"></i><b>3.13</b> Running a Script</a></li>
+<li class="chapter" data-level="3.14" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id015"><i class="fa fa-check"></i><b>3.14</b> Running a Batch Script</a></li>
+<li class="chapter" data-level="3.15" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id102"><i class="fa fa-check"></i><b>3.15</b> Locating the R Home Directory</a></li>
+<li class="chapter" data-level="3.16" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id099"><i class="fa fa-check"></i><b>3.16</b> Customizing R Startup</a></li>
+<li class="chapter" data-level="3.17" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-Rcloud"><i class="fa fa-check"></i><b>3.17</b> Using R and RStudio in the Cloud</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="InputAndOutput.html"><a href="InputAndOutput.html"><i class="fa fa-check"></i><b>4</b> Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="InputAndOutput.html"><a href="InputAndOutput.html#intro-InputAndOutput"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="4.1" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id035"><i class="fa fa-check"></i><b>4.1</b> Entering Data from the Keyboard</a></li>
+<li class="chapter" data-level="4.2" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id036"><i class="fa fa-check"></i><b>4.2</b> Printing Fewer Digits (or More Digits)</a></li>
+<li class="chapter" data-level="4.3" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id034"><i class="fa fa-check"></i><b>4.3</b> Redirecting Output to a File</a></li>
+<li class="chapter" data-level="4.4" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id030"><i class="fa fa-check"></i><b>4.4</b> Listing Files</a></li>
+<li class="chapter" data-level="4.5" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id033"><i class="fa fa-check"></i><b>4.5</b> Dealing with “Cannot Open File” in Windows</a></li>
+<li class="chapter" data-level="4.6" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id136"><i class="fa fa-check"></i><b>4.6</b> Reading Fixed-Width Records</a></li>
+<li class="chapter" data-level="4.7" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id245"><i class="fa fa-check"></i><b>4.7</b> Reading Tabular Data Files</a></li>
+<li class="chapter" data-level="4.8" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id027"><i class="fa fa-check"></i><b>4.8</b> Reading from CSV Files</a></li>
+<li class="chapter" data-level="4.9" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id028"><i class="fa fa-check"></i><b>4.9</b> Writing to CSV Files</a></li>
+<li class="chapter" data-level="4.10" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id031"><i class="fa fa-check"></i><b>4.10</b> Reading Tabular or CSV Data from the Web</a></li>
+<li class="chapter" data-level="4.11" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-readexcel"><i class="fa fa-check"></i><b>4.11</b> Reading Data from Excel</a></li>
+<li class="chapter" data-level="4.12" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-writeexcel"><i class="fa fa-check"></i><b>4.12</b> Writing a Data Frame to Excel</a></li>
+<li class="chapter" data-level="4.13" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-readsas"><i class="fa fa-check"></i><b>4.13</b> Reading Data from a SAS file</a></li>
+<li class="chapter" data-level="4.14" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id246"><i class="fa fa-check"></i><b>4.14</b> Reading Data from HTML Tables</a></li>
+<li class="chapter" data-level="4.15" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id098"><i class="fa fa-check"></i><b>4.15</b> Reading Files with a Complex Structure</a></li>
+<li class="chapter" data-level="4.16" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id037"><i class="fa fa-check"></i><b>4.16</b> Reading from MySQL Databases</a></li>
+<li class="chapter" data-level="4.17" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-dbplyr"><i class="fa fa-check"></i><b>4.17</b> Accessing a Database with dbplyr</a></li>
+<li class="chapter" data-level="4.18" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id029"><i class="fa fa-check"></i><b>4.18</b> Saving and Transporting Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="DataStructures.html"><a href="DataStructures.html"><i class="fa fa-check"></i><b>5</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="DataStructures.html"><a href="DataStructures.html#intro-DataStructures"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="5.1" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id048"><i class="fa fa-check"></i><b>5.1</b> Appending Data to a Vector</a></li>
+<li class="chapter" data-level="5.2" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id049"><i class="fa fa-check"></i><b>5.2</b> Inserting Data into a Vector</a></li>
+<li class="chapter" data-level="5.3" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id050"><i class="fa fa-check"></i><b>5.3</b> Understanding the Recycling Rule</a></li>
+<li class="chapter" data-level="5.4" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id051"><i class="fa fa-check"></i><b>5.4</b> Creating a Factor (Categorical Variable)</a></li>
+<li class="chapter" data-level="5.5" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id227"><i class="fa fa-check"></i><b>5.5</b> Combining Multiple Vectors into One Vector and a Factor</a></li>
+<li class="chapter" data-level="5.6" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id053"><i class="fa fa-check"></i><b>5.6</b> Creating a List</a></li>
+<li class="chapter" data-level="5.7" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id054"><i class="fa fa-check"></i><b>5.7</b> Selecting List Elements by Position</a></li>
+<li class="chapter" data-level="5.8" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id253"><i class="fa fa-check"></i><b>5.8</b> Selecting List Elements by Name</a></li>
+<li class="chapter" data-level="5.9" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id158"><i class="fa fa-check"></i><b>5.9</b> Building a Name/Value Association List</a></li>
+<li class="chapter" data-level="5.10" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id056"><i class="fa fa-check"></i><b>5.10</b> Removing an Element from a List</a></li>
+<li class="chapter" data-level="5.11" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id152"><i class="fa fa-check"></i><b>5.11</b> Flatten a List into a Vector</a></li>
+<li class="chapter" data-level="5.12" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id058"><i class="fa fa-check"></i><b>5.12</b> Removing NULL Elements from a List</a></li>
+<li class="chapter" data-level="5.13" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id060"><i class="fa fa-check"></i><b>5.13</b> Removing List Elements Using a Condition</a></li>
+<li class="chapter" data-level="5.14" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id062"><i class="fa fa-check"></i><b>5.14</b> Initializing a Matrix</a></li>
+<li class="chapter" data-level="5.15" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id139"><i class="fa fa-check"></i><b>5.15</b> Performing Matrix Operations</a></li>
+<li class="chapter" data-level="5.16" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id063"><i class="fa fa-check"></i><b>5.16</b> Giving Descriptive Names to the Rows and Columns of a Matrix</a></li>
+<li class="chapter" data-level="5.17" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id250"><i class="fa fa-check"></i><b>5.17</b> Selecting One Row or Column from a Matrix</a></li>
+<li class="chapter" data-level="5.18" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id251"><i class="fa fa-check"></i><b>5.18</b> Initializing a Data Frame from Column Data</a></li>
+<li class="chapter" data-level="5.19" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id252"><i class="fa fa-check"></i><b>5.19</b> Initializing a Data Frame from Row Data</a></li>
+<li class="chapter" data-level="5.20" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id071"><i class="fa fa-check"></i><b>5.20</b> Appending Rows to a Data Frame</a></li>
+<li class="chapter" data-level="5.21" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id068"><i class="fa fa-check"></i><b>5.21</b> Selecting Data Frame Columns by Position</a></li>
+<li class="chapter" data-level="5.22" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id254"><i class="fa fa-check"></i><b>5.22</b> Selecting Data Frame Columns by Name</a></li>
+<li class="chapter" data-level="5.23" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id069"><i class="fa fa-check"></i><b>5.23</b> Changing the Names of Data Frame Columns</a></li>
+<li class="chapter" data-level="5.24" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id249"><i class="fa fa-check"></i><b>5.24</b> Removing NAs from a Data Frame</a></li>
+<li class="chapter" data-level="5.25" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id072"><i class="fa fa-check"></i><b>5.25</b> Excluding Columns by Name</a></li>
+<li class="chapter" data-level="5.26" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id155"><i class="fa fa-check"></i><b>5.26</b> Combining Two Data Frames</a></li>
+<li class="chapter" data-level="5.27" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id057"><i class="fa fa-check"></i><b>5.27</b> Merging Data Frames by Common Column</a></li>
+<li class="chapter" data-level="5.28" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id248"><i class="fa fa-check"></i><b>5.28</b> Converting One Atomic Value into Another</a></li>
+<li class="chapter" data-level="5.29" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id074"><i class="fa fa-check"></i><b>5.29</b> Converting One Structured Data Type into Another</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="DataTransformations.html"><a href="DataTransformations.html"><i class="fa fa-check"></i><b>6</b> Data Transformations</a>
+<ul>
+<li class="chapter" data-level="" data-path="DataTransformations.html"><a href="DataTransformations.html#intro-DataTransformations"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="6.1" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id149"><i class="fa fa-check"></i><b>6.1</b> Applying a Function to Each List Element</a></li>
+<li class="chapter" data-level="6.2" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-row_df"><i class="fa fa-check"></i><b>6.2</b> Applying a Function to Every Row of a Data Frame</a></li>
+<li class="chapter" data-level="6.3" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id146"><i class="fa fa-check"></i><b>6.3</b> Applying a Function to Every Row of a Matrix</a></li>
+<li class="chapter" data-level="6.4" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id157"><i class="fa fa-check"></i><b>6.4</b> Applying a Function to Every Column</a></li>
+<li class="chapter" data-level="6.5" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id275"><i class="fa fa-check"></i><b>6.5</b> Applying a Function to Parallel Vectors or Lists</a></li>
+<li class="chapter" data-level="6.6" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id148"><i class="fa fa-check"></i><b>6.6</b> Applying a Function to Groups of Data</a></li>
+<li class="chapter" data-level="6.7" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-casewhen"><i class="fa fa-check"></i><b>6.7</b> Creating a New Column Based on Some Condition</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="StringsAndDates.html"><a href="StringsAndDates.html"><i class="fa fa-check"></i><b>7</b> Strings and Dates</a>
+<ul>
+<li class="chapter" data-level="" data-path="StringsAndDates.html"><a href="StringsAndDates.html#I_sect17_d1e17434"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="7.1" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id093"><i class="fa fa-check"></i><b>7.1</b> Getting the Length of a String</a></li>
+<li class="chapter" data-level="7.2" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id040"><i class="fa fa-check"></i><b>7.2</b> Concatenating Strings</a></li>
+<li class="chapter" data-level="7.3" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id041"><i class="fa fa-check"></i><b>7.3</b> Extracting Substrings</a></li>
+<li class="chapter" data-level="7.4" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id276"><i class="fa fa-check"></i><b>7.4</b> Splitting a String According to a Delimiter</a></li>
+<li class="chapter" data-level="7.5" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id277"><i class="fa fa-check"></i><b>7.5</b> Replacing Substrings</a></li>
+<li class="chapter" data-level="7.6" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id109"><i class="fa fa-check"></i><b>7.6</b> Generating All Pairwise Combinations of Strings</a></li>
+<li class="chapter" data-level="7.7" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id045"><i class="fa fa-check"></i><b>7.7</b> Getting the Current Date</a></li>
+<li class="chapter" data-level="7.8" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id043"><i class="fa fa-check"></i><b>7.8</b> Converting a String into a Date</a></li>
+<li class="chapter" data-level="7.9" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id044"><i class="fa fa-check"></i><b>7.9</b> Converting a Date into a String</a></li>
+<li class="chapter" data-level="7.10" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id241"><i class="fa fa-check"></i><b>7.10</b> Converting Year, Month, and Day into a Date</a></li>
+<li class="chapter" data-level="7.11" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id042"><i class="fa fa-check"></i><b>7.11</b> Getting the Julian Date</a></li>
+<li class="chapter" data-level="7.12" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id046"><i class="fa fa-check"></i><b>7.12</b> Extracting the Parts of a Date</a></li>
+<li class="chapter" data-level="7.13" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id047"><i class="fa fa-check"></i><b>7.13</b> Creating a Sequence of Dates</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="Probability.html"><a href="Probability.html"><i class="fa fa-check"></i><b>8</b> Probability</a>
+<ul>
+<li class="chapter" data-level="" data-path="Probability.html"><a href="Probability.html#intro-Probability"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="8.1" data-path="Probability.html"><a href="Probability.html#recipe-id163"><i class="fa fa-check"></i><b>8.1</b> Counting the Number of Combinations</a></li>
+<li class="chapter" data-level="8.2" data-path="Probability.html"><a href="Probability.html#recipe-id198"><i class="fa fa-check"></i><b>8.2</b> Generating Combinations</a></li>
+<li class="chapter" data-level="8.3" data-path="Probability.html"><a href="Probability.html#recipe-id165"><i class="fa fa-check"></i><b>8.3</b> Generating Random Numbers</a></li>
+<li class="chapter" data-level="8.4" data-path="Probability.html"><a href="Probability.html#recipe-id201"><i class="fa fa-check"></i><b>8.4</b> Generating Reproducible Random Numbers</a></li>
+<li class="chapter" data-level="8.5" data-path="Probability.html"><a href="Probability.html#recipe-id199"><i class="fa fa-check"></i><b>8.5</b> Generating a Random Sample</a></li>
+<li class="chapter" data-level="8.6" data-path="Probability.html"><a href="Probability.html#recipe-id200"><i class="fa fa-check"></i><b>8.6</b> Generating Random Sequences</a></li>
+<li class="chapter" data-level="8.7" data-path="Probability.html"><a href="Probability.html#recipe-id151"><i class="fa fa-check"></i><b>8.7</b> Randomly Permuting a Vector</a></li>
+<li class="chapter" data-level="8.8" data-path="Probability.html"><a href="Probability.html#recipe-id196"><i class="fa fa-check"></i><b>8.8</b> Calculating Probabilities for Discrete Distributions</a></li>
+<li class="chapter" data-level="8.9" data-path="Probability.html"><a href="Probability.html#recipe-id197"><i class="fa fa-check"></i><b>8.9</b> Calculating Probabilities for Continuous Distributions</a></li>
+<li class="chapter" data-level="8.10" data-path="Probability.html"><a href="Probability.html#recipe-id168"><i class="fa fa-check"></i><b>8.10</b> Converting Probabilities to Quantiles</a></li>
+<li class="chapter" data-level="8.11" data-path="Probability.html"><a href="Probability.html#recipe-id166"><i class="fa fa-check"></i><b>8.11</b> Plotting a Density Function</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html"><i class="fa fa-check"></i><b>9</b> General Statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#intro-GeneralStatistics"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="9.1" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id119"><i class="fa fa-check"></i><b>9.1</b> Summarizing Your Data</a></li>
+<li class="chapter" data-level="9.2" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id229"><i class="fa fa-check"></i><b>9.2</b> Calculating Relative Frequencies</a></li>
+<li class="chapter" data-level="9.3" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id124"><i class="fa fa-check"></i><b>9.3</b> Tabulating Factors and Creating Contingency Tables</a></li>
+<li class="chapter" data-level="9.4" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id125"><i class="fa fa-check"></i><b>9.4</b> Testing Categorical Variables for Independence</a></li>
+<li class="chapter" data-level="9.5" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id143"><i class="fa fa-check"></i><b>9.5</b> Calculating Quantiles (and Quartiles) of a Dataset</a></li>
+<li class="chapter" data-level="9.6" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id142"><i class="fa fa-check"></i><b>9.6</b> Inverting a Quantile</a></li>
+<li class="chapter" data-level="9.7" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id133"><i class="fa fa-check"></i><b>9.7</b> Converting Data to z-Scores</a></li>
+<li class="chapter" data-level="9.8" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id121"><i class="fa fa-check"></i><b>9.8</b> Testing the Mean of a Sample (t Test)</a></li>
+<li class="chapter" data-level="9.9" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id123"><i class="fa fa-check"></i><b>9.9</b> Forming a Confidence Interval for a Mean</a></li>
+<li class="chapter" data-level="9.10" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id135"><i class="fa fa-check"></i><b>9.10</b> Forming a Confidence Interval for a Median</a></li>
+<li class="chapter" data-level="9.11" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id225"><i class="fa fa-check"></i><b>9.11</b> Testing a Sample Proportion</a></li>
+<li class="chapter" data-level="9.12" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id226"><i class="fa fa-check"></i><b>9.12</b> Forming a Confidence Interval for a Proportion</a></li>
+<li class="chapter" data-level="9.13" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id126"><i class="fa fa-check"></i><b>9.13</b> Testing for Normality</a></li>
+<li class="chapter" data-level="9.14" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id131"><i class="fa fa-check"></i><b>9.14</b> Testing for Runs</a></li>
+<li class="chapter" data-level="9.15" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id122"><i class="fa fa-check"></i><b>9.15</b> Comparing the Means of Two Samples</a></li>
+<li class="chapter" data-level="9.16" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id130"><i class="fa fa-check"></i><b>9.16</b> Comparing the Locations of Two Samples Nonparametrically</a></li>
+<li class="chapter" data-level="9.17" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id132"><i class="fa fa-check"></i><b>9.17</b> Testing a Correlation for Significance</a></li>
+<li class="chapter" data-level="9.18" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id134"><i class="fa fa-check"></i><b>9.18</b> Testing Groups for Equal Proportions</a></li>
+<li class="chapter" data-level="9.19" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id127"><i class="fa fa-check"></i><b>9.19</b> Performing Pairwise Comparisons Between Group Means</a></li>
+<li class="chapter" data-level="9.20" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id129"><i class="fa fa-check"></i><b>9.20</b> Testing Two Samples for the Same Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="Graphics.html"><a href="Graphics.html"><i class="fa fa-check"></i><b>10</b> Graphics</a>
+<ul>
+<li class="chapter" data-level="" data-path="Graphics.html"><a href="Graphics.html#intro-Graphics"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="10.1" data-path="Graphics.html"><a href="Graphics.html#recipe-id171"><i class="fa fa-check"></i><b>10.1</b> Creating a Scatter Plot</a></li>
+<li class="chapter" data-level="10.2" data-path="Graphics.html"><a href="Graphics.html#recipe-id259"><i class="fa fa-check"></i><b>10.2</b> Adding a Title and Labels</a></li>
+<li class="chapter" data-level="10.3" data-path="Graphics.html"><a href="Graphics.html#recipe-id261"><i class="fa fa-check"></i><b>10.3</b> Adding (or Removing) a Grid</a></li>
+<li class="chapter" data-level="10.4" data-path="Graphics.html"><a href="Graphics.html#recipe-theme"><i class="fa fa-check"></i><b>10.4</b> Applying a Theme to a ggplot Figure</a></li>
+<li class="chapter" data-level="10.5" data-path="Graphics.html"><a href="Graphics.html#recipe-id262"><i class="fa fa-check"></i><b>10.5</b> Creating a Scatter Plot of Multiple Groups</a></li>
+<li class="chapter" data-level="10.6" data-path="Graphics.html"><a href="Graphics.html#recipe-id260"><i class="fa fa-check"></i><b>10.6</b> Adding (or Removing) a Legend</a></li>
+<li class="chapter" data-level="10.7" data-path="Graphics.html"><a href="Graphics.html#recipe-id217"><i class="fa fa-check"></i><b>10.7</b> Plotting the Regression Line of a Scatter Plot</a></li>
+<li class="chapter" data-level="10.8" data-path="Graphics.html"><a href="Graphics.html#recipe-id184"><i class="fa fa-check"></i><b>10.8</b> Plotting All Variables Against All Other Variables</a></li>
+<li class="chapter" data-level="10.9" data-path="Graphics.html"><a href="Graphics.html#recipe-id185"><i class="fa fa-check"></i><b>10.9</b> Creating One Scatter Plot for Each Group</a></li>
+<li class="chapter" data-level="10.10" data-path="Graphics.html"><a href="Graphics.html#recipe-id175"><i class="fa fa-check"></i><b>10.10</b> Creating a Bar Chart</a></li>
+<li class="chapter" data-level="10.11" data-path="Graphics.html"><a href="Graphics.html#recipe-id177"><i class="fa fa-check"></i><b>10.11</b> Adding Confidence Intervals to a Bar Chart</a></li>
+<li class="chapter" data-level="10.12" data-path="Graphics.html"><a href="Graphics.html#recipe-id176"><i class="fa fa-check"></i><b>10.12</b> Coloring a Bar Chart</a></li>
+<li class="chapter" data-level="10.13" data-path="Graphics.html"><a href="Graphics.html#recipe-id174"><i class="fa fa-check"></i><b>10.13</b> Plotting a Line from x and y Points</a></li>
+<li class="chapter" data-level="10.14" data-path="Graphics.html"><a href="Graphics.html#recipe-id256"><i class="fa fa-check"></i><b>10.14</b> Changing the Type, Width, or Color of a Line</a></li>
+<li class="chapter" data-level="10.15" data-path="Graphics.html"><a href="Graphics.html#recipe-id263"><i class="fa fa-check"></i><b>10.15</b> Plotting Multiple Datasets</a></li>
+<li class="chapter" data-level="10.16" data-path="Graphics.html"><a href="Graphics.html#recipe-id186"><i class="fa fa-check"></i><b>10.16</b> Adding Vertical or Horizontal Lines</a></li>
+<li class="chapter" data-level="10.17" data-path="Graphics.html"><a href="Graphics.html#recipe-id178"><i class="fa fa-check"></i><b>10.17</b> Creating a Boxplot</a></li>
+<li class="chapter" data-level="10.18" data-path="Graphics.html"><a href="Graphics.html#recipe-id179"><i class="fa fa-check"></i><b>10.18</b> Creating One Boxplot for Each Factor Level</a></li>
+<li class="chapter" data-level="10.19" data-path="Graphics.html"><a href="Graphics.html#recipe-id182"><i class="fa fa-check"></i><b>10.19</b> Creating a Histogram</a></li>
+<li class="chapter" data-level="10.20" data-path="Graphics.html"><a href="Graphics.html#recipe-id183"><i class="fa fa-check"></i><b>10.20</b> Adding a Density Estimate to a Histogram</a></li>
+<li class="chapter" data-level="10.21" data-path="Graphics.html"><a href="Graphics.html#recipe-id180"><i class="fa fa-check"></i><b>10.21</b> Creating a Normal Quantile–Quantile Plot</a></li>
+<li class="chapter" data-level="10.22" data-path="Graphics.html"><a href="Graphics.html#recipe-id181"><i class="fa fa-check"></i><b>10.22</b> Creating Other Quantile–Quantile Plots</a></li>
+<li class="chapter" data-level="10.23" data-path="Graphics.html"><a href="Graphics.html#recipe-id191"><i class="fa fa-check"></i><b>10.23</b> Plotting a Variable in Multiple Colors</a></li>
+<li class="chapter" data-level="10.24" data-path="Graphics.html"><a href="Graphics.html#recipe-id192"><i class="fa fa-check"></i><b>10.24</b> Graphing a Function</a></li>
+<li class="chapter" data-level="10.25" data-path="Graphics.html"><a href="Graphics.html#recipe-id190"><i class="fa fa-check"></i><b>10.25</b> Displaying Several Figures on One Page</a></li>
+<li class="chapter" data-level="10.26" data-path="Graphics.html"><a href="Graphics.html#recipe-id188"><i class="fa fa-check"></i><b>10.26</b> Writing Your Plot to a File</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html"><i class="fa fa-check"></i><b>11</b> Linear Regression and ANOVA</a>
+<ul>
+<li class="chapter" data-level="" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#intro-LinearRegressionAndANOVA"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="11.1" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id203"><i class="fa fa-check"></i><b>11.1</b> Performing Simple Linear Regression</a></li>
+<li class="chapter" data-level="11.2" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id204"><i class="fa fa-check"></i><b>11.2</b> Performing Multiple Linear Regression</a></li>
+<li class="chapter" data-level="11.3" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id231"><i class="fa fa-check"></i><b>11.3</b> Getting Regression Statistics</a></li>
+<li class="chapter" data-level="11.4" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id240"><i class="fa fa-check"></i><b>11.4</b> Understanding the Regression Summary</a></li>
+<li class="chapter" data-level="11.5" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id205"><i class="fa fa-check"></i><b>11.5</b> Performing Linear Regression Without an Intercept</a></li>
+<li class="chapter" data-level="11.6" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#title-highcor"><i class="fa fa-check"></i><b>11.6</b> Regressing Only Variables That Highly Correlate with Your Dependent Variable</a></li>
+<li class="chapter" data-level="11.7" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id206"><i class="fa fa-check"></i><b>11.7</b> Performing Linear Regression with Interaction Terms</a></li>
+<li class="chapter" data-level="11.8" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id236"><i class="fa fa-check"></i><b>11.8</b> Selecting the Best Regression Variables</a></li>
+<li class="chapter" data-level="11.9" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id209"><i class="fa fa-check"></i><b>11.9</b> Regressing on a Subset of Your Data</a></li>
+<li class="chapter" data-level="11.10" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id244"><i class="fa fa-check"></i><b>11.10</b> Using an Expression Inside a Regression Formula</a></li>
+<li class="chapter" data-level="11.11" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id243"><i class="fa fa-check"></i><b>11.11</b> Regressing on a Polynomial</a></li>
+<li class="chapter" data-level="11.12" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id208"><i class="fa fa-check"></i><b>11.12</b> Regressing on Transformed Data</a></li>
+<li class="chapter" data-level="11.13" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id210"><i class="fa fa-check"></i><b>11.13</b> Finding the Best Power Transformation (Box–Cox Procedure)</a></li>
+<li class="chapter" data-level="11.14" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id211"><i class="fa fa-check"></i><b>11.14</b> Forming Confidence Intervals for Regression Coefficients</a></li>
+<li class="chapter" data-level="11.15" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id216"><i class="fa fa-check"></i><b>11.15</b> Plotting Regression Residuals</a></li>
+<li class="chapter" data-level="11.16" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id212"><i class="fa fa-check"></i><b>11.16</b> Diagnosing a Linear Regression</a></li>
+<li class="chapter" data-level="11.17" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id233"><i class="fa fa-check"></i><b>11.17</b> Identifying Influential Observations</a></li>
+<li class="chapter" data-level="11.18" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id213"><i class="fa fa-check"></i><b>11.18</b> Testing Residuals for Autocorrelation (Durbin–Watson Test)</a></li>
+<li class="chapter" data-level="11.19" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id214"><i class="fa fa-check"></i><b>11.19</b> Predicting New Values</a></li>
+<li class="chapter" data-level="11.20" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id215"><i class="fa fa-check"></i><b>11.20</b> Forming Prediction Intervals</a></li>
+<li class="chapter" data-level="11.21" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id218"><i class="fa fa-check"></i><b>11.21</b> Performing One-Way ANOVA</a></li>
+<li class="chapter" data-level="11.22" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id221"><i class="fa fa-check"></i><b>11.22</b> Creating an Interaction Plot</a></li>
+<li class="chapter" data-level="11.23" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id220"><i class="fa fa-check"></i><b>11.23</b> Finding Differences Between Means of Groups</a></li>
+<li class="chapter" data-level="11.24" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id228"><i class="fa fa-check"></i><b>11.24</b> Performing Robust ANOVA (Kruskal–Wallis Test)</a></li>
+<li class="chapter" data-level="11.25" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id232"><i class="fa fa-check"></i><b>11.25</b> Comparing Models by Using ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="UsefulTricks.html"><a href="UsefulTricks.html"><i class="fa fa-check"></i><b>12</b> Useful Tricks</a>
+<ul>
+<li class="chapter" data-level="" data-path="UsefulTricks.html"><a href="UsefulTricks.html#intro-UsefulTricks"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="12.1" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id278"><i class="fa fa-check"></i><b>12.1</b> Peeking at Your Data</a></li>
+<li class="chapter" data-level="12.2" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id271"><i class="fa fa-check"></i><b>12.2</b> Printing the Result of an Assignment</a></li>
+<li class="chapter" data-level="12.3" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id138"><i class="fa fa-check"></i><b>12.3</b> Summing Rows and Columns</a></li>
+<li class="chapter" data-level="12.4" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id112"><i class="fa fa-check"></i><b>12.4</b> Printing Data in Columns</a></li>
+<li class="chapter" data-level="12.5" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id137"><i class="fa fa-check"></i><b>12.5</b> Binning Your Data</a></li>
+<li class="chapter" data-level="12.6" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id116"><i class="fa fa-check"></i><b>12.6</b> Finding the Position of a Particular Value</a></li>
+<li class="chapter" data-level="12.7" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id103"><i class="fa fa-check"></i><b>12.7</b> Selecting Every nth Element of a Vector</a></li>
+<li class="chapter" data-level="12.8" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id107"><i class="fa fa-check"></i><b>12.8</b> Finding Minimums or Maximums</a></li>
+<li class="chapter" data-level="12.9" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id110"><i class="fa fa-check"></i><b>12.9</b> Generating All Combinations of Several Variables</a></li>
+<li class="chapter" data-level="12.10" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id153"><i class="fa fa-check"></i><b>12.10</b> Flattening a Data Frame</a></li>
+<li class="chapter" data-level="12.11" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id247"><i class="fa fa-check"></i><b>12.11</b> Sorting a Data Frame</a></li>
+<li class="chapter" data-level="12.12" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id223"><i class="fa fa-check"></i><b>12.12</b> Stripping Attributes from a Variable</a></li>
+<li class="chapter" data-level="12.13" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id202"><i class="fa fa-check"></i><b>12.13</b> Revealing the Structure of an Object</a></li>
+<li class="chapter" data-level="12.14" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id224"><i class="fa fa-check"></i><b>12.14</b> Timing Your Code</a></li>
+<li class="chapter" data-level="12.15" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id113"><i class="fa fa-check"></i><b>12.15</b> Suppressing Warnings and Error Messages</a></li>
+<li class="chapter" data-level="12.16" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id118"><i class="fa fa-check"></i><b>12.16</b> Taking Function Arguments from a List</a></li>
+<li class="chapter" data-level="12.17" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id114"><i class="fa fa-check"></i><b>12.17</b> Defining Your Own Binary Operators</a></li>
+<li class="chapter" data-level="12.18" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id111"><i class="fa fa-check"></i><b>12.18</b> Suppressing the Startup Message</a></li>
+<li class="chapter" data-level="12.19" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id106"><i class="fa fa-check"></i><b>12.19</b> Getting and Setting Environment Variables</a></li>
+<li class="chapter" data-level="12.20" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-codesections"><i class="fa fa-check"></i><b>12.20</b> Use Code Sections</a></li>
+<li class="chapter" data-level="12.21" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-parallel_local"><i class="fa fa-check"></i><b>12.21</b> Executing R in Parallel Locally</a></li>
+<li class="chapter" data-level="12.22" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-parallel_remote"><i class="fa fa-check"></i><b>12.22</b> Executing R in Parallel Remotely</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="BeyondBasics.html"><a href="BeyondBasics.html"><i class="fa fa-check"></i><b>13</b> Beyond Basic Numerics and Statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="BeyondBasics.html"><a href="BeyondBasics.html#intro-BeyondBasics"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="13.1" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id234"><i class="fa fa-check"></i><b>13.1</b> Minimizing or Maximizing a Single-Parameter Function</a></li>
+<li class="chapter" data-level="13.2" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id235"><i class="fa fa-check"></i><b>13.2</b> Minimizing or Maximizing a Multiparameter Function</a></li>
+<li class="chapter" data-level="13.3" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id140"><i class="fa fa-check"></i><b>13.3</b> Calculating Eigenvalues and Eigenvectors</a></li>
+<li class="chapter" data-level="13.4" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id162"><i class="fa fa-check"></i><b>13.4</b> Performing Principal Component Analysis</a></li>
+<li class="chapter" data-level="13.5" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id264"><i class="fa fa-check"></i><b>13.5</b> Performing Simple Orthogonal Regression</a></li>
+<li class="chapter" data-level="13.6" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id160"><i class="fa fa-check"></i><b>13.6</b> Finding Clusters in Your Data</a></li>
+<li class="chapter" data-level="13.7" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id161"><i class="fa fa-check"></i><b>13.7</b> Predicting a Binary-Valued Variable (Logistic Regression)</a></li>
+<li class="chapter" data-level="13.8" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id159"><i class="fa fa-check"></i><b>13.8</b> Bootstrapping a Statistic</a></li>
+<li class="chapter" data-level="13.9" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id193"><i class="fa fa-check"></i><b>13.9</b> Factor Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html"><i class="fa fa-check"></i><b>14</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="14.1" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id076"><i class="fa fa-check"></i><b>14.1</b> Representing Time Series Data</a></li>
+<li class="chapter" data-level="14.2" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id089"><i class="fa fa-check"></i><b>14.2</b> Plotting Time Series Data</a></li>
+<li class="chapter" data-level="14.3" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id077"><i class="fa fa-check"></i><b>14.3</b> Extracting the Oldest or Newest Observations</a></li>
+<li class="chapter" data-level="14.4" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id281"><i class="fa fa-check"></i><b>14.4</b> Subsetting a Time Series</a></li>
+<li class="chapter" data-level="14.5" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id079"><i class="fa fa-check"></i><b>14.5</b> Merging Several Time Series</a></li>
+<li class="chapter" data-level="14.6" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id239"><i class="fa fa-check"></i><b>14.6</b> Filling or Padding a Time Series</a></li>
+<li class="chapter" data-level="14.7" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id280"><i class="fa fa-check"></i><b>14.7</b> Lagging a Time Series</a></li>
+<li class="chapter" data-level="14.8" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id141"><i class="fa fa-check"></i><b>14.8</b> Computing Successive Differences</a></li>
+<li class="chapter" data-level="14.9" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id080"><i class="fa fa-check"></i><b>14.9</b> Performing Calculations on Time Series</a></li>
+<li class="chapter" data-level="14.10" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id279"><i class="fa fa-check"></i><b>14.10</b> Computing a Moving Average</a></li>
+<li class="chapter" data-level="14.11" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id282"><i class="fa fa-check"></i><b>14.11</b> Applying a Function by Calendar Period</a></li>
+<li class="chapter" data-level="14.12" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id081"><i class="fa fa-check"></i><b>14.12</b> Applying a Rolling Function</a></li>
+<li class="chapter" data-level="14.13" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id082"><i class="fa fa-check"></i><b>14.13</b> Plotting the Autocorrelation Function</a></li>
+<li class="chapter" data-level="14.14" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id104"><i class="fa fa-check"></i><b>14.14</b> Testing a Time Series for Autocorrelation</a></li>
+<li class="chapter" data-level="14.15" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id083"><i class="fa fa-check"></i><b>14.15</b> Plotting the Partial Autocorrelation Function</a></li>
+<li class="chapter" data-level="14.16" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id084"><i class="fa fa-check"></i><b>14.16</b> Finding Lagged Correlations Between Two Time Series</a></li>
+<li class="chapter" data-level="14.17" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id088"><i class="fa fa-check"></i><b>14.17</b> Detrending a Time Series</a></li>
+<li class="chapter" data-level="14.18" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id085"><i class="fa fa-check"></i><b>14.18</b> Fitting an ARIMA Model</a></li>
+<li class="chapter" data-level="14.19" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id237"><i class="fa fa-check"></i><b>14.19</b> Removing Insignificant ARIMA Coefficients</a></li>
+<li class="chapter" data-level="14.20" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id238"><i class="fa fa-check"></i><b>14.20</b> Running Diagnostics on an ARIMA Model</a></li>
+<li class="chapter" data-level="14.21" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id086"><i class="fa fa-check"></i><b>14.21</b> Making Forecasts from an ARIMA Model</a></li>
+<li class="chapter" data-level="14.22" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-plotting_forecast"><i class="fa fa-check"></i><b>14.22</b> Plotting a Forecast</a></li>
+<li class="chapter" data-level="14.23" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id087"><i class="fa fa-check"></i><b>14.23</b> Testing for Mean Reversion</a></li>
+<li class="chapter" data-level="14.24" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id195"><i class="fa fa-check"></i><b>14.24</b> Smoothing a Time Series</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html"><i class="fa fa-check"></i><b>15</b> Simple Programming</a>
+<ul>
+<li class="chapter" data-level="" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#intro-SimpleProgramming"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="15.1" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-creating_if_logic"><i class="fa fa-check"></i><b>15.1</b> Choosing Between Two Alternatives: if-else</a></li>
+<li class="chapter" data-level="15.2" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-for_loop"><i class="fa fa-check"></i><b>15.2</b> Iterating with a Loop</a></li>
+<li class="chapter" data-level="15.3" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-id117"><i class="fa fa-check"></i><b>15.3</b> Defining a Function</a></li>
+<li class="chapter" data-level="15.4" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-variable"><i class="fa fa-check"></i><b>15.4</b> Creating a Local Variable</a></li>
+<li class="chapter" data-level="15.5" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#choosing-between-multiple-alternatives-switch"><i class="fa fa-check"></i><b>15.5</b> Choosing Between Multiple Alternatives: switch</a></li>
+<li class="chapter" data-level="15.6" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-title"><i class="fa fa-check"></i><b>15.6</b> Defining Defaults for Function Parameters</a></li>
+<li class="chapter" data-level="15.7" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#signaling-errors"><i class="fa fa-check"></i><b>15.7</b> Signaling Errors</a></li>
+<li class="chapter" data-level="15.8" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#protecting-against-errors"><i class="fa fa-check"></i><b>15.8</b> Protecting Against Errors</a></li>
+<li class="chapter" data-level="15.9" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-anon-function"><i class="fa fa-check"></i><b>15.9</b> Creating an Anonymous Function</a></li>
+<li class="chapter" data-level="15.10" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#creating-a-collection-of-reusable-functions"><i class="fa fa-check"></i><b>15.10</b> Creating a Collection of Reusable Functions</a></li>
+<li class="chapter" data-level="15.11" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-indent"><i class="fa fa-check"></i><b>15.11</b> Automatically Reindent Code</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="RMarkdown.html"><a href="RMarkdown.html"><i class="fa fa-check"></i><b>16</b> R Markdown and Publishing</a>
+<ul>
+<li class="chapter" data-level="" data-path="RMarkdown.html"><a href="RMarkdown.html#intro-Rmd_pub"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="16.1" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-new_doc"><i class="fa fa-check"></i><b>16.1</b> Creating a New Document</a></li>
+<li class="chapter" data-level="16.2" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-metadata"><i class="fa fa-check"></i><b>16.2</b> Adding a Title, Author, or Date</a></li>
+<li class="chapter" data-level="16.3" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-doc-text"><i class="fa fa-check"></i><b>16.3</b> Formatting Document Text</a></li>
+<li class="chapter" data-level="16.4" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-headings"><i class="fa fa-check"></i><b>16.4</b> Inserting Document Headings</a></li>
+<li class="chapter" data-level="16.5" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-list"><i class="fa fa-check"></i><b>16.5</b> Inserting a List</a></li>
+<li class="chapter" data-level="16.6" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-exec_r"><i class="fa fa-check"></i><b>16.6</b> Showing Output from R Code</a></li>
+<li class="chapter" data-level="16.7" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-code-results"><i class="fa fa-check"></i><b>16.7</b> Controlling Which Code and Results Are Shown</a></li>
+<li class="chapter" data-level="16.8" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-doc_plot"><i class="fa fa-check"></i><b>16.8</b> Inserting a Plot</a></li>
+<li class="chapter" data-level="16.9" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-static-table"><i class="fa fa-check"></i><b>16.9</b> Inserting a Table</a></li>
+<li class="chapter" data-level="16.10" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-tables"><i class="fa fa-check"></i><b>16.10</b> Inserting a Table of Data</a></li>
+<li class="chapter" data-level="16.11" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-equations"><i class="fa fa-check"></i><b>16.11</b> Inserting Math Equations</a></li>
+<li class="chapter" data-level="16.12" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-html"><i class="fa fa-check"></i><b>16.12</b> Generating HTML Output</a></li>
+<li class="chapter" data-level="16.13" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-pdf"><i class="fa fa-check"></i><b>16.13</b> Generating PDF Output</a></li>
+<li class="chapter" data-level="16.14" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-word"><i class="fa fa-check"></i><b>16.14</b> Generating Microsoft Word Output</a></li>
+<li class="chapter" data-level="16.15" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-prez"><i class="fa fa-check"></i><b>16.15</b> Generating Presentation Output</a></li>
+<li class="chapter" data-level="16.16" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-param_report"><i class="fa fa-check"></i><b>16.16</b> Creating a Parameterized Report</a></li>
+<li class="chapter" data-level="16.17" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-rmd_org"><i class="fa fa-check"></i><b>16.17</b> Organizing Your R Markdown Workflow</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Cookbook, 2nd Edition</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="DataTransformations" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Data Transformations<a href="DataTransformations.html#DataTransformations" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="intro-DataTransformations" class="section level2 unnumbered hasAnchor">
+<h2>Introduction<a href="DataTransformations.html#intro-DataTransformations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>While traditional programming languages use loops, R has traditionally encouraged using
+vectorized operations and the <code>apply</code> family of functions to crunch data in batches,
+greatly streamlining the calculations. There is nothing to prevent you from writing loops in R that break your data into whatever chunks you want and then do an operation on each chunk. However, using vectorized functions can, in many cases, increase the speed, readability, and maintainability of your code.</p>
+<p>In recent history, however, the tidyverse, specifically the <code>purrr</code> and <code>dplyr</code> packages, has introduced new idioms into R that make these concepts easier to learn and slightly more consistent. The name <code>purrr</code> comes from a play on the phrase “Pure R.” A “pure function” is a function where the result of the function is determined only by its inputs, and which does not produce any side effects. This is not a functional programming concept you need to understand in order to get great value from <code>purrr</code>, however. All most users need to know is that <code>purrr</code> contains functions to help us operate “chunk by chunk” on our data in a way that meshes well with other tidyverse packages such as <code>dplyr</code>.</p>
+<p>Base R has many apply functions—<code>apply</code>, <code>lapply</code>, <code>sapply</code>, <code>tapply</code>, and <code>mapply</code>—and their cousins, <code>by</code> and <code>split</code>. These are solid functions that have been workhorses in Base R for years. The authors have struggled a bit with how much to focus on the Base R apply functions and how much to focus on the newer “tidy” approach. After much debate we’ve chosen to try to illustrate the <code>purrr</code> approach and to acknowledge Base R approaches and, in a few places, to illustrate both. The interface to <code>purrr</code> and <code>dplyr</code> is very clean and, we believe, in most cases, more intuitive.</p>
+</div>
+<div id="recipe-id149" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Applying a Function to Each List Element<a href="DataTransformations.html#recipe-id149" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id149" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="DataTransformations.html#problem-id149" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You have a list, and you want to apply a function to each element of the
+list.</p>
+</div>
+<div id="solution-id149" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="DataTransformations.html#solution-id149" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can use <code>map</code> to apply the function to every element of a list:</p>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="DataTransformations.html#cb409-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb409-2"><a href="DataTransformations.html#cb409-2" tabindex="-1"></a></span>
+<span id="cb409-3"><a href="DataTransformations.html#cb409-3" tabindex="-1"></a>lst <span class="sc">%&gt;%</span></span>
+<span id="cb409-4"><a href="DataTransformations.html#cb409-4" tabindex="-1"></a>  <span class="fu">map</span>(fun)</span></code></pre></div>
+</div>
+<div id="discussion-id149" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="DataTransformations.html#discussion-id149" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s look at a specific example of taking the average of all the numbers in each element of a list:</p>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="DataTransformations.html#cb410-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb410-2"><a href="DataTransformations.html#cb410-2" tabindex="-1"></a></span>
+<span id="cb410-3"><a href="DataTransformations.html#cb410-3" tabindex="-1"></a>lst <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb410-4"><a href="DataTransformations.html#cb410-4" tabindex="-1"></a>  <span class="at">a =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
+<span id="cb410-5"><a href="DataTransformations.html#cb410-5" tabindex="-1"></a>  <span class="at">b =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)</span>
+<span id="cb410-6"><a href="DataTransformations.html#cb410-6" tabindex="-1"></a>)</span>
+<span id="cb410-7"><a href="DataTransformations.html#cb410-7" tabindex="-1"></a>lst <span class="sc">%&gt;%</span></span>
+<span id="cb410-8"><a href="DataTransformations.html#cb410-8" tabindex="-1"></a>  <span class="fu">map</span>(mean)</span>
+<span id="cb410-9"><a href="DataTransformations.html#cb410-9" tabindex="-1"></a><span class="co">#&gt; $a</span></span>
+<span id="cb410-10"><a href="DataTransformations.html#cb410-10" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb410-11"><a href="DataTransformations.html#cb410-11" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb410-12"><a href="DataTransformations.html#cb410-12" tabindex="-1"></a><span class="co">#&gt; $b</span></span>
+<span id="cb410-13"><a href="DataTransformations.html#cb410-13" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
+<p>The <code>map</code> function will call your function once for every element on your list. Your function should expect one
+argument, an element from the list. The <code>map</code> functions
+will collect the returned values and return them in a list.</p>
+<p>The <code>purrr</code> package contains a whole family of <code>map</code> functions that take a list or a vector and then return an object with the same number of elements as the input.
+The type of object they return varies based on which <code>map</code> function is used. See the help file for <code>map</code> for a complete list, but a few of the most common are as follows:</p>
+<dl>
+<dt>map()</dt>
+<dd>
+Always returns a list, and the elements of the list may be of different types. This is quite similar to the Base R function <code>lapply</code>.
+</dd>
+<dt>map_chr()</dt>
+<dd>
+Returns a character vector.
+</dd>
+<dt>map_int()</dt>
+<dd>
+Returns an integer vector.
+</dd>
+<dt>map_dbl()</dt>
+<dd>
+Returns a floating-point numeric vector.
+</dd>
+</dl>
+<p>Let’s take a quick look at a contrived situation where we have a function that could result in a character or an integer result:</p>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="DataTransformations.html#cb411-1" tabindex="-1"></a>fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb411-2"><a href="DataTransformations.html#cb411-2" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb411-3"><a href="DataTransformations.html#cb411-3" tabindex="-1"></a>    <span class="dv">1</span></span>
+<span id="cb411-4"><a href="DataTransformations.html#cb411-4" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb411-5"><a href="DataTransformations.html#cb411-5" tabindex="-1"></a>    <span class="st">&quot;Less Than 1&quot;</span></span>
+<span id="cb411-6"><a href="DataTransformations.html#cb411-6" tabindex="-1"></a>  }</span>
+<span id="cb411-7"><a href="DataTransformations.html#cb411-7" tabindex="-1"></a>}</span>
+<span id="cb411-8"><a href="DataTransformations.html#cb411-8" tabindex="-1"></a></span>
+<span id="cb411-9"><a href="DataTransformations.html#cb411-9" tabindex="-1"></a><span class="fu">fun</span>(<span class="dv">5</span>)</span>
+<span id="cb411-10"><a href="DataTransformations.html#cb411-10" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb411-11"><a href="DataTransformations.html#cb411-11" tabindex="-1"></a><span class="fu">fun</span>(<span class="fl">0.5</span>)</span>
+<span id="cb411-12"><a href="DataTransformations.html#cb411-12" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Less Than 1&quot;</span></span></code></pre></div>
+<p>Let’s create a list of elements that we can map <code>fun</code> to and look at how some of the <code>map</code> variants behave:</p>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="DataTransformations.html#cb412-1" tabindex="-1"></a>lst <span class="ot">&lt;-</span> <span class="fu">list</span>(.<span class="dv">5</span>, <span class="fl">1.5</span>, .<span class="dv">9</span>, <span class="dv">2</span>)</span>
+<span id="cb412-2"><a href="DataTransformations.html#cb412-2" tabindex="-1"></a></span>
+<span id="cb412-3"><a href="DataTransformations.html#cb412-3" tabindex="-1"></a><span class="fu">map</span>(lst, fun)</span>
+<span id="cb412-4"><a href="DataTransformations.html#cb412-4" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb412-5"><a href="DataTransformations.html#cb412-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Less Than 1&quot;</span></span>
+<span id="cb412-6"><a href="DataTransformations.html#cb412-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb412-7"><a href="DataTransformations.html#cb412-7" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb412-8"><a href="DataTransformations.html#cb412-8" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb412-9"><a href="DataTransformations.html#cb412-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb412-10"><a href="DataTransformations.html#cb412-10" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb412-11"><a href="DataTransformations.html#cb412-11" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Less Than 1&quot;</span></span>
+<span id="cb412-12"><a href="DataTransformations.html#cb412-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb412-13"><a href="DataTransformations.html#cb412-13" tabindex="-1"></a><span class="co">#&gt; [[4]]</span></span>
+<span id="cb412-14"><a href="DataTransformations.html#cb412-14" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
+<p>You can see that <code>map</code> produced a list and it is of mixed data types.</p>
+<p>And <code>map_chr</code> will produce a character vector and coerce the numbers into characters:</p>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="DataTransformations.html#cb413-1" tabindex="-1"></a><span class="fu">map_chr</span>(lst, fun)</span>
+<span id="cb413-2"><a href="DataTransformations.html#cb413-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Less Than 1&quot; &quot;1.000000&quot;    &quot;Less Than 1&quot; &quot;1.000000&quot;</span></span>
+<span id="cb413-3"><a href="DataTransformations.html#cb413-3" tabindex="-1"></a></span>
+<span id="cb413-4"><a href="DataTransformations.html#cb413-4" tabindex="-1"></a><span class="do">## or using pipes</span></span>
+<span id="cb413-5"><a href="DataTransformations.html#cb413-5" tabindex="-1"></a>lst <span class="sc">%&gt;%</span></span>
+<span id="cb413-6"><a href="DataTransformations.html#cb413-6" tabindex="-1"></a>  <span class="fu">map_chr</span>(fun)</span>
+<span id="cb413-7"><a href="DataTransformations.html#cb413-7" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Less Than 1&quot; &quot;1.000000&quot;    &quot;Less Than 1&quot; &quot;1.000000&quot;</span></span></code></pre></div>
+<p>while <code>map_dbl</code> will try to coerce a character string into a double and die trying.</p>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="DataTransformations.html#cb414-1" tabindex="-1"></a><span class="fu">map_dbl</span>(lst, fun)</span>
+<span id="cb414-2"><a href="DataTransformations.html#cb414-2" tabindex="-1"></a><span class="co">#&gt; Error in `map_dbl()`:</span></span>
+<span id="cb414-3"><a href="DataTransformations.html#cb414-3" tabindex="-1"></a><span class="co">#&gt; ℹ In index: 1.</span></span>
+<span id="cb414-4"><a href="DataTransformations.html#cb414-4" tabindex="-1"></a><span class="co">#&gt; Caused by error:</span></span>
+<span id="cb414-5"><a href="DataTransformations.html#cb414-5" tabindex="-1"></a><span class="co">#&gt; ! Can&#39;t coerce from a string to a double.</span></span></code></pre></div>
+<p>As mentioned earlier, the Base R <code>lapply</code> function acts very much like <code>map</code>. The Base R <code>sapply</code> function is more like the other <code>map</code> functions we discussed previously in that the function tries to
+simplify the results into a vector or matrix.</p>
+</div>
+<div id="see_also-id149" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="DataTransformations.html#see_also-id149" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>See Recipe <a href="SimpleProgramming.html#recipe-id117">15.3</a>, <a href="SimpleProgramming.html#recipe-id117">“Defining a Function”</a>.</p>
+</div>
+</div>
+<div id="recipe-row_df" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Applying a Function to Every Row of a Data Frame<a href="DataTransformations.html#recipe-row_df" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-row_df" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="DataTransformations.html#problem-row_df" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You have a function and you want to apply it to every row in a data frame.</p>
+</div>
+<div id="solution-row_df" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="DataTransformations.html#solution-row_df" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>mutate</code> function will create a new variable based on a vector of values. But if we are using a function that can’t take in a vector and output a vector, then we have to do a row by row operation using <code>rowwise</code>.</p>
+<p>We can use <code>rowwise</code> in a pipe chain to tell <code>dplyr</code> to do all following commands row-by-row:</p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="DataTransformations.html#cb415-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb415-2"><a href="DataTransformations.html#cb415-2" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb415-3"><a href="DataTransformations.html#cb415-3" tabindex="-1"></a>  <span class="fu">row_by_row_function</span>()</span></code></pre></div>
+</div>
+<div id="discussion-row_df" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="DataTransformations.html#discussion-row_df" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s create a function and apply it row by row to a data frame:</p>
+<p>Our function will simply calculate the sum of a sequence from <code>a</code> to <code>b</code> by <code>c</code>:</p>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="DataTransformations.html#cb416-1" tabindex="-1"></a>fun <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b, c) {</span>
+<span id="cb416-2"><a href="DataTransformations.html#cb416-2" tabindex="-1"></a>  <span class="fu">sum</span>(<span class="fu">seq</span>(a, b, c))</span>
+<span id="cb416-3"><a href="DataTransformations.html#cb416-3" tabindex="-1"></a>}</span></code></pre></div>
+<p>Let’s create some data to apply this function to, then use <code>rowwise</code> to apply our function, <code>fun</code>, to it:</p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="DataTransformations.html#cb417-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">mn =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb417-2"><a href="DataTransformations.html#cb417-2" tabindex="-1"></a>                 <span class="at">mx =</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">13</span>, <span class="dv">18</span>),</span>
+<span id="cb417-3"><a href="DataTransformations.html#cb417-3" tabindex="-1"></a>                 <span class="at">rng =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb417-4"><a href="DataTransformations.html#cb417-4" tabindex="-1"></a></span>
+<span id="cb417-5"><a href="DataTransformations.html#cb417-5" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb417-6"><a href="DataTransformations.html#cb417-6" tabindex="-1"></a>  rowwise <span class="sc">%&gt;%</span></span>
+<span id="cb417-7"><a href="DataTransformations.html#cb417-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">output =</span> <span class="fu">fun</span>(<span class="at">a =</span> mn, <span class="at">b =</span> mx, <span class="at">c =</span> rng))</span>
+<span id="cb417-8"><a href="DataTransformations.html#cb417-8" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 4</span></span>
+<span id="cb417-9"><a href="DataTransformations.html#cb417-9" tabindex="-1"></a><span class="co">#&gt; # Rowwise: </span></span>
+<span id="cb417-10"><a href="DataTransformations.html#cb417-10" tabindex="-1"></a><span class="co">#&gt;      mn    mx   rng output</span></span>
+<span id="cb417-11"><a href="DataTransformations.html#cb417-11" tabindex="-1"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb417-12"><a href="DataTransformations.html#cb417-12" tabindex="-1"></a><span class="co">#&gt; 1     1     8     1     36</span></span>
+<span id="cb417-13"><a href="DataTransformations.html#cb417-13" tabindex="-1"></a><span class="co">#&gt; 2     2    13     2     42</span></span>
+<span id="cb417-14"><a href="DataTransformations.html#cb417-14" tabindex="-1"></a><span class="co">#&gt; 3     3    18     3     63</span></span></code></pre></div>
+<p>Had we tried to run this function without <code>rowwise</code>, it would have thrown an error because the <code>seq</code> function cannot process an entire vector:</p>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="DataTransformations.html#cb418-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb418-2"><a href="DataTransformations.html#cb418-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">output =</span> <span class="fu">fun</span>(<span class="at">a =</span> mn, <span class="at">b =</span> mx, <span class="at">c =</span> rng))</span>
+<span id="cb418-3"><a href="DataTransformations.html#cb418-3" tabindex="-1"></a><span class="co">#&gt; Error in `mutate()`:</span></span>
+<span id="cb418-4"><a href="DataTransformations.html#cb418-4" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `output = fun(a = mn, b = mx, c = rng)`.</span></span>
+<span id="cb418-5"><a href="DataTransformations.html#cb418-5" tabindex="-1"></a><span class="co">#&gt; Caused by error in `seq.default()`:</span></span>
+<span id="cb418-6"><a href="DataTransformations.html#cb418-6" tabindex="-1"></a><span class="co">#&gt; ! &#39;from&#39; must be of length 1</span></span></code></pre></div>
+</div>
+</div>
+<div id="recipe-id146" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Applying a Function to Every Row of a Matrix<a href="DataTransformations.html#recipe-id146" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id146" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="DataTransformations.html#problem-id146" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You have a matrix. You want to apply a function to every row,
+calculating the function result for each row.</p>
+</div>
+<div id="solution-id146" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="DataTransformations.html#solution-id146" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use the <code>apply</code> function. Set the second argument to <code>1</code> to indicate
+row-by-row application of a function:</p>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="DataTransformations.html#cb419-1" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">apply</span>(mat, <span class="dv">1</span>, fun)    <span class="co"># mat is a matrix, fun is a function</span></span></code></pre></div>
+<p>The <code>apply</code> function will call <code>fun</code> once for each row of the matrix,
+assemble the returned values into a vector, and then return that vector.</p>
+</div>
+<div id="discussion-id146" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="DataTransformations.html#discussion-id146" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You may notice that we show only the use of the Base R <code>apply</code> function here, while other recipes illustrate <code>purrr</code> alternatives.
+As of this writing, matrix operations are out of scope for <code>purrr</code>, so we use the very solid Base R <code>apply</code> function. If you really like the <code>purrr</code> syntax, you can use those functions if you first convert your marix to a data frame or tibble. But if your matrix is large, you will notice a meaningful runtime slowdown using <code>purrr</code>.</p>
+<p>Suppose your matrix <code>long</code> is longitudinal data, so each row contains data
+for one subject and the columns contain the repeated observations over time:</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="DataTransformations.html#cb420-1" tabindex="-1"></a>long <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb420-2"><a href="DataTransformations.html#cb420-2" tabindex="-1"></a>long</span>
+<span id="cb420-3"><a href="DataTransformations.html#cb420-3" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5]</span></span>
+<span id="cb420-4"><a href="DataTransformations.html#cb420-4" tabindex="-1"></a><span class="co">#&gt; [1,]    1    4    7   10   13</span></span>
+<span id="cb420-5"><a href="DataTransformations.html#cb420-5" tabindex="-1"></a><span class="co">#&gt; [2,]    2    5    8   11   14</span></span>
+<span id="cb420-6"><a href="DataTransformations.html#cb420-6" tabindex="-1"></a><span class="co">#&gt; [3,]    3    6    9   12   15</span></span></code></pre></div>
+<p>You could calculate the average observation for each subject by applying
+the <code>mean</code> function to each row. The result is a vector:</p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="DataTransformations.html#cb421-1" tabindex="-1"></a><span class="fu">apply</span>(long, <span class="dv">1</span>, mean)</span>
+<span id="cb421-2"><a href="DataTransformations.html#cb421-2" tabindex="-1"></a><span class="co">#&gt; [1] 7 8 9</span></span></code></pre></div>
+<p>If your matrix has row names, <code>apply</code> uses them to identify the
+elements of the resulting vector, which is handy.</p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="DataTransformations.html#cb422-1" tabindex="-1"></a><span class="fu">rownames</span>(long) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Moe&quot;</span>, <span class="st">&quot;Larry&quot;</span>, <span class="st">&quot;Curly&quot;</span>)</span>
+<span id="cb422-2"><a href="DataTransformations.html#cb422-2" tabindex="-1"></a><span class="fu">apply</span>(long, <span class="dv">1</span>, mean)</span>
+<span id="cb422-3"><a href="DataTransformations.html#cb422-3" tabindex="-1"></a><span class="co">#&gt;   Moe Larry Curly </span></span>
+<span id="cb422-4"><a href="DataTransformations.html#cb422-4" tabindex="-1"></a><span class="co">#&gt;     7     8     9</span></span></code></pre></div>
+<p>The function being called should expect
+one argument, a vector, which will be one row from the matrix. The
+function can return a scalar or a vector. In the vector case, <code>apply</code>
+assembles the results into a matrix. The <code>range</code> function returns a
+vector of two elements, the minimum and the maximum, so applying it to
+<code>long</code> produces a matrix:</p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="DataTransformations.html#cb423-1" tabindex="-1"></a><span class="fu">apply</span>(long, <span class="dv">1</span>, range)</span>
+<span id="cb423-2"><a href="DataTransformations.html#cb423-2" tabindex="-1"></a><span class="co">#&gt;      Moe Larry Curly</span></span>
+<span id="cb423-3"><a href="DataTransformations.html#cb423-3" tabindex="-1"></a><span class="co">#&gt; [1,]   1     2     3</span></span>
+<span id="cb423-4"><a href="DataTransformations.html#cb423-4" tabindex="-1"></a><span class="co">#&gt; [2,]  13    14    15</span></span></code></pre></div>
+<p>You can employ this recipe on data frames as well. It works if the data
+frame is homogeneous—that is, either all numbers or all character strings.
+When the data frame has columns of different types, extracting vectors from
+the rows isn’t sensible because vectors must be homogeneous.</p>
+</div>
+</div>
+<div id="recipe-id157" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Applying a Function to Every Column<a href="DataTransformations.html#recipe-id157" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id157" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="DataTransformations.html#problem-id157" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You have a matrix or data frame, and you want to apply a function to
+every column.</p>
+</div>
+<div id="solution-id157" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="DataTransformations.html#solution-id157" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For a matrix, use the <code>apply</code> function. Set the second argument to <code>2</code>,
+which indicates column-by-column application of the function. So if our matrix or data frame was named <code>mat</code> and we wanted to apply a function named <code>fun</code> to every column, it would look like this:</p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="DataTransformations.html#cb424-1" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">2</span>, fun) </span></code></pre></div>
+<p>For a data frame, use the <code>map_df</code> function from <code>purrr</code>:</p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="DataTransformations.html#cb425-1" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">map_df</span>(df, fun) </span></code></pre></div>
+</div>
+<div id="discussion-id157" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="DataTransformations.html#discussion-id157" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s look at an example with real numbers and apply the <code>mean</code> function to every column of a matrix:</p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="DataTransformations.html#cb426-1" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">6</span>), <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb426-2"><a href="DataTransformations.html#cb426-2" tabindex="-1"></a><span class="fu">colnames</span>(mat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;t1&quot;</span>, <span class="st">&quot;t2&quot;</span>, <span class="st">&quot;t3&quot;</span>)</span>
+<span id="cb426-3"><a href="DataTransformations.html#cb426-3" tabindex="-1"></a>mat</span>
+<span id="cb426-4"><a href="DataTransformations.html#cb426-4" tabindex="-1"></a><span class="co">#&gt;      t1 t2 t3</span></span>
+<span id="cb426-5"><a href="DataTransformations.html#cb426-5" tabindex="-1"></a><span class="co">#&gt; [1,]  1  2  4</span></span>
+<span id="cb426-6"><a href="DataTransformations.html#cb426-6" tabindex="-1"></a><span class="co">#&gt; [2,]  3  5  6</span></span>
+<span id="cb426-7"><a href="DataTransformations.html#cb426-7" tabindex="-1"></a></span>
+<span id="cb426-8"><a href="DataTransformations.html#cb426-8" tabindex="-1"></a><span class="fu">apply</span>(mat, <span class="dv">2</span>, mean)  <span class="co"># Compute the mean of every column</span></span>
+<span id="cb426-9"><a href="DataTransformations.html#cb426-9" tabindex="-1"></a><span class="co">#&gt;  t1  t2  t3 </span></span>
+<span id="cb426-10"><a href="DataTransformations.html#cb426-10" tabindex="-1"></a><span class="co">#&gt; 2.0 3.5 5.0</span></span></code></pre></div>
+<p>In Base R, the <code>apply</code> function is intended for processing a matrix or data frame. The second argument of <code>apply</code> determines the direction:</p>
+<ul>
+<li><p><code>1</code> means process row by row.</p></li>
+<li><p><code>2</code> means process column by column.</p></li>
+</ul>
+<p>This is more mnemonic than it looks. We speak of matrices in “rows and
+columns,” so rows are first and columns second: 1 and 2, respectively.</p>
+<p>A data frame is a more complicated data structure than a matrix, so
+there are more options. You can simply use <code>apply</code>, in which case R will
+convert your data frame to a matrix and then apply your function. That
+will work if your data frame contains only one type of data but will probably not do what you want if some columns are numeric and some are character. In that
+case, R will force all columns to have identical types, likely
+performing an unwanted conversion as a result.</p>
+<p>Fortunately, there are multiple alternatives. Recall that a data frame is a kind
+of list: it is a list of the columns of the data frame. <code>purrr</code> has a whole family of <code>map</code> functions that return different types of objects. Of particular interest here is <code>map_df</code>, which returns a <code>data.frame</code>, thus the <code>df</code> in the name.</p>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="DataTransformations.html#cb427-1" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">map_df</span>(df, fun) <span class="co"># Returns a data.frame</span></span></code></pre></div>
+<p>The function <code>fun</code> should expect one argument: a column from the data
+frame.</p>
+<p>Here is a common recipe to check the types of columns in data frames. In this example, the <code>batch</code> column of this data frame, at quick glance, seems to contain numbers:</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="DataTransformations.html#cb428-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;./data/batches.rdata&quot;</span>)</span>
+<span id="cb428-2"><a href="DataTransformations.html#cb428-2" tabindex="-1"></a><span class="fu">head</span>(batches)</span>
+<span id="cb428-3"><a href="DataTransformations.html#cb428-3" tabindex="-1"></a><span class="co">#&gt;   batch clinic dosage shrinkage</span></span>
+<span id="cb428-4"><a href="DataTransformations.html#cb428-4" tabindex="-1"></a><span class="co">#&gt; 1     3     KY     IL    -0.307</span></span>
+<span id="cb428-5"><a href="DataTransformations.html#cb428-5" tabindex="-1"></a><span class="co">#&gt; 2     3     IL     IL    -1.781</span></span>
+<span id="cb428-6"><a href="DataTransformations.html#cb428-6" tabindex="-1"></a><span class="co">#&gt; 3     1     KY     IL    -0.172</span></span>
+<span id="cb428-7"><a href="DataTransformations.html#cb428-7" tabindex="-1"></a><span class="co">#&gt; 4     3     KY     IL     1.215</span></span>
+<span id="cb428-8"><a href="DataTransformations.html#cb428-8" tabindex="-1"></a><span class="co">#&gt; 5     2     IL     IL     1.895</span></span>
+<span id="cb428-9"><a href="DataTransformations.html#cb428-9" tabindex="-1"></a><span class="co">#&gt; 6     2     NJ     IL    -0.430</span></span></code></pre></div>
+<p>But using <code>map_df</code> to print out the class of each column reveals the column <code>batch</code> to be a factor instead:</p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="DataTransformations.html#cb429-1" tabindex="-1"></a><span class="fu">map_df</span>(batches, class)</span>
+<span id="cb429-2"><a href="DataTransformations.html#cb429-2" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 4</span></span>
+<span id="cb429-3"><a href="DataTransformations.html#cb429-3" tabindex="-1"></a><span class="co">#&gt;   batch  clinic dosage shrinkage</span></span>
+<span id="cb429-4"><a href="DataTransformations.html#cb429-4" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;    </span></span>
+<span id="cb429-5"><a href="DataTransformations.html#cb429-5" tabindex="-1"></a><span class="co">#&gt; 1 factor factor factor numeric</span></span></code></pre></div>
+<blockquote>
+<p>Warning: Notice in this output how the third row says <code>&lt;chr&gt;</code> repeatedly. This is because the output of <code>class</code> is being put in a data frame and then printed. The intermediate data frame is all character fields. It’s the last row that tells us our original data frame has three factor columns and one numeric field.</p>
+</blockquote>
+</div>
+<div id="see_also-id157" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="DataTransformations.html#see_also-id157" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>See Recipes <a href="DataStructures.html#recipe-id068">5.21</a>, <a href="DataStructures.html#recipe-id068">“Selecting Data Frame Columns by Position”</a>, <a href="DataTransformations.html#recipe-id149">6.1</a>, <a href="DataTransformations.html#recipe-id149">“Applying a Function to Each List Element”</a>, and <a href="DataTransformations.html#recipe-id146">6.3</a>, <a href="DataTransformations.html#recipe-id146">“Applying a Function to Every Row”</a>.</p>
+</div>
+</div>
+<div id="recipe-id275" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Applying a Function to Parallel Vectors or Lists<a href="DataTransformations.html#recipe-id275" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id275" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="DataTransformations.html#problem-id275" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You have a function that takes multiple arguments. You want to
+apply the function element-wise to vectors and obtain a vector result.
+Unfortunately, the function is not vectorized; that is, it works on
+scalars but not on vectors.</p>
+</div>
+<div id="solution-id275" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="DataTransformations.html#solution-id275" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use one of the <code>map</code> or <code>pmap</code> functions from the tidyverse core package <code>purrr</code>. The most general solution is to put your vectors in a list, then use <code>pmap</code>:</p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="DataTransformations.html#cb430-1" tabindex="-1"></a>lst <span class="ot">&lt;-</span> <span class="fu">list</span>(v1, v2, v3)</span>
+<span id="cb430-2"><a href="DataTransformations.html#cb430-2" tabindex="-1"></a><span class="fu">pmap</span>(lst, fun)</span></code></pre></div>
+<p><code>pmap</code> will take the elements of <code>lst</code> and pass them as the inputs to <code>fun</code>.</p>
+<p>If you only have two vectors you are passing as inputs to your function, the <code>map2_*</code> family of functions is convenient and saves you the step of putting your vectors in a list first. <code>map2</code> will return a list, while the typed variants (<code>map2_chr</code>, <code>map2_dbl</code>, etc.) return vectors of the type their name implies:</p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="DataTransformations.html#cb431-1" tabindex="-1"></a><span class="fu">map2</span>(v1, v2, fun)</span></code></pre></div>
+<p>or if <code>fun</code> returns only a double, then use the typed variant of <code>map2</code>:</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="DataTransformations.html#cb432-1" tabindex="-1"></a><span class="fu">map2_dbl</span>(v1, v2, fun)</span></code></pre></div>
+<p>The typed variants in <code>purrr</code> functions refer to the <em>output</em> type expected from the function. All the typed variants return vectors of their respective type, while the untyped variants return lists, which allow mixing of types.</p>
+</div>
+<div id="discussion-id275" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="DataTransformations.html#discussion-id275" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The basic operators of R, such as <em>x</em> + <em>y</em>, are vectorized; this means
+that they compute their result element by element and return a vector of
+results. Also, many R functions are vectorized.</p>
+<p>Not all functions are vectorized, however, and those that are not typed work
+only on scalars. Using vector arguments produces errors at best and
+meaningless results at worst. In such cases, the <code>map</code> functions from <code>purrr</code> can
+effectively vectorize the function for you.</p>
+<p>Consider the <code>gcd</code> function from Recipe <a href="SimpleProgramming.html#recipe-id117">15.3</a>, <a href="SimpleProgramming.html#recipe-id117">“Defining a Function”</a>, which takes two arguments:</p>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="DataTransformations.html#cb433-1" tabindex="-1"></a>gcd <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb433-2"><a href="DataTransformations.html#cb433-2" tabindex="-1"></a>  <span class="cf">if</span> (b <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb433-3"><a href="DataTransformations.html#cb433-3" tabindex="-1"></a>    <span class="fu">return</span>(a)</span>
+<span id="cb433-4"><a href="DataTransformations.html#cb433-4" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb433-5"><a href="DataTransformations.html#cb433-5" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">gcd</span>(b, a <span class="sc">%%</span> b))</span>
+<span id="cb433-6"><a href="DataTransformations.html#cb433-6" tabindex="-1"></a>  }</span>
+<span id="cb433-7"><a href="DataTransformations.html#cb433-7" tabindex="-1"></a>}</span></code></pre></div>
+<p>If we apply <code>gcd</code> to two vectors, the result is wrong answers and a pile
+of error messages:</p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="DataTransformations.html#cb434-1" tabindex="-1"></a><span class="fu">gcd</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">3</span>))</span>
+<span id="cb434-2"><a href="DataTransformations.html#cb434-2" tabindex="-1"></a><span class="co">#&gt; Error in if (b == 0) {: the condition has length &gt; 1</span></span></code></pre></div>
+<p>The function is not vectorized, but we can use <code>map</code> to “vectorize” it.
+In this case, since we have two inputs we’re mapping over, we should use the <code>map2</code> function. This gives the element-wise GCDs between two vectors.</p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="DataTransformations.html#cb435-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb435-2"><a href="DataTransformations.html#cb435-2" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">3</span>)</span>
+<span id="cb435-3"><a href="DataTransformations.html#cb435-3" tabindex="-1"></a>my_gcds <span class="ot">&lt;-</span> <span class="fu">map2</span>(a, b, gcd)</span>
+<span id="cb435-4"><a href="DataTransformations.html#cb435-4" tabindex="-1"></a>my_gcds</span>
+<span id="cb435-5"><a href="DataTransformations.html#cb435-5" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb435-6"><a href="DataTransformations.html#cb435-6" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb435-7"><a href="DataTransformations.html#cb435-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb435-8"><a href="DataTransformations.html#cb435-8" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb435-9"><a href="DataTransformations.html#cb435-9" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb435-10"><a href="DataTransformations.html#cb435-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb435-11"><a href="DataTransformations.html#cb435-11" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb435-12"><a href="DataTransformations.html#cb435-12" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span></code></pre></div>
+<p>Notice that <code>map2</code> returns a list of lists. If we wanted the output in a vector, we could use <code>unlist</code> on the result, or use one of the typed variants, such as <code>map2_dbl</code>:</p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="DataTransformations.html#cb436-1" tabindex="-1"></a><span class="fu">unlist</span>(my_gcds)</span>
+<span id="cb436-2"><a href="DataTransformations.html#cb436-2" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3</span></span></code></pre></div>
+<p>The <code>map</code> family of <code>purrr</code> functions give you a series of variations that return specific types of output. The suffixes on the function names communicate the type of <em>vector</em> they will return. While <code>map</code> and <code>map2</code> return lists, since the type-specific variants are returning objects guaranteed to be the same type, they can be put in atomic vectors. For example, we could use the <code>map_chr</code> function to ask R to coerce the results into character output or <code>map2_dbl</code> to ensure the results are doubles:</p>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="DataTransformations.html#cb437-1" tabindex="-1"></a><span class="fu">map2_chr</span>(a, b, gcd)</span>
+<span id="cb437-2"><a href="DataTransformations.html#cb437-2" tabindex="-1"></a><span class="co">#&gt; Warning: Automatic coercion from double to character was deprecated in purrr 1.0.0.</span></span>
+<span id="cb437-3"><a href="DataTransformations.html#cb437-3" tabindex="-1"></a><span class="co">#&gt; ℹ Please use an explicit call to `as.character()` within `map_chr()` instead.</span></span>
+<span id="cb437-4"><a href="DataTransformations.html#cb437-4" tabindex="-1"></a><span class="co">#&gt; ℹ The deprecated feature was likely used in the base package.</span></span>
+<span id="cb437-5"><a href="DataTransformations.html#cb437-5" tabindex="-1"></a><span class="co">#&gt;   Please report the issue to the authors.</span></span>
+<span id="cb437-6"><a href="DataTransformations.html#cb437-6" tabindex="-1"></a><span class="co">#&gt; This warning is displayed once every 8 hours.</span></span>
+<span id="cb437-7"><a href="DataTransformations.html#cb437-7" tabindex="-1"></a><span class="co">#&gt; Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span>
+<span id="cb437-8"><a href="DataTransformations.html#cb437-8" tabindex="-1"></a><span class="co">#&gt; generated.</span></span>
+<span id="cb437-9"><a href="DataTransformations.html#cb437-9" tabindex="-1"></a><span class="co">#&gt; [1] &quot;1.000000&quot; &quot;2.000000&quot; &quot;3.000000&quot;</span></span>
+<span id="cb437-10"><a href="DataTransformations.html#cb437-10" tabindex="-1"></a><span class="fu">map2_dbl</span>(a, b, gcd)</span>
+<span id="cb437-11"><a href="DataTransformations.html#cb437-11" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3</span></span></code></pre></div>
+<p>If our data has more than two vectors, or the data is already in a list, we can use the <code>pmap</code> family of functions, which take a list as an input.</p>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="DataTransformations.html#cb438-1" tabindex="-1"></a>lst <span class="ot">&lt;-</span> <span class="fu">list</span>(a,b)</span>
+<span id="cb438-2"><a href="DataTransformations.html#cb438-2" tabindex="-1"></a><span class="fu">pmap</span>(lst, gcd)</span>
+<span id="cb438-3"><a href="DataTransformations.html#cb438-3" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb438-4"><a href="DataTransformations.html#cb438-4" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb438-5"><a href="DataTransformations.html#cb438-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb438-6"><a href="DataTransformations.html#cb438-6" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb438-7"><a href="DataTransformations.html#cb438-7" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb438-8"><a href="DataTransformations.html#cb438-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb438-9"><a href="DataTransformations.html#cb438-9" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb438-10"><a href="DataTransformations.html#cb438-10" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span></code></pre></div>
+<p>Or if we want a typed vector as output:</p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="DataTransformations.html#cb439-1" tabindex="-1"></a>lst <span class="ot">&lt;-</span> <span class="fu">list</span>(a,b)</span>
+<span id="cb439-2"><a href="DataTransformations.html#cb439-2" tabindex="-1"></a><span class="fu">pmap_dbl</span>(lst, gcd)</span>
+<span id="cb439-3"><a href="DataTransformations.html#cb439-3" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3</span></span></code></pre></div>
+<p>With the <code>purrr</code> functions, remember that the <code>pmap</code> family are parallel mappers that take in a <em>list</em> as inputs, while <code>map2</code> functions take two, and only two, <em>vectors</em> as inputs.</p>
+</div>
+<div id="see_also-id275" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="DataTransformations.html#see_also-id275" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is really just a special case of our very first recipe in this chapter, Recipe <a href="DataTransformations.html#recipe-id149">6.1</a>, <a href="DataTransformations.html#recipe-id149">“Applying a Function to Each List Element”</a>. See that recipe for more discussion of <code>map</code> variants.
+In addition, Jenny Bryan has a great collection of <code>purrr</code> tutorials on her <a href="https://jennybc.github.io/purrr-tutorial/">GitHub site</a>.</p>
+</div>
+</div>
+<div id="recipe-id148" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> Applying a Function to Groups of Data<a href="DataTransformations.html#recipe-id148" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id148" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="DataTransformations.html#problem-id148" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Your data elements occur in groups. You want to process the data by
+groups—for example, summing by group or averaging by group.</p>
+</div>
+<div id="solution-id148" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="DataTransformations.html#solution-id148" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The easiest way to do grouping is with the <code>dplyr</code> function <code>group_by</code> in conjunction with <code>summarize</code>. If our data frame is <code>df</code> and has a variable we want to group by named <code>grouping_var</code>, and we want to apply the function <code>fun</code> to all the combinations of <code>v1</code> and <code>v2</code>, we can do that with <code>group_by</code>:</p>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="DataTransformations.html#cb440-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb440-2"><a href="DataTransformations.html#cb440-2" tabindex="-1"></a>  <span class="fu">group_by</span>(v1, v2) <span class="sc">%&gt;%</span></span>
+<span id="cb440-3"><a href="DataTransformations.html#cb440-3" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb440-4"><a href="DataTransformations.html#cb440-4" tabindex="-1"></a>    <span class="at">result_var =</span> <span class="fu">fun</span>(value_var)</span>
+<span id="cb440-5"><a href="DataTransformations.html#cb440-5" tabindex="-1"></a>  )</span></code></pre></div>
+</div>
+<div id="discussion-id148" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="DataTransformations.html#discussion-id148" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s look at a specific example where our input data frame, <code>df</code>, contains a variable, <code>my_group</code>, which we want to group by, and a field named <code>values</code>, which we would like to calculate some statistics on:</p>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="DataTransformations.html#cb441-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb441-2"><a href="DataTransformations.html#cb441-2" tabindex="-1"></a>  <span class="at">my_group =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>,<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>,<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>),</span>
+<span id="cb441-3"><a href="DataTransformations.html#cb441-3" tabindex="-1"></a>  <span class="at">values =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb441-4"><a href="DataTransformations.html#cb441-4" tabindex="-1"></a>)</span>
+<span id="cb441-5"><a href="DataTransformations.html#cb441-5" tabindex="-1"></a></span>
+<span id="cb441-6"><a href="DataTransformations.html#cb441-6" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb441-7"><a href="DataTransformations.html#cb441-7" tabindex="-1"></a>  <span class="fu">group_by</span>(my_group) <span class="sc">%&gt;%</span></span>
+<span id="cb441-8"><a href="DataTransformations.html#cb441-8" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb441-9"><a href="DataTransformations.html#cb441-9" tabindex="-1"></a>    <span class="at">avg_values =</span> <span class="fu">mean</span>(values),</span>
+<span id="cb441-10"><a href="DataTransformations.html#cb441-10" tabindex="-1"></a>    <span class="at">tot_values =</span> <span class="fu">sum</span>(values),</span>
+<span id="cb441-11"><a href="DataTransformations.html#cb441-11" tabindex="-1"></a>    <span class="at">count_values =</span> <span class="fu">n</span>()</span>
+<span id="cb441-12"><a href="DataTransformations.html#cb441-12" tabindex="-1"></a>  )</span>
+<span id="cb441-13"><a href="DataTransformations.html#cb441-13" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 4</span></span>
+<span id="cb441-14"><a href="DataTransformations.html#cb441-14" tabindex="-1"></a><span class="co">#&gt;   my_group avg_values tot_values count_values</span></span>
+<span id="cb441-15"><a href="DataTransformations.html#cb441-15" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;dbl&gt;      &lt;int&gt;        &lt;int&gt;</span></span>
+<span id="cb441-16"><a href="DataTransformations.html#cb441-16" tabindex="-1"></a><span class="co">#&gt; 1 A                 3          9            3</span></span>
+<span id="cb441-17"><a href="DataTransformations.html#cb441-17" tabindex="-1"></a><span class="co">#&gt; 2 B                 4         12            3</span></span></code></pre></div>
+<p>The output has one record per grouping along with calculated values for the three summary fields we defined.</p>
+<p>If you are grouping by several variables, please be aware that <code>summarize</code> will change your grouping. Each grouping becomes a single row; at the same time, it also removes the <em>last</em> grouping variable. In other words, if you group your data by <code>A</code>, <code>B</code>, and <code>C</code> and then <code>summarize</code> it, the resulting data frame is grouped only by <code>A</code> and <code>B</code>. This is surprising but necessary. If <code>summarize</code> kept the <code>C</code> grouping, each “group” would contain exactly one row, which would be pointless.</p>
+</div>
+</div>
+<div id="recipe-casewhen" class="section level2 hasAnchor" number="6.7">
+<h2><span class="header-section-number">6.7</span> Creating a New Column Based on Some Condition<a href="DataTransformations.html#recipe-casewhen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-casewhen" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="DataTransformations.html#problem-casewhen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You want to create a new column in a data frame based on some condition.</p>
+</div>
+<div id="solution-casewhen" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="DataTransformations.html#solution-casewhen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Using the <code>dplyr</code> tidyverse package, we can create new data frame columns using <code>mutate</code> and then use <code>case_when</code> to implement conditional logic.</p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="DataTransformations.html#cb442-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb442-2"><a href="DataTransformations.html#cb442-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb442-3"><a href="DataTransformations.html#cb442-3" tabindex="-1"></a>    <span class="at">new_field =</span> <span class="fu">case_when</span>(my_field <span class="sc">==</span> <span class="st">&quot;something&quot;</span> <span class="sc">~</span> <span class="st">&quot;result&quot;</span>, </span>
+<span id="cb442-4"><a href="DataTransformations.html#cb442-4" tabindex="-1"></a>                          my_field <span class="sc">!=</span> <span class="st">&quot;something else&quot;</span> <span class="sc">~</span> <span class="st">&quot;other result&quot;</span>, </span>
+<span id="cb442-5"><a href="DataTransformations.html#cb442-5" tabindex="-1"></a>                          <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;all other results&quot;</span>)</span>
+<span id="cb442-6"><a href="DataTransformations.html#cb442-6" tabindex="-1"></a>  )</span></code></pre></div>
+</div>
+<div id="discussion-casewhen" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="DataTransformations.html#discussion-casewhen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>case_when</code> function from <code>dplyr</code> is analogous to <code>CASE WHEN</code> in SQL or nested <code>IF</code> statements in Excel. The function tests every element and when it finds a condition that is true, it returns the value on the right side of the <code>~</code> (tilde).</p>
+<p>Let’s look at an example where we want to add a text field that describes a value. First let’s set up some simple example data in a data frame with one column named <code>vals</code>:</p>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="DataTransformations.html#cb443-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">vals =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
+<p>Now let’s implement logic that creates a field called <code>new_vals</code>. If <code>vals</code> is less than or equal to 2, we’ll return <code>2 or less</code>; if the value is between greater than 2 and less than or equal to 4, we’ll return <code>2 to 4</code>; and otherwise we’ll return <code>over 4</code>:</p>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="DataTransformations.html#cb444-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb444-2"><a href="DataTransformations.html#cb444-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">new_vals =</span> <span class="fu">case_when</span>(vals <span class="sc">&lt;=</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;2 or less&quot;</span>,</span>
+<span id="cb444-3"><a href="DataTransformations.html#cb444-3" tabindex="-1"></a>                              vals <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">&amp;</span> vals <span class="sc">&lt;=</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">&quot;2 to 4&quot;</span>,</span>
+<span id="cb444-4"><a href="DataTransformations.html#cb444-4" tabindex="-1"></a>                              <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;over 4&quot;</span>))</span>
+<span id="cb444-5"><a href="DataTransformations.html#cb444-5" tabindex="-1"></a><span class="co">#&gt;   vals  new_vals</span></span>
+<span id="cb444-6"><a href="DataTransformations.html#cb444-6" tabindex="-1"></a><span class="co">#&gt; 1    1 2 or less</span></span>
+<span id="cb444-7"><a href="DataTransformations.html#cb444-7" tabindex="-1"></a><span class="co">#&gt; 2    2 2 or less</span></span>
+<span id="cb444-8"><a href="DataTransformations.html#cb444-8" tabindex="-1"></a><span class="co">#&gt; 3    3    2 to 4</span></span>
+<span id="cb444-9"><a href="DataTransformations.html#cb444-9" tabindex="-1"></a><span class="co">#&gt; 4    4    2 to 4</span></span>
+<span id="cb444-10"><a href="DataTransformations.html#cb444-10" tabindex="-1"></a><span class="co">#&gt; 5    5    over 4</span></span></code></pre></div>
+<p>You can see in the example that the condition goes on the right of the <code>~</code>, while the resulting return value goes on the right. Each condition is separated by commas. <code>case_when</code> will evaluate each condition sequentially and stop evaluating as soon as one of the criteria returns <code>TRUE</code>. Our last line is our “or else” statement. By setting the criteria to <code>TRUE</code>, no matter what, this condition will be met if no condition above it has returned <code>TRUE</code>.</p>
+</div>
+<div id="see_also-casewhen" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="DataTransformations.html#see_also-casewhen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>See Recipe @ref(recipe-row_df), <a href="DataTransformations.html#recipe-row_df">“Applying a Function to Every Row of a Data Frame”</a>, for more examples of using <code>mutate</code>.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="DataStructures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="StringsAndDates.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": true,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/CerebralMastication/R-Cookbook/edit/master/06_DataTransformations.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

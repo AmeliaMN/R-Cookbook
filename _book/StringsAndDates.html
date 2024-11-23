@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Strings and Dates | R Cookbook, 2nd Edition</title>
+  <meta name="description" content="Second edition of R Cookbook" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Strings and Dates | R Cookbook, 2nd Edition" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Second edition of R Cookbook" />
+  <meta name="github-repo" content="CerebralMastication/R-Cookbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Strings and Dates | R Cookbook, 2nd Edition" />
+  
+  <meta name="twitter:description" content="Second edition of R Cookbook" />
+  
+
+<meta name="author" content="James (JD) Long" />
+<meta name="author" content="Paul Teetor" />
+
+
+<meta name="date" content="2024-11-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="DataTransformations.html"/>
+<link rel="next" href="Probability.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129487349-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-129487349-3');
+</script>
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">R Cookbook 2nd Edition</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome to the R Cookbook 2nd Edition</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#the-recipes"><i class="fa fa-check"></i>The Recipes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-note-on-terminology"><i class="fa fa-check"></i>A Note on Terminology</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-and-platform-notes"><i class="fa fa-check"></i>Software and Platform Notes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#other-resources"><i class="fa fa-check"></i>Other Resources</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#conventions-used-in-this-book"><i class="fa fa-check"></i>Conventions Used in This Book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#using-code-examples"><i class="fa fa-check"></i>Using Code Examples</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#safari-books-online"><i class="fa fa-check"></i>Safari® Books Online</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-contact-us"><i class="fa fa-check"></i>How to Contact Us</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="GettingStarted.html"><a href="GettingStarted.html"><i class="fa fa-check"></i><b>1</b> Getting Started and Getting Help</a>
+<ul>
+<li class="chapter" data-level="" data-path="GettingStarted.html"><a href="GettingStarted.html#intro-GettingStarted"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1.1" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id001"><i class="fa fa-check"></i><b>1.1</b> Downloading and Installing R</a></li>
+<li class="chapter" data-level="1.2" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id002b"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-startingrstudio"><i class="fa fa-check"></i><b>1.3</b> Starting RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id007"><i class="fa fa-check"></i><b>1.4</b> Entering Commands</a></li>
+<li class="chapter" data-level="1.5" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id097"><i class="fa fa-check"></i><b>1.5</b> Exiting from RStudio</a></li>
+<li class="chapter" data-level="1.6" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id100"><i class="fa fa-check"></i><b>1.6</b> Interrupting R</a></li>
+<li class="chapter" data-level="1.7" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id265"><i class="fa fa-check"></i><b>1.7</b> Viewing the Supplied Documentation</a></li>
+<li class="chapter" data-level="1.8" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id003"><i class="fa fa-check"></i><b>1.8</b> Getting Help on a Function</a></li>
+<li class="chapter" data-level="1.9" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id267"><i class="fa fa-check"></i><b>1.9</b> Searching the Supplied Documentation</a></li>
+<li class="chapter" data-level="1.10" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id266"><i class="fa fa-check"></i><b>1.10</b> Getting Help on a Package</a></li>
+<li class="chapter" data-level="1.11" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id005"><i class="fa fa-check"></i><b>1.11</b> Searching the Web for Help</a></li>
+<li class="chapter" data-level="1.12" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id270"><i class="fa fa-check"></i><b>1.12</b> Finding Relevant Functions and Packages</a></li>
+<li class="chapter" data-level="1.13" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id268"><i class="fa fa-check"></i><b>1.13</b> Searching the Mailing Lists</a></li>
+<li class="chapter" data-level="1.14" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id269"><i class="fa fa-check"></i><b>1.14</b> Submitting Questions to Stack Overflow or Elsewhere in the Community</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="SomeBasics.html"><a href="SomeBasics.html"><i class="fa fa-check"></i><b>2</b> Some Basics</a>
+<ul>
+<li class="chapter" data-level="" data-path="SomeBasics.html"><a href="SomeBasics.html#intro-SomeBasics"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="2.1" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id017"><i class="fa fa-check"></i><b>2.1</b> Printing Something to the Screen</a></li>
+<li class="chapter" data-level="2.2" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id016"><i class="fa fa-check"></i><b>2.2</b> Setting Variables</a></li>
+<li class="chapter" data-level="2.3" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id091"><i class="fa fa-check"></i><b>2.3</b> Listing Variables</a></li>
+<li class="chapter" data-level="2.4" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id075"><i class="fa fa-check"></i><b>2.4</b> Deleting Variables</a></li>
+<li class="chapter" data-level="2.5" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id038"><i class="fa fa-check"></i><b>2.5</b> Creating a Vector</a></li>
+<li class="chapter" data-level="2.6" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id101"><i class="fa fa-check"></i><b>2.6</b> Computing Basic Statistics</a></li>
+<li class="chapter" data-level="2.7" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id021"><i class="fa fa-check"></i><b>2.7</b> Creating Sequences</a></li>
+<li class="chapter" data-level="2.8" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id020"><i class="fa fa-check"></i><b>2.8</b> Comparing Vectors</a></li>
+<li class="chapter" data-level="2.9" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id039"><i class="fa fa-check"></i><b>2.9</b> Selecting Vector Elements</a></li>
+<li class="chapter" data-level="2.10" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id019"><i class="fa fa-check"></i><b>2.10</b> Performing Vector Arithmetic</a></li>
+<li class="chapter" data-level="2.11" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id018"><i class="fa fa-check"></i><b>2.11</b> Getting Operator Precedence Right</a></li>
+<li class="chapter" data-level="2.12" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id022"><i class="fa fa-check"></i><b>2.12</b> Typing Less and Accomplishing More</a></li>
+<li class="chapter" data-level="2.13" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-pipe-2"><i class="fa fa-check"></i><b>2.13</b> Creating a Pipeline of Function Calls</a></li>
+<li class="chapter" data-level="2.14" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id025"><i class="fa fa-check"></i><b>2.14</b> Avoiding Some Common Mistakes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html"><i class="fa fa-check"></i><b>3</b> Navigating the Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#intro-NavigatingTheSoftware"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="3.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id008"><i class="fa fa-check"></i><b>3.1</b> Getting and Setting the Working Directory</a></li>
+<li class="chapter" data-level="3.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-CreateProject"><i class="fa fa-check"></i><b>3.2</b> Creating a New RStudio Project</a></li>
+<li class="chapter" data-level="3.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id009"><i class="fa fa-check"></i><b>3.3</b> Saving Your Workspace</a></li>
+<li class="chapter" data-level="3.4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id023"><i class="fa fa-check"></i><b>3.4</b> Viewing Your Command History</a></li>
+<li class="chapter" data-level="3.5" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id024"><i class="fa fa-check"></i><b>3.5</b> Saving the Result of the Previous Command</a></li>
+<li class="chapter" data-level="3.6" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id010"><i class="fa fa-check"></i><b>3.6</b> Displaying Loaded Packages via the Search Path</a></li>
+<li class="chapter" data-level="3.7" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id094"><i class="fa fa-check"></i><b>3.7</b> Viewing the List of Installed Packages</a></li>
+<li class="chapter" data-level="3.8" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id013"><i class="fa fa-check"></i><b>3.8</b> Accessing the Functions in a Package</a></li>
+<li class="chapter" data-level="3.9" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id257"><i class="fa fa-check"></i><b>3.9</b> Accessing Built-in Datasets</a></li>
+<li class="chapter" data-level="3.10" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id012"><i class="fa fa-check"></i><b>3.10</b> Installing Packages from CRAN</a></li>
+<li class="chapter" data-level="3.11" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-installGH"><i class="fa fa-check"></i><b>3.11</b> Installing a Package from GitHub</a></li>
+<li class="chapter" data-level="3.12" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id272"><i class="fa fa-check"></i><b>3.12</b> Setting or Changing a Default CRAN Mirror</a></li>
+<li class="chapter" data-level="3.13" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id014"><i class="fa fa-check"></i><b>3.13</b> Running a Script</a></li>
+<li class="chapter" data-level="3.14" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id015"><i class="fa fa-check"></i><b>3.14</b> Running a Batch Script</a></li>
+<li class="chapter" data-level="3.15" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id102"><i class="fa fa-check"></i><b>3.15</b> Locating the R Home Directory</a></li>
+<li class="chapter" data-level="3.16" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id099"><i class="fa fa-check"></i><b>3.16</b> Customizing R Startup</a></li>
+<li class="chapter" data-level="3.17" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-Rcloud"><i class="fa fa-check"></i><b>3.17</b> Using R and RStudio in the Cloud</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="InputAndOutput.html"><a href="InputAndOutput.html"><i class="fa fa-check"></i><b>4</b> Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="InputAndOutput.html"><a href="InputAndOutput.html#intro-InputAndOutput"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="4.1" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id035"><i class="fa fa-check"></i><b>4.1</b> Entering Data from the Keyboard</a></li>
+<li class="chapter" data-level="4.2" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id036"><i class="fa fa-check"></i><b>4.2</b> Printing Fewer Digits (or More Digits)</a></li>
+<li class="chapter" data-level="4.3" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id034"><i class="fa fa-check"></i><b>4.3</b> Redirecting Output to a File</a></li>
+<li class="chapter" data-level="4.4" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id030"><i class="fa fa-check"></i><b>4.4</b> Listing Files</a></li>
+<li class="chapter" data-level="4.5" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id033"><i class="fa fa-check"></i><b>4.5</b> Dealing with “Cannot Open File” in Windows</a></li>
+<li class="chapter" data-level="4.6" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id136"><i class="fa fa-check"></i><b>4.6</b> Reading Fixed-Width Records</a></li>
+<li class="chapter" data-level="4.7" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id245"><i class="fa fa-check"></i><b>4.7</b> Reading Tabular Data Files</a></li>
+<li class="chapter" data-level="4.8" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id027"><i class="fa fa-check"></i><b>4.8</b> Reading from CSV Files</a></li>
+<li class="chapter" data-level="4.9" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id028"><i class="fa fa-check"></i><b>4.9</b> Writing to CSV Files</a></li>
+<li class="chapter" data-level="4.10" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id031"><i class="fa fa-check"></i><b>4.10</b> Reading Tabular or CSV Data from the Web</a></li>
+<li class="chapter" data-level="4.11" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-readexcel"><i class="fa fa-check"></i><b>4.11</b> Reading Data from Excel</a></li>
+<li class="chapter" data-level="4.12" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-writeexcel"><i class="fa fa-check"></i><b>4.12</b> Writing a Data Frame to Excel</a></li>
+<li class="chapter" data-level="4.13" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-readsas"><i class="fa fa-check"></i><b>4.13</b> Reading Data from a SAS file</a></li>
+<li class="chapter" data-level="4.14" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id246"><i class="fa fa-check"></i><b>4.14</b> Reading Data from HTML Tables</a></li>
+<li class="chapter" data-level="4.15" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id098"><i class="fa fa-check"></i><b>4.15</b> Reading Files with a Complex Structure</a></li>
+<li class="chapter" data-level="4.16" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id037"><i class="fa fa-check"></i><b>4.16</b> Reading from MySQL Databases</a></li>
+<li class="chapter" data-level="4.17" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-dbplyr"><i class="fa fa-check"></i><b>4.17</b> Accessing a Database with dbplyr</a></li>
+<li class="chapter" data-level="4.18" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id029"><i class="fa fa-check"></i><b>4.18</b> Saving and Transporting Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="DataStructures.html"><a href="DataStructures.html"><i class="fa fa-check"></i><b>5</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="DataStructures.html"><a href="DataStructures.html#intro-DataStructures"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="5.1" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id048"><i class="fa fa-check"></i><b>5.1</b> Appending Data to a Vector</a></li>
+<li class="chapter" data-level="5.2" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id049"><i class="fa fa-check"></i><b>5.2</b> Inserting Data into a Vector</a></li>
+<li class="chapter" data-level="5.3" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id050"><i class="fa fa-check"></i><b>5.3</b> Understanding the Recycling Rule</a></li>
+<li class="chapter" data-level="5.4" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id051"><i class="fa fa-check"></i><b>5.4</b> Creating a Factor (Categorical Variable)</a></li>
+<li class="chapter" data-level="5.5" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id227"><i class="fa fa-check"></i><b>5.5</b> Combining Multiple Vectors into One Vector and a Factor</a></li>
+<li class="chapter" data-level="5.6" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id053"><i class="fa fa-check"></i><b>5.6</b> Creating a List</a></li>
+<li class="chapter" data-level="5.7" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id054"><i class="fa fa-check"></i><b>5.7</b> Selecting List Elements by Position</a></li>
+<li class="chapter" data-level="5.8" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id253"><i class="fa fa-check"></i><b>5.8</b> Selecting List Elements by Name</a></li>
+<li class="chapter" data-level="5.9" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id158"><i class="fa fa-check"></i><b>5.9</b> Building a Name/Value Association List</a></li>
+<li class="chapter" data-level="5.10" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id056"><i class="fa fa-check"></i><b>5.10</b> Removing an Element from a List</a></li>
+<li class="chapter" data-level="5.11" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id152"><i class="fa fa-check"></i><b>5.11</b> Flatten a List into a Vector</a></li>
+<li class="chapter" data-level="5.12" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id058"><i class="fa fa-check"></i><b>5.12</b> Removing NULL Elements from a List</a></li>
+<li class="chapter" data-level="5.13" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id060"><i class="fa fa-check"></i><b>5.13</b> Removing List Elements Using a Condition</a></li>
+<li class="chapter" data-level="5.14" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id062"><i class="fa fa-check"></i><b>5.14</b> Initializing a Matrix</a></li>
+<li class="chapter" data-level="5.15" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id139"><i class="fa fa-check"></i><b>5.15</b> Performing Matrix Operations</a></li>
+<li class="chapter" data-level="5.16" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id063"><i class="fa fa-check"></i><b>5.16</b> Giving Descriptive Names to the Rows and Columns of a Matrix</a></li>
+<li class="chapter" data-level="5.17" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id250"><i class="fa fa-check"></i><b>5.17</b> Selecting One Row or Column from a Matrix</a></li>
+<li class="chapter" data-level="5.18" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id251"><i class="fa fa-check"></i><b>5.18</b> Initializing a Data Frame from Column Data</a></li>
+<li class="chapter" data-level="5.19" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id252"><i class="fa fa-check"></i><b>5.19</b> Initializing a Data Frame from Row Data</a></li>
+<li class="chapter" data-level="5.20" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id071"><i class="fa fa-check"></i><b>5.20</b> Appending Rows to a Data Frame</a></li>
+<li class="chapter" data-level="5.21" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id068"><i class="fa fa-check"></i><b>5.21</b> Selecting Data Frame Columns by Position</a></li>
+<li class="chapter" data-level="5.22" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id254"><i class="fa fa-check"></i><b>5.22</b> Selecting Data Frame Columns by Name</a></li>
+<li class="chapter" data-level="5.23" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id069"><i class="fa fa-check"></i><b>5.23</b> Changing the Names of Data Frame Columns</a></li>
+<li class="chapter" data-level="5.24" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id249"><i class="fa fa-check"></i><b>5.24</b> Removing NAs from a Data Frame</a></li>
+<li class="chapter" data-level="5.25" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id072"><i class="fa fa-check"></i><b>5.25</b> Excluding Columns by Name</a></li>
+<li class="chapter" data-level="5.26" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id155"><i class="fa fa-check"></i><b>5.26</b> Combining Two Data Frames</a></li>
+<li class="chapter" data-level="5.27" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id057"><i class="fa fa-check"></i><b>5.27</b> Merging Data Frames by Common Column</a></li>
+<li class="chapter" data-level="5.28" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id248"><i class="fa fa-check"></i><b>5.28</b> Converting One Atomic Value into Another</a></li>
+<li class="chapter" data-level="5.29" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id074"><i class="fa fa-check"></i><b>5.29</b> Converting One Structured Data Type into Another</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="DataTransformations.html"><a href="DataTransformations.html"><i class="fa fa-check"></i><b>6</b> Data Transformations</a>
+<ul>
+<li class="chapter" data-level="" data-path="DataTransformations.html"><a href="DataTransformations.html#intro-DataTransformations"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="6.1" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id149"><i class="fa fa-check"></i><b>6.1</b> Applying a Function to Each List Element</a></li>
+<li class="chapter" data-level="6.2" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-row_df"><i class="fa fa-check"></i><b>6.2</b> Applying a Function to Every Row of a Data Frame</a></li>
+<li class="chapter" data-level="6.3" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id146"><i class="fa fa-check"></i><b>6.3</b> Applying a Function to Every Row of a Matrix</a></li>
+<li class="chapter" data-level="6.4" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id157"><i class="fa fa-check"></i><b>6.4</b> Applying a Function to Every Column</a></li>
+<li class="chapter" data-level="6.5" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id275"><i class="fa fa-check"></i><b>6.5</b> Applying a Function to Parallel Vectors or Lists</a></li>
+<li class="chapter" data-level="6.6" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id148"><i class="fa fa-check"></i><b>6.6</b> Applying a Function to Groups of Data</a></li>
+<li class="chapter" data-level="6.7" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-casewhen"><i class="fa fa-check"></i><b>6.7</b> Creating a New Column Based on Some Condition</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="StringsAndDates.html"><a href="StringsAndDates.html"><i class="fa fa-check"></i><b>7</b> Strings and Dates</a>
+<ul>
+<li class="chapter" data-level="" data-path="StringsAndDates.html"><a href="StringsAndDates.html#I_sect17_d1e17434"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="7.1" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id093"><i class="fa fa-check"></i><b>7.1</b> Getting the Length of a String</a></li>
+<li class="chapter" data-level="7.2" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id040"><i class="fa fa-check"></i><b>7.2</b> Concatenating Strings</a></li>
+<li class="chapter" data-level="7.3" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id041"><i class="fa fa-check"></i><b>7.3</b> Extracting Substrings</a></li>
+<li class="chapter" data-level="7.4" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id276"><i class="fa fa-check"></i><b>7.4</b> Splitting a String According to a Delimiter</a></li>
+<li class="chapter" data-level="7.5" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id277"><i class="fa fa-check"></i><b>7.5</b> Replacing Substrings</a></li>
+<li class="chapter" data-level="7.6" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id109"><i class="fa fa-check"></i><b>7.6</b> Generating All Pairwise Combinations of Strings</a></li>
+<li class="chapter" data-level="7.7" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id045"><i class="fa fa-check"></i><b>7.7</b> Getting the Current Date</a></li>
+<li class="chapter" data-level="7.8" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id043"><i class="fa fa-check"></i><b>7.8</b> Converting a String into a Date</a></li>
+<li class="chapter" data-level="7.9" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id044"><i class="fa fa-check"></i><b>7.9</b> Converting a Date into a String</a></li>
+<li class="chapter" data-level="7.10" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id241"><i class="fa fa-check"></i><b>7.10</b> Converting Year, Month, and Day into a Date</a></li>
+<li class="chapter" data-level="7.11" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id042"><i class="fa fa-check"></i><b>7.11</b> Getting the Julian Date</a></li>
+<li class="chapter" data-level="7.12" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id046"><i class="fa fa-check"></i><b>7.12</b> Extracting the Parts of a Date</a></li>
+<li class="chapter" data-level="7.13" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id047"><i class="fa fa-check"></i><b>7.13</b> Creating a Sequence of Dates</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="Probability.html"><a href="Probability.html"><i class="fa fa-check"></i><b>8</b> Probability</a>
+<ul>
+<li class="chapter" data-level="" data-path="Probability.html"><a href="Probability.html#intro-Probability"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="8.1" data-path="Probability.html"><a href="Probability.html#recipe-id163"><i class="fa fa-check"></i><b>8.1</b> Counting the Number of Combinations</a></li>
+<li class="chapter" data-level="8.2" data-path="Probability.html"><a href="Probability.html#recipe-id198"><i class="fa fa-check"></i><b>8.2</b> Generating Combinations</a></li>
+<li class="chapter" data-level="8.3" data-path="Probability.html"><a href="Probability.html#recipe-id165"><i class="fa fa-check"></i><b>8.3</b> Generating Random Numbers</a></li>
+<li class="chapter" data-level="8.4" data-path="Probability.html"><a href="Probability.html#recipe-id201"><i class="fa fa-check"></i><b>8.4</b> Generating Reproducible Random Numbers</a></li>
+<li class="chapter" data-level="8.5" data-path="Probability.html"><a href="Probability.html#recipe-id199"><i class="fa fa-check"></i><b>8.5</b> Generating a Random Sample</a></li>
+<li class="chapter" data-level="8.6" data-path="Probability.html"><a href="Probability.html#recipe-id200"><i class="fa fa-check"></i><b>8.6</b> Generating Random Sequences</a></li>
+<li class="chapter" data-level="8.7" data-path="Probability.html"><a href="Probability.html#recipe-id151"><i class="fa fa-check"></i><b>8.7</b> Randomly Permuting a Vector</a></li>
+<li class="chapter" data-level="8.8" data-path="Probability.html"><a href="Probability.html#recipe-id196"><i class="fa fa-check"></i><b>8.8</b> Calculating Probabilities for Discrete Distributions</a></li>
+<li class="chapter" data-level="8.9" data-path="Probability.html"><a href="Probability.html#recipe-id197"><i class="fa fa-check"></i><b>8.9</b> Calculating Probabilities for Continuous Distributions</a></li>
+<li class="chapter" data-level="8.10" data-path="Probability.html"><a href="Probability.html#recipe-id168"><i class="fa fa-check"></i><b>8.10</b> Converting Probabilities to Quantiles</a></li>
+<li class="chapter" data-level="8.11" data-path="Probability.html"><a href="Probability.html#recipe-id166"><i class="fa fa-check"></i><b>8.11</b> Plotting a Density Function</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html"><i class="fa fa-check"></i><b>9</b> General Statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#intro-GeneralStatistics"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="9.1" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id119"><i class="fa fa-check"></i><b>9.1</b> Summarizing Your Data</a></li>
+<li class="chapter" data-level="9.2" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id229"><i class="fa fa-check"></i><b>9.2</b> Calculating Relative Frequencies</a></li>
+<li class="chapter" data-level="9.3" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id124"><i class="fa fa-check"></i><b>9.3</b> Tabulating Factors and Creating Contingency Tables</a></li>
+<li class="chapter" data-level="9.4" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id125"><i class="fa fa-check"></i><b>9.4</b> Testing Categorical Variables for Independence</a></li>
+<li class="chapter" data-level="9.5" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id143"><i class="fa fa-check"></i><b>9.5</b> Calculating Quantiles (and Quartiles) of a Dataset</a></li>
+<li class="chapter" data-level="9.6" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id142"><i class="fa fa-check"></i><b>9.6</b> Inverting a Quantile</a></li>
+<li class="chapter" data-level="9.7" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id133"><i class="fa fa-check"></i><b>9.7</b> Converting Data to z-Scores</a></li>
+<li class="chapter" data-level="9.8" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id121"><i class="fa fa-check"></i><b>9.8</b> Testing the Mean of a Sample (t Test)</a></li>
+<li class="chapter" data-level="9.9" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id123"><i class="fa fa-check"></i><b>9.9</b> Forming a Confidence Interval for a Mean</a></li>
+<li class="chapter" data-level="9.10" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id135"><i class="fa fa-check"></i><b>9.10</b> Forming a Confidence Interval for a Median</a></li>
+<li class="chapter" data-level="9.11" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id225"><i class="fa fa-check"></i><b>9.11</b> Testing a Sample Proportion</a></li>
+<li class="chapter" data-level="9.12" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id226"><i class="fa fa-check"></i><b>9.12</b> Forming a Confidence Interval for a Proportion</a></li>
+<li class="chapter" data-level="9.13" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id126"><i class="fa fa-check"></i><b>9.13</b> Testing for Normality</a></li>
+<li class="chapter" data-level="9.14" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id131"><i class="fa fa-check"></i><b>9.14</b> Testing for Runs</a></li>
+<li class="chapter" data-level="9.15" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id122"><i class="fa fa-check"></i><b>9.15</b> Comparing the Means of Two Samples</a></li>
+<li class="chapter" data-level="9.16" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id130"><i class="fa fa-check"></i><b>9.16</b> Comparing the Locations of Two Samples Nonparametrically</a></li>
+<li class="chapter" data-level="9.17" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id132"><i class="fa fa-check"></i><b>9.17</b> Testing a Correlation for Significance</a></li>
+<li class="chapter" data-level="9.18" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id134"><i class="fa fa-check"></i><b>9.18</b> Testing Groups for Equal Proportions</a></li>
+<li class="chapter" data-level="9.19" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id127"><i class="fa fa-check"></i><b>9.19</b> Performing Pairwise Comparisons Between Group Means</a></li>
+<li class="chapter" data-level="9.20" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id129"><i class="fa fa-check"></i><b>9.20</b> Testing Two Samples for the Same Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="Graphics.html"><a href="Graphics.html"><i class="fa fa-check"></i><b>10</b> Graphics</a>
+<ul>
+<li class="chapter" data-level="" data-path="Graphics.html"><a href="Graphics.html#intro-Graphics"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="10.1" data-path="Graphics.html"><a href="Graphics.html#recipe-id171"><i class="fa fa-check"></i><b>10.1</b> Creating a Scatter Plot</a></li>
+<li class="chapter" data-level="10.2" data-path="Graphics.html"><a href="Graphics.html#recipe-id259"><i class="fa fa-check"></i><b>10.2</b> Adding a Title and Labels</a></li>
+<li class="chapter" data-level="10.3" data-path="Graphics.html"><a href="Graphics.html#recipe-id261"><i class="fa fa-check"></i><b>10.3</b> Adding (or Removing) a Grid</a></li>
+<li class="chapter" data-level="10.4" data-path="Graphics.html"><a href="Graphics.html#recipe-theme"><i class="fa fa-check"></i><b>10.4</b> Applying a Theme to a ggplot Figure</a></li>
+<li class="chapter" data-level="10.5" data-path="Graphics.html"><a href="Graphics.html#recipe-id262"><i class="fa fa-check"></i><b>10.5</b> Creating a Scatter Plot of Multiple Groups</a></li>
+<li class="chapter" data-level="10.6" data-path="Graphics.html"><a href="Graphics.html#recipe-id260"><i class="fa fa-check"></i><b>10.6</b> Adding (or Removing) a Legend</a></li>
+<li class="chapter" data-level="10.7" data-path="Graphics.html"><a href="Graphics.html#recipe-id217"><i class="fa fa-check"></i><b>10.7</b> Plotting the Regression Line of a Scatter Plot</a></li>
+<li class="chapter" data-level="10.8" data-path="Graphics.html"><a href="Graphics.html#recipe-id184"><i class="fa fa-check"></i><b>10.8</b> Plotting All Variables Against All Other Variables</a></li>
+<li class="chapter" data-level="10.9" data-path="Graphics.html"><a href="Graphics.html#recipe-id185"><i class="fa fa-check"></i><b>10.9</b> Creating One Scatter Plot for Each Group</a></li>
+<li class="chapter" data-level="10.10" data-path="Graphics.html"><a href="Graphics.html#recipe-id175"><i class="fa fa-check"></i><b>10.10</b> Creating a Bar Chart</a></li>
+<li class="chapter" data-level="10.11" data-path="Graphics.html"><a href="Graphics.html#recipe-id177"><i class="fa fa-check"></i><b>10.11</b> Adding Confidence Intervals to a Bar Chart</a></li>
+<li class="chapter" data-level="10.12" data-path="Graphics.html"><a href="Graphics.html#recipe-id176"><i class="fa fa-check"></i><b>10.12</b> Coloring a Bar Chart</a></li>
+<li class="chapter" data-level="10.13" data-path="Graphics.html"><a href="Graphics.html#recipe-id174"><i class="fa fa-check"></i><b>10.13</b> Plotting a Line from x and y Points</a></li>
+<li class="chapter" data-level="10.14" data-path="Graphics.html"><a href="Graphics.html#recipe-id256"><i class="fa fa-check"></i><b>10.14</b> Changing the Type, Width, or Color of a Line</a></li>
+<li class="chapter" data-level="10.15" data-path="Graphics.html"><a href="Graphics.html#recipe-id263"><i class="fa fa-check"></i><b>10.15</b> Plotting Multiple Datasets</a></li>
+<li class="chapter" data-level="10.16" data-path="Graphics.html"><a href="Graphics.html#recipe-id186"><i class="fa fa-check"></i><b>10.16</b> Adding Vertical or Horizontal Lines</a></li>
+<li class="chapter" data-level="10.17" data-path="Graphics.html"><a href="Graphics.html#recipe-id178"><i class="fa fa-check"></i><b>10.17</b> Creating a Boxplot</a></li>
+<li class="chapter" data-level="10.18" data-path="Graphics.html"><a href="Graphics.html#recipe-id179"><i class="fa fa-check"></i><b>10.18</b> Creating One Boxplot for Each Factor Level</a></li>
+<li class="chapter" data-level="10.19" data-path="Graphics.html"><a href="Graphics.html#recipe-id182"><i class="fa fa-check"></i><b>10.19</b> Creating a Histogram</a></li>
+<li class="chapter" data-level="10.20" data-path="Graphics.html"><a href="Graphics.html#recipe-id183"><i class="fa fa-check"></i><b>10.20</b> Adding a Density Estimate to a Histogram</a></li>
+<li class="chapter" data-level="10.21" data-path="Graphics.html"><a href="Graphics.html#recipe-id180"><i class="fa fa-check"></i><b>10.21</b> Creating a Normal Quantile–Quantile Plot</a></li>
+<li class="chapter" data-level="10.22" data-path="Graphics.html"><a href="Graphics.html#recipe-id181"><i class="fa fa-check"></i><b>10.22</b> Creating Other Quantile–Quantile Plots</a></li>
+<li class="chapter" data-level="10.23" data-path="Graphics.html"><a href="Graphics.html#recipe-id191"><i class="fa fa-check"></i><b>10.23</b> Plotting a Variable in Multiple Colors</a></li>
+<li class="chapter" data-level="10.24" data-path="Graphics.html"><a href="Graphics.html#recipe-id192"><i class="fa fa-check"></i><b>10.24</b> Graphing a Function</a></li>
+<li class="chapter" data-level="10.25" data-path="Graphics.html"><a href="Graphics.html#recipe-id190"><i class="fa fa-check"></i><b>10.25</b> Displaying Several Figures on One Page</a></li>
+<li class="chapter" data-level="10.26" data-path="Graphics.html"><a href="Graphics.html#recipe-id188"><i class="fa fa-check"></i><b>10.26</b> Writing Your Plot to a File</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html"><i class="fa fa-check"></i><b>11</b> Linear Regression and ANOVA</a>
+<ul>
+<li class="chapter" data-level="" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#intro-LinearRegressionAndANOVA"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="11.1" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id203"><i class="fa fa-check"></i><b>11.1</b> Performing Simple Linear Regression</a></li>
+<li class="chapter" data-level="11.2" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id204"><i class="fa fa-check"></i><b>11.2</b> Performing Multiple Linear Regression</a></li>
+<li class="chapter" data-level="11.3" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id231"><i class="fa fa-check"></i><b>11.3</b> Getting Regression Statistics</a></li>
+<li class="chapter" data-level="11.4" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id240"><i class="fa fa-check"></i><b>11.4</b> Understanding the Regression Summary</a></li>
+<li class="chapter" data-level="11.5" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id205"><i class="fa fa-check"></i><b>11.5</b> Performing Linear Regression Without an Intercept</a></li>
+<li class="chapter" data-level="11.6" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#title-highcor"><i class="fa fa-check"></i><b>11.6</b> Regressing Only Variables That Highly Correlate with Your Dependent Variable</a></li>
+<li class="chapter" data-level="11.7" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id206"><i class="fa fa-check"></i><b>11.7</b> Performing Linear Regression with Interaction Terms</a></li>
+<li class="chapter" data-level="11.8" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id236"><i class="fa fa-check"></i><b>11.8</b> Selecting the Best Regression Variables</a></li>
+<li class="chapter" data-level="11.9" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id209"><i class="fa fa-check"></i><b>11.9</b> Regressing on a Subset of Your Data</a></li>
+<li class="chapter" data-level="11.10" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id244"><i class="fa fa-check"></i><b>11.10</b> Using an Expression Inside a Regression Formula</a></li>
+<li class="chapter" data-level="11.11" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id243"><i class="fa fa-check"></i><b>11.11</b> Regressing on a Polynomial</a></li>
+<li class="chapter" data-level="11.12" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id208"><i class="fa fa-check"></i><b>11.12</b> Regressing on Transformed Data</a></li>
+<li class="chapter" data-level="11.13" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id210"><i class="fa fa-check"></i><b>11.13</b> Finding the Best Power Transformation (Box–Cox Procedure)</a></li>
+<li class="chapter" data-level="11.14" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id211"><i class="fa fa-check"></i><b>11.14</b> Forming Confidence Intervals for Regression Coefficients</a></li>
+<li class="chapter" data-level="11.15" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id216"><i class="fa fa-check"></i><b>11.15</b> Plotting Regression Residuals</a></li>
+<li class="chapter" data-level="11.16" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id212"><i class="fa fa-check"></i><b>11.16</b> Diagnosing a Linear Regression</a></li>
+<li class="chapter" data-level="11.17" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id233"><i class="fa fa-check"></i><b>11.17</b> Identifying Influential Observations</a></li>
+<li class="chapter" data-level="11.18" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id213"><i class="fa fa-check"></i><b>11.18</b> Testing Residuals for Autocorrelation (Durbin–Watson Test)</a></li>
+<li class="chapter" data-level="11.19" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id214"><i class="fa fa-check"></i><b>11.19</b> Predicting New Values</a></li>
+<li class="chapter" data-level="11.20" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id215"><i class="fa fa-check"></i><b>11.20</b> Forming Prediction Intervals</a></li>
+<li class="chapter" data-level="11.21" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id218"><i class="fa fa-check"></i><b>11.21</b> Performing One-Way ANOVA</a></li>
+<li class="chapter" data-level="11.22" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id221"><i class="fa fa-check"></i><b>11.22</b> Creating an Interaction Plot</a></li>
+<li class="chapter" data-level="11.23" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id220"><i class="fa fa-check"></i><b>11.23</b> Finding Differences Between Means of Groups</a></li>
+<li class="chapter" data-level="11.24" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id228"><i class="fa fa-check"></i><b>11.24</b> Performing Robust ANOVA (Kruskal–Wallis Test)</a></li>
+<li class="chapter" data-level="11.25" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id232"><i class="fa fa-check"></i><b>11.25</b> Comparing Models by Using ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="UsefulTricks.html"><a href="UsefulTricks.html"><i class="fa fa-check"></i><b>12</b> Useful Tricks</a>
+<ul>
+<li class="chapter" data-level="" data-path="UsefulTricks.html"><a href="UsefulTricks.html#intro-UsefulTricks"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="12.1" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id278"><i class="fa fa-check"></i><b>12.1</b> Peeking at Your Data</a></li>
+<li class="chapter" data-level="12.2" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id271"><i class="fa fa-check"></i><b>12.2</b> Printing the Result of an Assignment</a></li>
+<li class="chapter" data-level="12.3" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id138"><i class="fa fa-check"></i><b>12.3</b> Summing Rows and Columns</a></li>
+<li class="chapter" data-level="12.4" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id112"><i class="fa fa-check"></i><b>12.4</b> Printing Data in Columns</a></li>
+<li class="chapter" data-level="12.5" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id137"><i class="fa fa-check"></i><b>12.5</b> Binning Your Data</a></li>
+<li class="chapter" data-level="12.6" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id116"><i class="fa fa-check"></i><b>12.6</b> Finding the Position of a Particular Value</a></li>
+<li class="chapter" data-level="12.7" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id103"><i class="fa fa-check"></i><b>12.7</b> Selecting Every nth Element of a Vector</a></li>
+<li class="chapter" data-level="12.8" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id107"><i class="fa fa-check"></i><b>12.8</b> Finding Minimums or Maximums</a></li>
+<li class="chapter" data-level="12.9" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id110"><i class="fa fa-check"></i><b>12.9</b> Generating All Combinations of Several Variables</a></li>
+<li class="chapter" data-level="12.10" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id153"><i class="fa fa-check"></i><b>12.10</b> Flattening a Data Frame</a></li>
+<li class="chapter" data-level="12.11" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id247"><i class="fa fa-check"></i><b>12.11</b> Sorting a Data Frame</a></li>
+<li class="chapter" data-level="12.12" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id223"><i class="fa fa-check"></i><b>12.12</b> Stripping Attributes from a Variable</a></li>
+<li class="chapter" data-level="12.13" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id202"><i class="fa fa-check"></i><b>12.13</b> Revealing the Structure of an Object</a></li>
+<li class="chapter" data-level="12.14" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id224"><i class="fa fa-check"></i><b>12.14</b> Timing Your Code</a></li>
+<li class="chapter" data-level="12.15" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id113"><i class="fa fa-check"></i><b>12.15</b> Suppressing Warnings and Error Messages</a></li>
+<li class="chapter" data-level="12.16" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id118"><i class="fa fa-check"></i><b>12.16</b> Taking Function Arguments from a List</a></li>
+<li class="chapter" data-level="12.17" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id114"><i class="fa fa-check"></i><b>12.17</b> Defining Your Own Binary Operators</a></li>
+<li class="chapter" data-level="12.18" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id111"><i class="fa fa-check"></i><b>12.18</b> Suppressing the Startup Message</a></li>
+<li class="chapter" data-level="12.19" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id106"><i class="fa fa-check"></i><b>12.19</b> Getting and Setting Environment Variables</a></li>
+<li class="chapter" data-level="12.20" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-codesections"><i class="fa fa-check"></i><b>12.20</b> Use Code Sections</a></li>
+<li class="chapter" data-level="12.21" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-parallel_local"><i class="fa fa-check"></i><b>12.21</b> Executing R in Parallel Locally</a></li>
+<li class="chapter" data-level="12.22" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-parallel_remote"><i class="fa fa-check"></i><b>12.22</b> Executing R in Parallel Remotely</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="BeyondBasics.html"><a href="BeyondBasics.html"><i class="fa fa-check"></i><b>13</b> Beyond Basic Numerics and Statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="BeyondBasics.html"><a href="BeyondBasics.html#intro-BeyondBasics"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="13.1" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id234"><i class="fa fa-check"></i><b>13.1</b> Minimizing or Maximizing a Single-Parameter Function</a></li>
+<li class="chapter" data-level="13.2" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id235"><i class="fa fa-check"></i><b>13.2</b> Minimizing or Maximizing a Multiparameter Function</a></li>
+<li class="chapter" data-level="13.3" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id140"><i class="fa fa-check"></i><b>13.3</b> Calculating Eigenvalues and Eigenvectors</a></li>
+<li class="chapter" data-level="13.4" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id162"><i class="fa fa-check"></i><b>13.4</b> Performing Principal Component Analysis</a></li>
+<li class="chapter" data-level="13.5" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id264"><i class="fa fa-check"></i><b>13.5</b> Performing Simple Orthogonal Regression</a></li>
+<li class="chapter" data-level="13.6" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id160"><i class="fa fa-check"></i><b>13.6</b> Finding Clusters in Your Data</a></li>
+<li class="chapter" data-level="13.7" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id161"><i class="fa fa-check"></i><b>13.7</b> Predicting a Binary-Valued Variable (Logistic Regression)</a></li>
+<li class="chapter" data-level="13.8" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id159"><i class="fa fa-check"></i><b>13.8</b> Bootstrapping a Statistic</a></li>
+<li class="chapter" data-level="13.9" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id193"><i class="fa fa-check"></i><b>13.9</b> Factor Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html"><i class="fa fa-check"></i><b>14</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="14.1" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id076"><i class="fa fa-check"></i><b>14.1</b> Representing Time Series Data</a></li>
+<li class="chapter" data-level="14.2" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id089"><i class="fa fa-check"></i><b>14.2</b> Plotting Time Series Data</a></li>
+<li class="chapter" data-level="14.3" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id077"><i class="fa fa-check"></i><b>14.3</b> Extracting the Oldest or Newest Observations</a></li>
+<li class="chapter" data-level="14.4" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id281"><i class="fa fa-check"></i><b>14.4</b> Subsetting a Time Series</a></li>
+<li class="chapter" data-level="14.5" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id079"><i class="fa fa-check"></i><b>14.5</b> Merging Several Time Series</a></li>
+<li class="chapter" data-level="14.6" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id239"><i class="fa fa-check"></i><b>14.6</b> Filling or Padding a Time Series</a></li>
+<li class="chapter" data-level="14.7" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id280"><i class="fa fa-check"></i><b>14.7</b> Lagging a Time Series</a></li>
+<li class="chapter" data-level="14.8" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id141"><i class="fa fa-check"></i><b>14.8</b> Computing Successive Differences</a></li>
+<li class="chapter" data-level="14.9" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id080"><i class="fa fa-check"></i><b>14.9</b> Performing Calculations on Time Series</a></li>
+<li class="chapter" data-level="14.10" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id279"><i class="fa fa-check"></i><b>14.10</b> Computing a Moving Average</a></li>
+<li class="chapter" data-level="14.11" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id282"><i class="fa fa-check"></i><b>14.11</b> Applying a Function by Calendar Period</a></li>
+<li class="chapter" data-level="14.12" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id081"><i class="fa fa-check"></i><b>14.12</b> Applying a Rolling Function</a></li>
+<li class="chapter" data-level="14.13" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id082"><i class="fa fa-check"></i><b>14.13</b> Plotting the Autocorrelation Function</a></li>
+<li class="chapter" data-level="14.14" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id104"><i class="fa fa-check"></i><b>14.14</b> Testing a Time Series for Autocorrelation</a></li>
+<li class="chapter" data-level="14.15" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id083"><i class="fa fa-check"></i><b>14.15</b> Plotting the Partial Autocorrelation Function</a></li>
+<li class="chapter" data-level="14.16" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id084"><i class="fa fa-check"></i><b>14.16</b> Finding Lagged Correlations Between Two Time Series</a></li>
+<li class="chapter" data-level="14.17" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id088"><i class="fa fa-check"></i><b>14.17</b> Detrending a Time Series</a></li>
+<li class="chapter" data-level="14.18" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id085"><i class="fa fa-check"></i><b>14.18</b> Fitting an ARIMA Model</a></li>
+<li class="chapter" data-level="14.19" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id237"><i class="fa fa-check"></i><b>14.19</b> Removing Insignificant ARIMA Coefficients</a></li>
+<li class="chapter" data-level="14.20" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id238"><i class="fa fa-check"></i><b>14.20</b> Running Diagnostics on an ARIMA Model</a></li>
+<li class="chapter" data-level="14.21" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id086"><i class="fa fa-check"></i><b>14.21</b> Making Forecasts from an ARIMA Model</a></li>
+<li class="chapter" data-level="14.22" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-plotting_forecast"><i class="fa fa-check"></i><b>14.22</b> Plotting a Forecast</a></li>
+<li class="chapter" data-level="14.23" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id087"><i class="fa fa-check"></i><b>14.23</b> Testing for Mean Reversion</a></li>
+<li class="chapter" data-level="14.24" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id195"><i class="fa fa-check"></i><b>14.24</b> Smoothing a Time Series</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html"><i class="fa fa-check"></i><b>15</b> Simple Programming</a>
+<ul>
+<li class="chapter" data-level="" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#intro-SimpleProgramming"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="15.1" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-creating_if_logic"><i class="fa fa-check"></i><b>15.1</b> Choosing Between Two Alternatives: if-else</a></li>
+<li class="chapter" data-level="15.2" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-for_loop"><i class="fa fa-check"></i><b>15.2</b> Iterating with a Loop</a></li>
+<li class="chapter" data-level="15.3" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-id117"><i class="fa fa-check"></i><b>15.3</b> Defining a Function</a></li>
+<li class="chapter" data-level="15.4" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-variable"><i class="fa fa-check"></i><b>15.4</b> Creating a Local Variable</a></li>
+<li class="chapter" data-level="15.5" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#choosing-between-multiple-alternatives-switch"><i class="fa fa-check"></i><b>15.5</b> Choosing Between Multiple Alternatives: switch</a></li>
+<li class="chapter" data-level="15.6" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-title"><i class="fa fa-check"></i><b>15.6</b> Defining Defaults for Function Parameters</a></li>
+<li class="chapter" data-level="15.7" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#signaling-errors"><i class="fa fa-check"></i><b>15.7</b> Signaling Errors</a></li>
+<li class="chapter" data-level="15.8" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#protecting-against-errors"><i class="fa fa-check"></i><b>15.8</b> Protecting Against Errors</a></li>
+<li class="chapter" data-level="15.9" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-anon-function"><i class="fa fa-check"></i><b>15.9</b> Creating an Anonymous Function</a></li>
+<li class="chapter" data-level="15.10" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#creating-a-collection-of-reusable-functions"><i class="fa fa-check"></i><b>15.10</b> Creating a Collection of Reusable Functions</a></li>
+<li class="chapter" data-level="15.11" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-indent"><i class="fa fa-check"></i><b>15.11</b> Automatically Reindent Code</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="RMarkdown.html"><a href="RMarkdown.html"><i class="fa fa-check"></i><b>16</b> R Markdown and Publishing</a>
+<ul>
+<li class="chapter" data-level="" data-path="RMarkdown.html"><a href="RMarkdown.html#intro-Rmd_pub"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="16.1" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-new_doc"><i class="fa fa-check"></i><b>16.1</b> Creating a New Document</a></li>
+<li class="chapter" data-level="16.2" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-metadata"><i class="fa fa-check"></i><b>16.2</b> Adding a Title, Author, or Date</a></li>
+<li class="chapter" data-level="16.3" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-doc-text"><i class="fa fa-check"></i><b>16.3</b> Formatting Document Text</a></li>
+<li class="chapter" data-level="16.4" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-headings"><i class="fa fa-check"></i><b>16.4</b> Inserting Document Headings</a></li>
+<li class="chapter" data-level="16.5" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-list"><i class="fa fa-check"></i><b>16.5</b> Inserting a List</a></li>
+<li class="chapter" data-level="16.6" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-exec_r"><i class="fa fa-check"></i><b>16.6</b> Showing Output from R Code</a></li>
+<li class="chapter" data-level="16.7" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-code-results"><i class="fa fa-check"></i><b>16.7</b> Controlling Which Code and Results Are Shown</a></li>
+<li class="chapter" data-level="16.8" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-doc_plot"><i class="fa fa-check"></i><b>16.8</b> Inserting a Plot</a></li>
+<li class="chapter" data-level="16.9" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-static-table"><i class="fa fa-check"></i><b>16.9</b> Inserting a Table</a></li>
+<li class="chapter" data-level="16.10" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-tables"><i class="fa fa-check"></i><b>16.10</b> Inserting a Table of Data</a></li>
+<li class="chapter" data-level="16.11" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-equations"><i class="fa fa-check"></i><b>16.11</b> Inserting Math Equations</a></li>
+<li class="chapter" data-level="16.12" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-html"><i class="fa fa-check"></i><b>16.12</b> Generating HTML Output</a></li>
+<li class="chapter" data-level="16.13" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-pdf"><i class="fa fa-check"></i><b>16.13</b> Generating PDF Output</a></li>
+<li class="chapter" data-level="16.14" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-word"><i class="fa fa-check"></i><b>16.14</b> Generating Microsoft Word Output</a></li>
+<li class="chapter" data-level="16.15" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-prez"><i class="fa fa-check"></i><b>16.15</b> Generating Presentation Output</a></li>
+<li class="chapter" data-level="16.16" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-param_report"><i class="fa fa-check"></i><b>16.16</b> Creating a Parameterized Report</a></li>
+<li class="chapter" data-level="16.17" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-rmd_org"><i class="fa fa-check"></i><b>16.17</b> Organizing Your R Markdown Workflow</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Cookbook, 2nd Edition</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="StringsAndDates" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">7</span> Strings and Dates<a href="StringsAndDates.html#StringsAndDates" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="I_sect17_d1e17434" class="section level2 unnumbered hasAnchor">
+<h2>Introduction<a href="StringsAndDates.html#I_sect17_d1e17434" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Strings? Dates? In a statistical programming package?</p>
+<p>As soon as you read files or print reports, you need strings. When you
+work with real-world problems, you need dates.</p>
+<p>R has facilities for both strings and dates. They are clumsy compared to
+string-oriented languages such as Perl, but then it’s a matter of the
+right tool for the job. We wouldn’t want to perform logistic regression
+in Perl.</p>
+<p>Some of this clunkyness with strings and dates has been improved through the tidyverse packages <code>stringr</code> and <code>lubridate</code>. As with other chapters in this book, the examples here will pull from both Base R as well as add-on packages that make life easier, faster, and more convenient.</p>
+<div id="classes-for-dates-and-times" class="section level3 unnumbered hasAnchor">
+<h3>Classes for Dates and Times<a href="StringsAndDates.html#classes-for-dates-and-times" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R has a variety of classes for working with dates and times, which is
+nice if you prefer having a choice but annoying if you prefer living
+simply. There is a critical distinction among the classes: some are
+date-only classes, some are datetime classes. All classes can handle
+calendar dates (e.g., March 15, 2019), but not all can represent a
+datetime (11:45 AM on March 1, 2019).</p>
+<p>The following classes are included in the base distribution of R:</p>
+<dl>
+<dt><code>Date</code></dt>
+<dd>
+<p>The <code>Date</code> class can represent a calendar date but not a clock time.
+It is a solid, general-purpose class for working with dates,
+including conversions, formatting, basic date arithmetic, and
+time-zone handling. Most of the date-related recipes in this book
+are built on the <code>Date</code> class.</p>
+</dd>
+<dt><code>POSIXct</code></dt>
+<dd>
+<p>This is a datetime class, and it can represent a moment in time with
+an accuracy of one second. Internally, the datetime is stored as the
+number of seconds since January 1, 1970, and so it’s a very
+compact representation. This class is recommended for storing
+datetime information (e.g., in data frames).</p>
+</dd>
+<dt><code>POSIXlt</code></dt>
+<dd>
+<p>This is also a datetime class, but the representation is stored in a
+nine-element list that includes the year, month, day, hour, minute,
+and second. This representation makes it easy to extract date parts,
+such as the month or hour. Obviously, this is much
+less compact than the <code>POSIXct</code> class; hence, it is normally used for
+intermediate processing and not for storing data.</p>
+</dd>
+</dl>
+<p>The base distribution also provides functions for easily converting
+between representations: <code>as.Date</code>, <code>as.POSIXct</code>, and <code>as.POSIXlt</code>.</p>
+<p>The following helpful packages are available for downloading from CRAN:</p>
+<dl>
+<dt><code>chron</code></dt>
+<dd>
+<p>The <code>chron</code> package can represent both dates and times but without
+the added complexities of handling time zones and Daylight Saving
+Time. It’s therefore easier to use than <code>Date</code> but less powerful
+than <code>POSIXct</code> and <code>POSIXlt</code>. It would be useful for work in
+econometrics or time series analysis.</p>
+</dd>
+<dt><code>lubridate</code></dt>
+<dd>
+<p>This is a tidyverse package designed to
+make working with dates and times easier while keeping the important
+bells and whistles such as time zones. It’s especially clever
+regarding datetime arithmetic. This package introduces some helpful constructs like durations, periods, and intervals. <code>lubridate</code> is part of the tidyverse, so it is installed when you <code>install.packages('tidyverse')</code> but it is not part of “core tidyverse,” so it does not get loaded when you run <code>library(tidyverse)</code>. This means you must explicitly load it by running <code>library(lubridate)</code>.</p>
+</dd>
+<dt><code>mondate</code></dt>
+<dd>
+<p>This is a specialized package for handling dates in units of months
+in addition to days and years. It can be helpful in accounting and
+actuarial work, for example, where month-by-month calculations
+are needed.</p>
+</dd>
+<dt><code>timeDate</code></dt>
+<dd>
+<p>This is a high-powered package with well-thought-out facilities for
+handling dates and times, including date arithmetic, business days,
+holidays, conversions, and generalized handling of time zones. It
+was originally part of the <code>Rmetrics</code> software for financial modeling,
+where precision in dates and times is critical. If you have a
+demanding need for date facilities, consider this package.</p>
+</dd>
+</dl>
+<p>Which class should you select? The article <a href="https://cran.r-project.org/doc/Rnews/Rnews_2004-1.pdf">“Date and Time Classes in R”
+by Gabor Grothendieck and Thomas Petzoldt</a> offers this general advice:</p>
+<blockquote>
+<p>When considering which class to use, always choose the least complex
+class that will support the application. That is, use <code>Date</code> if
+possible, otherwise use <code>chron</code> and otherwise use the POSIX classes.
+Such a strategy will greatly reduce the potential for error and
+increase the reliability of your application.</p>
+</blockquote>
+</div>
+<div id="see-also-1" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="StringsAndDates.html#see-also-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>See <code>help(DateTimeClasses)</code> for more details regarding the built-in
+facilities. See the June 2004 article
+<a href="http://cran.r-project.org/doc/Rnews/Rnews_2004-1.pdf">“Date and Time Classes in R”</a>
+by Gabor Grothendieck and Thomas Petzoldt for a great introduction to the date
+and time facilities.
+The June 2001 article
+<a href="http://cran.r-project.org/doc/Rnews/Rnews_2001-2.pdf">“Date-Time Classes”</a>
+by Brian Ripley and Kurt Hornik discusses the two POSIX classes in particular.
+Chapter 16, <a href="http://r4ds.had.co.nz/dates-and-times.html">“Dates and Times”</a>, from the book <em>R for Data Science</em> by Garrett Grolemund and Hadley Wickham provides a great intro to <code>lubridate</code>.</p>
+</div>
+</div>
+<div id="recipe-id093" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Getting the Length of a String<a href="StringsAndDates.html#recipe-id093" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id093" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="StringsAndDates.html#problem-id093" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You want to know the length of a string.</p>
+</div>
+<div id="solution-id093" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="StringsAndDates.html#solution-id093" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use the <code>nchar</code> function, not the <code>length</code> function.</p>
+</div>
+<div id="discussion-id093" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="StringsAndDates.html#discussion-id093" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>nchar</code> function takes a string and returns the number of characters
+in the string:</p>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="StringsAndDates.html#cb445-1" tabindex="-1"></a><span class="fu">nchar</span>(<span class="st">&quot;Moe&quot;</span>)</span>
+<span id="cb445-2"><a href="StringsAndDates.html#cb445-2" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb445-3"><a href="StringsAndDates.html#cb445-3" tabindex="-1"></a><span class="fu">nchar</span>(<span class="st">&quot;Curly&quot;</span>)</span>
+<span id="cb445-4"><a href="StringsAndDates.html#cb445-4" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
+<p>If you apply <code>nchar</code> to a vector of strings, it returns the length of
+each string:</p>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="StringsAndDates.html#cb446-1" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Moe&quot;</span>, <span class="st">&quot;Larry&quot;</span>, <span class="st">&quot;Curly&quot;</span>)</span>
+<span id="cb446-2"><a href="StringsAndDates.html#cb446-2" tabindex="-1"></a><span class="fu">nchar</span>(s)</span>
+<span id="cb446-3"><a href="StringsAndDates.html#cb446-3" tabindex="-1"></a><span class="co">#&gt; [1] 3 5 5</span></span></code></pre></div>
+<p>You might think the <code>length</code> function returns the length of a string.
+Nope. It returns the length of a <em>vector</em>. When you apply the <code>length</code>
+function to a single string, R returns the value <code>1</code> because it views that
+string as a singleton vector—a vector with one element:</p>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="StringsAndDates.html#cb447-1" tabindex="-1"></a><span class="fu">length</span>(<span class="st">&quot;Moe&quot;</span>)</span>
+<span id="cb447-2"><a href="StringsAndDates.html#cb447-2" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb447-3"><a href="StringsAndDates.html#cb447-3" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">c</span>(<span class="st">&quot;Moe&quot;</span>, <span class="st">&quot;Larry&quot;</span>, <span class="st">&quot;Curly&quot;</span>))</span>
+<span id="cb447-4"><a href="StringsAndDates.html#cb447-4" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span></code></pre></div>
+</div>
+</div>
+<div id="recipe-id040" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Concatenating Strings<a href="StringsAndDates.html#recipe-id040" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id040" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="StringsAndDates.html#problem-id040" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You want to join together two or more strings into one string.</p>
+</div>
+<div id="solution-id040" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="StringsAndDates.html#solution-id040" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use the <code>paste</code> function.</p>
+</div>
+<div id="discussion-id040" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="StringsAndDates.html#discussion-id040" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>paste</code> function concatenates several strings together. In other
+words, it creates a new string by joining the given strings end to end:</p>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="StringsAndDates.html#cb448-1" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Everybody&quot;</span>, <span class="st">&quot;loves&quot;</span>, <span class="st">&quot;stats.&quot;</span>)</span>
+<span id="cb448-2"><a href="StringsAndDates.html#cb448-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Everybody loves stats.&quot;</span></span></code></pre></div>
+<p>By default, <code>paste</code> inserts a single space between pairs of strings,
+which is handy if that’s what you want and annoying otherwise. The <code>sep</code>
+argument lets you specify a different separator. Use an empty string
+(<code>""</code>) to run the strings together without separation:</p>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="StringsAndDates.html#cb449-1" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Everybody&quot;</span>, <span class="st">&quot;loves&quot;</span>, <span class="st">&quot;stats.&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>)</span>
+<span id="cb449-2"><a href="StringsAndDates.html#cb449-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Everybody-loves-stats.&quot;</span></span>
+<span id="cb449-3"><a href="StringsAndDates.html#cb449-3" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Everybody&quot;</span>, <span class="st">&quot;loves&quot;</span>, <span class="st">&quot;stats.&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb449-4"><a href="StringsAndDates.html#cb449-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Everybodylovesstats.&quot;</span></span></code></pre></div>
+<p>It’s a common idiom to want to concatenate strings together with no separator at all. The function <code>paste0</code> makes this very convenient:</p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="StringsAndDates.html#cb450-1" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">&quot;Everybody&quot;</span>, <span class="st">&quot;loves&quot;</span>, <span class="st">&quot;stats.&quot;</span>)</span>
+<span id="cb450-2"><a href="StringsAndDates.html#cb450-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Everybodylovesstats.&quot;</span></span></code></pre></div>
+<p>The function is very forgiving about nonstring arguments. It tries to
+convert them to strings using the <code>as.character</code> function silently behind the scene:</p>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="StringsAndDates.html#cb451-1" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;The square root of twice pi is approximately&quot;</span>, <span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> pi))</span>
+<span id="cb451-2"><a href="StringsAndDates.html#cb451-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;The square root of twice pi is approximately 2.506628274631&quot;</span></span></code></pre></div>
+<p>If one or more arguments are vectors of strings, <code>paste</code> will generate
+all combinations of the arguments (because of recycling):</p>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="StringsAndDates.html#cb452-1" tabindex="-1"></a>stooges <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Moe&quot;</span>, <span class="st">&quot;Larry&quot;</span>, <span class="st">&quot;Curly&quot;</span>)</span>
+<span id="cb452-2"><a href="StringsAndDates.html#cb452-2" tabindex="-1"></a><span class="fu">paste</span>(stooges, <span class="st">&quot;loves&quot;</span>, <span class="st">&quot;stats.&quot;</span>)</span>
+<span id="cb452-3"><a href="StringsAndDates.html#cb452-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Moe loves stats.&quot;   &quot;Larry loves stats.&quot; &quot;Curly loves stats.&quot;</span></span></code></pre></div>
+<p>Sometimes you want to join even those combinations into one big string.
+The <code>collapse</code> parameter lets you define a top-level separator and
+instructs <code>paste</code> to concatenate the generated strings using that
+separator:</p>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="StringsAndDates.html#cb453-1" tabindex="-1"></a><span class="fu">paste</span>(stooges, <span class="st">&quot;loves&quot;</span>, <span class="st">&quot;stats&quot;</span>, <span class="at">collapse =</span> <span class="st">&quot;, and &quot;</span>)</span>
+<span id="cb453-2"><a href="StringsAndDates.html#cb453-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Moe loves stats, and Larry loves stats, and Curly loves stats&quot;</span></span></code></pre></div>
+</div>
+</div>
+<div id="recipe-id041" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Extracting Substrings<a href="StringsAndDates.html#recipe-id041" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id041" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="StringsAndDates.html#problem-id041" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You want to extract a portion of a string according to position.</p>
+</div>
+<div id="solution-id041" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="StringsAndDates.html#solution-id041" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use <code>substr(*string*,*start*,*end*)</code> to extract the substring that begins at
+<code>*start*</code> and ends at <code>*end*</code>.</p>
+</div>
+<div id="discussion-id041" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="StringsAndDates.html#discussion-id041" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>substr</code> function takes a string, a starting point, and an ending
+point. It returns the substring between the starting and ending points:</p>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="StringsAndDates.html#cb454-1" tabindex="-1"></a><span class="fu">substr</span>(<span class="st">&quot;Statistics&quot;</span>, <span class="dv">1</span>, <span class="dv">4</span>) <span class="co"># Extract first 4 characters</span></span>
+<span id="cb454-2"><a href="StringsAndDates.html#cb454-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Stat&quot;</span></span>
+<span id="cb454-3"><a href="StringsAndDates.html#cb454-3" tabindex="-1"></a><span class="fu">substr</span>(<span class="st">&quot;Statistics&quot;</span>, <span class="dv">7</span>, <span class="dv">10</span>) <span class="co"># Extract last 4 characters</span></span>
+<span id="cb454-4"><a href="StringsAndDates.html#cb454-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;tics&quot;</span></span></code></pre></div>
+<p>Just like many R functions, <code>substr</code> lets the first argument be a vector
+of strings. In that case, it applies itself to every string and returns
+a vector of substrings:</p>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="StringsAndDates.html#cb455-1" tabindex="-1"></a>ss <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Moe&quot;</span>, <span class="st">&quot;Larry&quot;</span>, <span class="st">&quot;Curly&quot;</span>)</span>
+<span id="cb455-2"><a href="StringsAndDates.html#cb455-2" tabindex="-1"></a><span class="fu">substr</span>(ss, <span class="dv">1</span>, <span class="dv">3</span>) <span class="co"># Extract first 3 characters of each string</span></span>
+<span id="cb455-3"><a href="StringsAndDates.html#cb455-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Moe&quot; &quot;Lar&quot; &quot;Cur&quot;</span></span></code></pre></div>
+<p>In fact, all the arguments can be vectors, in which case <code>substr</code> will
+treat them as parallel vectors. From each string, it extracts the
+substring delimited by the corresponding entries in the starting and
+ending points. This can facilitate some useful tricks. For example, the
+following code snippet extracts the last two characters from each
+string; each substring starts on the penultimate character of the
+original string and ends on the final character:</p>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="StringsAndDates.html#cb456-1" tabindex="-1"></a>cities <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;New York, NY&quot;</span>, <span class="st">&quot;Los Angeles, CA&quot;</span>, <span class="st">&quot;Peoria, IL&quot;</span>)</span>
+<span id="cb456-2"><a href="StringsAndDates.html#cb456-2" tabindex="-1"></a><span class="fu">substr</span>(cities, <span class="fu">nchar</span>(cities) <span class="sc">-</span> <span class="dv">1</span>, <span class="fu">nchar</span>(cities))</span>
+<span id="cb456-3"><a href="StringsAndDates.html#cb456-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;NY&quot; &quot;CA&quot; &quot;IL&quot;</span></span></code></pre></div>
+<p>You can extend this trick into mind-numbing territory by exploiting the
+Recycling Rule, but we suggest you avoid the temptation.</p>
+</div>
+</div>
+<div id="recipe-id276" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Splitting a String According to a Delimiter<a href="StringsAndDates.html#recipe-id276" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id276" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="StringsAndDates.html#problem-id276" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You want to split a string into substrings. The substrings are separated
+by a delimiter.</p>
+</div>
+<div id="solution-id276" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="StringsAndDates.html#solution-id276" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use <code>strsplit</code>, which takes two arguments: the string and the delimiter
+of the substrings:</p>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="StringsAndDates.html#cb457-1" tabindex="-1"></a><span class="fu">strsplit</span>(string, delimiter)</span></code></pre></div>
+<p>The <em><code>delimiter</code></em> can be either a simple string or a regular expression.</p>
+</div>
+<div id="discussion-id276" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="StringsAndDates.html#discussion-id276" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is common for a string to contain multiple substrings separated by
+the same delimiter. One example is a filepath, whose components are
+separated by slashes (<code>/</code>):</p>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="StringsAndDates.html#cb458-1" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&quot;/home/mike/data/trials.csv&quot;</span></span></code></pre></div>
+<p>We can split that path into its components by using <code>strsplit</code> with a
+delimiter of <code>/</code>:</p>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="StringsAndDates.html#cb459-1" tabindex="-1"></a><span class="fu">strsplit</span>(path, <span class="st">&quot;/&quot;</span>)</span>
+<span id="cb459-2"><a href="StringsAndDates.html#cb459-2" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb459-3"><a href="StringsAndDates.html#cb459-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot;           &quot;home&quot;       &quot;mike&quot;       &quot;data&quot;       &quot;trials.csv&quot;</span></span></code></pre></div>
+<p>Notice that the first “component” is actually an empty string because
+nothing preceded the first slash.</p>
+<p>Also notice that <code>strsplit</code> returns a list and that each element of the
+list is a vector of substrings. This two-level structure is necessary
+because the first argument can be a vector of strings. Each string is
+split into its substrings (a vector), and then those vectors are returned in
+a list.</p>
+<p>If you are operating only on a single string, you can pop out the first element like this:</p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="StringsAndDates.html#cb460-1" tabindex="-1"></a><span class="fu">strsplit</span>(path, <span class="st">&quot;/&quot;</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb460-2"><a href="StringsAndDates.html#cb460-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot;           &quot;home&quot;       &quot;mike&quot;       &quot;data&quot;       &quot;trials.csv&quot;</span></span></code></pre></div>
+<p>This example splits three filepaths and returns a three-element
+list:</p>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="StringsAndDates.html#cb461-1" tabindex="-1"></a>paths <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb461-2"><a href="StringsAndDates.html#cb461-2" tabindex="-1"></a>  <span class="st">&quot;/home/mike/data/trials.csv&quot;</span>,</span>
+<span id="cb461-3"><a href="StringsAndDates.html#cb461-3" tabindex="-1"></a>  <span class="st">&quot;/home/mike/data/errors.csv&quot;</span>,</span>
+<span id="cb461-4"><a href="StringsAndDates.html#cb461-4" tabindex="-1"></a>  <span class="st">&quot;/home/mike/corr/reject.doc&quot;</span></span>
+<span id="cb461-5"><a href="StringsAndDates.html#cb461-5" tabindex="-1"></a>)</span>
+<span id="cb461-6"><a href="StringsAndDates.html#cb461-6" tabindex="-1"></a><span class="fu">strsplit</span>(paths, <span class="st">&quot;/&quot;</span>)</span>
+<span id="cb461-7"><a href="StringsAndDates.html#cb461-7" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb461-8"><a href="StringsAndDates.html#cb461-8" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot;           &quot;home&quot;       &quot;mike&quot;       &quot;data&quot;       &quot;trials.csv&quot;</span></span>
+<span id="cb461-9"><a href="StringsAndDates.html#cb461-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb461-10"><a href="StringsAndDates.html#cb461-10" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb461-11"><a href="StringsAndDates.html#cb461-11" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot;           &quot;home&quot;       &quot;mike&quot;       &quot;data&quot;       &quot;errors.csv&quot;</span></span>
+<span id="cb461-12"><a href="StringsAndDates.html#cb461-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb461-13"><a href="StringsAndDates.html#cb461-13" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb461-14"><a href="StringsAndDates.html#cb461-14" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot;           &quot;home&quot;       &quot;mike&quot;       &quot;corr&quot;       &quot;reject.doc&quot;</span></span></code></pre></div>
+<p>The second argument of <code>strsplit</code> (the <em><code>delimiter</code></em> argument) is
+actually much more powerful than these examples indicate. It can be a
+regular expression, letting you match patterns far more complicated than
+a simple string. In fact, to turn off the regular expression feature (and
+its interpretation of special characters), you must include the
+<code>fixed=TRUE</code> argument.</p>
+</div>
+<div id="see_also-id276" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="StringsAndDates.html#see_also-id276" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To learn more about regular expressions in R, see the help page for
+<code>regexp</code>.
+See O’Reilly’s <a href="http://oreilly.com/catalog/9780596528126/"><em>Mastering Regular
+Expressions</em></a>, by Jeffrey E.F.
+Friedl, to learn more about regular expressions in general.</p>
+</div>
+</div>
+<div id="recipe-id277" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Replacing Substrings<a href="StringsAndDates.html#recipe-id277" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id277" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="StringsAndDates.html#problem-id277" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Within a string, you want to replace one substring with another.</p>
+</div>
+<div id="solution-id277" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="StringsAndDates.html#solution-id277" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use <code>sub</code> to replace the first instance of a substring:</p>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="StringsAndDates.html#cb462-1" tabindex="-1"></a><span class="fu">sub</span>(old, new, string)</span></code></pre></div>
+<p>Use <code>gsub</code> to replace all instances of a substring:</p>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="StringsAndDates.html#cb463-1" tabindex="-1"></a><span class="fu">gsub</span>(old, new, string)</span></code></pre></div>
+</div>
+<div id="discussion-id277" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="StringsAndDates.html#discussion-id277" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>sub</code> function finds the first instance of the old substring within
+string and replaces it with the new substring:</p>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="StringsAndDates.html#cb464-1" tabindex="-1"></a>str <span class="ot">&lt;-</span> <span class="st">&quot;Curly is the smart one. Curly is funny, too.&quot;</span></span>
+<span id="cb464-2"><a href="StringsAndDates.html#cb464-2" tabindex="-1"></a><span class="fu">sub</span>(<span class="st">&quot;Curly&quot;</span>, <span class="st">&quot;Moe&quot;</span>, str)</span>
+<span id="cb464-3"><a href="StringsAndDates.html#cb464-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Moe is the smart one. Curly is funny, too.&quot;</span></span></code></pre></div>
+<p><code>gsub</code> does the same thing, but it replaces <em>all</em> instances of the
+substring (a global replace), not just the first:</p>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="StringsAndDates.html#cb465-1" tabindex="-1"></a><span class="fu">gsub</span>(<span class="st">&quot;Curly&quot;</span>, <span class="st">&quot;Moe&quot;</span>, str)</span>
+<span id="cb465-2"><a href="StringsAndDates.html#cb465-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Moe is the smart one. Moe is funny, too.&quot;</span></span></code></pre></div>
+<p>To remove a substring altogether, simply set the new substring to be
+empty:</p>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="StringsAndDates.html#cb466-1" tabindex="-1"></a><span class="fu">sub</span>(<span class="st">&quot; and SAS&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;For really tough problems, you need R and SAS.&quot;</span>)</span>
+<span id="cb466-2"><a href="StringsAndDates.html#cb466-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;For really tough problems, you need R.&quot;</span></span></code></pre></div>
+<p>The old argument can be regular expression, which allows you to match
+patterns much more complicated than a simple string. This is actually
+assumed by default, so you must set the <code>fixed=TRUE</code> argument if you
+don’t want <code>sub</code> and <code>gsub</code> to interpret <code>old</code> as a regular expression.</p>
+</div>
+<div id="see_also-id277" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="StringsAndDates.html#see_also-id277" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To learn more about regular expressions in R, see the help page for
+<code>regexp</code>. See <a href="http://oreilly.com/catalog/9780596528126/"><em>Mastering Regular
+Expressions</em></a> to learn more
+about regular expressions in general.</p>
+</div>
+</div>
+<div id="recipe-id109" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Generating All Pairwise Combinations of Strings<a href="StringsAndDates.html#recipe-id109" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id109" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="StringsAndDates.html#problem-id109" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You have two sets of strings, and you want to generate all combinations
+from those two sets (their Cartesian product).</p>
+</div>
+<div id="solution-id109" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="StringsAndDates.html#solution-id109" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use the <code>outer</code> and <code>paste</code> functions together to generate the matrix of
+all possible combinations:</p>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="StringsAndDates.html#cb467-1" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">outer</span>(strings1, strings2, paste, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+</div>
+<div id="discussion-id109" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="StringsAndDates.html#discussion-id109" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>outer</code> function is intended to form the outer product. However, it
+allows a third argument to replace simple multiplication with any
+function. In this recipe we replace multiplication with string
+concatenation (<code>paste</code>), and the result is all combinations of strings.</p>
+<p>Suppose you have four test sites and three treatments:</p>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="StringsAndDates.html#cb468-1" tabindex="-1"></a>locations <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;NY&quot;</span>, <span class="st">&quot;LA&quot;</span>, <span class="st">&quot;CHI&quot;</span>, <span class="st">&quot;HOU&quot;</span>)</span>
+<span id="cb468-2"><a href="StringsAndDates.html#cb468-2" tabindex="-1"></a>treatments <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;T1&quot;</span>, <span class="st">&quot;T2&quot;</span>, <span class="st">&quot;T3&quot;</span>)</span></code></pre></div>
+<p>We can apply <code>outer</code> and <code>paste</code> to generate all combinations of test
+sites and treatments like so:</p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="StringsAndDates.html#cb469-1" tabindex="-1"></a><span class="fu">outer</span>(locations, treatments, paste, <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>)</span>
+<span id="cb469-2"><a href="StringsAndDates.html#cb469-2" tabindex="-1"></a><span class="co">#&gt;      [,1]     [,2]     [,3]    </span></span>
+<span id="cb469-3"><a href="StringsAndDates.html#cb469-3" tabindex="-1"></a><span class="co">#&gt; [1,] &quot;NY-T1&quot;  &quot;NY-T2&quot;  &quot;NY-T3&quot; </span></span>
+<span id="cb469-4"><a href="StringsAndDates.html#cb469-4" tabindex="-1"></a><span class="co">#&gt; [2,] &quot;LA-T1&quot;  &quot;LA-T2&quot;  &quot;LA-T3&quot; </span></span>
+<span id="cb469-5"><a href="StringsAndDates.html#cb469-5" tabindex="-1"></a><span class="co">#&gt; [3,] &quot;CHI-T1&quot; &quot;CHI-T2&quot; &quot;CHI-T3&quot;</span></span>
+<span id="cb469-6"><a href="StringsAndDates.html#cb469-6" tabindex="-1"></a><span class="co">#&gt; [4,] &quot;HOU-T1&quot; &quot;HOU-T2&quot; &quot;HOU-T3&quot;</span></span></code></pre></div>
+<p>The fourth argument of <code>outer</code> is passed to <code>paste</code>. In this case, we
+passed <code>sep="-"</code> in order to define a hyphen as the separator between
+the strings.</p>
+<p>The result of <code>outer</code> is a matrix. If you want the combinations in a
+vector instead, flatten the matrix using the <code>as.vector</code> function.</p>
+<p>In the special case when you are combining a set with itself and order
+does not matter, the result will be duplicate combinations:</p>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="StringsAndDates.html#cb470-1" tabindex="-1"></a><span class="fu">outer</span>(treatments, treatments, paste, <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>)</span>
+<span id="cb470-2"><a href="StringsAndDates.html#cb470-2" tabindex="-1"></a><span class="co">#&gt;      [,1]    [,2]    [,3]   </span></span>
+<span id="cb470-3"><a href="StringsAndDates.html#cb470-3" tabindex="-1"></a><span class="co">#&gt; [1,] &quot;T1-T1&quot; &quot;T1-T2&quot; &quot;T1-T3&quot;</span></span>
+<span id="cb470-4"><a href="StringsAndDates.html#cb470-4" tabindex="-1"></a><span class="co">#&gt; [2,] &quot;T2-T1&quot; &quot;T2-T2&quot; &quot;T2-T3&quot;</span></span>
+<span id="cb470-5"><a href="StringsAndDates.html#cb470-5" tabindex="-1"></a><span class="co">#&gt; [3,] &quot;T3-T1&quot; &quot;T3-T2&quot; &quot;T3-T3&quot;</span></span></code></pre></div>
+<p>Or we can use <code>expand.grid</code> to get a pair of vectors representing all combinations:</p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="StringsAndDates.html#cb471-1" tabindex="-1"></a><span class="fu">expand.grid</span>(treatments, treatments)</span>
+<span id="cb471-2"><a href="StringsAndDates.html#cb471-2" tabindex="-1"></a><span class="co">#&gt;   Var1 Var2</span></span>
+<span id="cb471-3"><a href="StringsAndDates.html#cb471-3" tabindex="-1"></a><span class="co">#&gt; 1   T1   T1</span></span>
+<span id="cb471-4"><a href="StringsAndDates.html#cb471-4" tabindex="-1"></a><span class="co">#&gt; 2   T2   T1</span></span>
+<span id="cb471-5"><a href="StringsAndDates.html#cb471-5" tabindex="-1"></a><span class="co">#&gt; 3   T3   T1</span></span>
+<span id="cb471-6"><a href="StringsAndDates.html#cb471-6" tabindex="-1"></a><span class="co">#&gt; 4   T1   T2</span></span>
+<span id="cb471-7"><a href="StringsAndDates.html#cb471-7" tabindex="-1"></a><span class="co">#&gt; 5   T2   T2</span></span>
+<span id="cb471-8"><a href="StringsAndDates.html#cb471-8" tabindex="-1"></a><span class="co">#&gt; 6   T3   T2</span></span>
+<span id="cb471-9"><a href="StringsAndDates.html#cb471-9" tabindex="-1"></a><span class="co">#&gt; 7   T1   T3</span></span>
+<span id="cb471-10"><a href="StringsAndDates.html#cb471-10" tabindex="-1"></a><span class="co">#&gt; 8   T2   T3</span></span>
+<span id="cb471-11"><a href="StringsAndDates.html#cb471-11" tabindex="-1"></a><span class="co">#&gt; 9   T3   T3</span></span></code></pre></div>
+<p>But suppose we want all <em>unique</em> pairwise combinations of treatments. We
+can eliminate the duplicates by removing the lower triangle (or upper
+triangle). The <code>lower.tri</code> function identifies that triangle, so
+inverting it identifies all elements <em>outside</em> the lower triangle:</p>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="StringsAndDates.html#cb472-1" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">outer</span>(treatments, treatments, paste, <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>)</span>
+<span id="cb472-2"><a href="StringsAndDates.html#cb472-2" tabindex="-1"></a>m[<span class="sc">!</span><span class="fu">lower.tri</span>(m)]</span>
+<span id="cb472-3"><a href="StringsAndDates.html#cb472-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;T1-T1&quot; &quot;T1-T2&quot; &quot;T2-T2&quot; &quot;T1-T3&quot; &quot;T2-T3&quot; &quot;T3-T3&quot;</span></span></code></pre></div>
+</div>
+<div id="see_also-id109" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="StringsAndDates.html#see_also-id109" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>See Recipe <a href="BeyondBasics.html#recipe-id140">13.3</a>, <a href="StringsAndDates.html#recipe-id040">“Concatenating Strings”</a>, for using <code>paste</code> to generate
+combinations of strings.
+The <a href="https://cran.r-project.org/web/packages/gtools/index.html"><code>gtools</code> package on CRAN</a> has the functions <code>combinations</code> and <code>permutation</code>, which may be of help with related tasks.</p>
+</div>
+</div>
+<div id="recipe-id045" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> Getting the Current Date<a href="StringsAndDates.html#recipe-id045" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id045" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="StringsAndDates.html#problem-id045" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You need to know today’s date.</p>
+</div>
+<div id="solution-id045" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="StringsAndDates.html#solution-id045" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>Sys.Date</code> function returns the current date:</p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="StringsAndDates.html#cb473-1" tabindex="-1"></a><span class="fu">Sys.Date</span>()</span>
+<span id="cb473-2"><a href="StringsAndDates.html#cb473-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-11-22&quot;</span></span></code></pre></div>
+</div>
+<div id="discussion-id045" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="StringsAndDates.html#discussion-id045" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>Sys.Date</code> function returns a <code>Date</code> object. In the preceding
+example it seems to return a string because the result is printed inside
+double quotes. What really happened, however, is that <code>Sys.Date</code>
+returned a <code>Date</code> object and then R converted that object into a string
+for printing purposes. You can see this by checking the class of the
+result from <code>Sys.Date</code>:</p>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="StringsAndDates.html#cb474-1" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">Sys.Date</span>())</span>
+<span id="cb474-2"><a href="StringsAndDates.html#cb474-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Date&quot;</span></span></code></pre></div>
+</div>
+<div id="see_also-id045" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="StringsAndDates.html#see_also-id045" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>See Recipe <a href="StringsAndDates.html#recipe-id044">7.9</a>, <a href="StringsAndDates.html#recipe-id044">“Converting a Date into a String”</a>.</p>
+</div>
+</div>
+<div id="recipe-id043" class="section level2 hasAnchor" number="7.8">
+<h2><span class="header-section-number">7.8</span> Converting a String into a Date<a href="StringsAndDates.html#recipe-id043" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id043" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="StringsAndDates.html#problem-id043" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You have the string representation of a date, such as <code>"2018-12-31"</code>, and
+you want to convert that into a <code>Date</code> object.</p>
+</div>
+<div id="solution-id043" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="StringsAndDates.html#solution-id043" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can use <code>as.Date</code>, but you must know the format of the string. By
+default, <code>as.Date</code> assumes the string looks like <em>yyyy-mm-dd</em>. To handle
+other formats, you must specify the <code>format</code> parameter of <code>as.Date</code>. Use
+<code>format="%m/%d/%Y"</code> if the date is in American style, for instance.</p>
+</div>
+<div id="discussion-id043" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="StringsAndDates.html#discussion-id043" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This example shows the default format assumed by <code>as.Date</code>, which is the
+ISO 8601 standard format of <em>yyyy-mm-dd</em>:</p>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="StringsAndDates.html#cb475-1" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;2018-12-31&quot;</span>)</span>
+<span id="cb475-2"><a href="StringsAndDates.html#cb475-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2018-12-31&quot;</span></span></code></pre></div>
+<p>The <code>as.Date</code> function returns a <code>Date</code> object that (as in the prior recipe) is being
+converted here back to a string for printing; this explains the double quotes
+around the output.</p>
+<p>The string can be in other formats, but you must provide a <code>format</code>
+argument so that <code>as.Date</code> can interpret your string. See the help page
+for the <code>stftime</code> function for details about allowed formats.</p>
+<p>Being simple Americans, we often mistakenly try to convert the usual
+American date format (<em>mm/dd/yyyy</em>) into a <code>Date</code> object, with these
+unhappy results:</p>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="StringsAndDates.html#cb476-1" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;12/31/2018&quot;</span>)</span>
+<span id="cb476-2"><a href="StringsAndDates.html#cb476-2" tabindex="-1"></a><span class="co">#&gt; Error in charToDate(x): character string is not in a standard unambiguous format</span></span></code></pre></div>
+<p>Here is the correct way to convert an American-style date:</p>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="StringsAndDates.html#cb477-1" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;12/31/2018&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%m/%d/%Y&quot;</span>)</span>
+<span id="cb477-2"><a href="StringsAndDates.html#cb477-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2018-12-31&quot;</span></span></code></pre></div>
+<p>Observe that the <code>Y</code> in the format string is capitalized to indicate a
+four-digit year. If you’re using two-digit years, specify a lowercase <code>y</code>.</p>
+</div>
+</div>
+<div id="recipe-id044" class="section level2 hasAnchor" number="7.9">
+<h2><span class="header-section-number">7.9</span> Converting a Date into a String<a href="StringsAndDates.html#recipe-id044" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id044" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="StringsAndDates.html#problem-id044" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You want to convert a <code>Date</code> object into a character string, usually
+because you want to print the date.</p>
+</div>
+<div id="solution-id044" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="StringsAndDates.html#solution-id044" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use either <code>format</code> or <code>as.character</code>:</p>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="StringsAndDates.html#cb478-1" tabindex="-1"></a><span class="fu">format</span>(<span class="fu">Sys.Date</span>())</span>
+<span id="cb478-2"><a href="StringsAndDates.html#cb478-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-11-22&quot;</span></span>
+<span id="cb478-3"><a href="StringsAndDates.html#cb478-3" tabindex="-1"></a><span class="fu">as.character</span>(<span class="fu">Sys.Date</span>())</span>
+<span id="cb478-4"><a href="StringsAndDates.html#cb478-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-11-22&quot;</span></span></code></pre></div>
+<p>Both functions allow a <code>format</code> argument that controls the formatting.
+Use <code>format="%m/%d/%Y"</code> to get American-style dates, for example:</p>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="StringsAndDates.html#cb479-1" tabindex="-1"></a><span class="fu">format</span>(<span class="fu">Sys.Date</span>(), <span class="at">format =</span> <span class="st">&quot;%m/%d/%Y&quot;</span>)</span>
+<span id="cb479-2"><a href="StringsAndDates.html#cb479-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;11/22/2024&quot;</span></span></code></pre></div>
+</div>
+<div id="discussion-id044" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="StringsAndDates.html#discussion-id044" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>format</code> argument defines the appearance of the resulting string.
+Normal characters, such as slash (<code>/</code>) or hyphen (<code>-</code>) are simply copied
+to the output string. Each two-letter combination of a percent sign
+(<code>%</code>) followed by another character has special meaning. Some common
+ones are:</p>
+<dl>
+<dt><code>%b</code></dt>
+<dd>
+<p>Abbreviated month name (“Jan”)</p>
+</dd>
+<dt><code>%B</code></dt>
+<dd>
+<p>Full month name (“January”)</p>
+</dd>
+<dt><code>%d</code></dt>
+<dd>
+<p>Day as a two-digit number</p>
+</dd>
+<dt><code>%m</code></dt>
+<dd>
+<p>Month as a two-digit number</p>
+</dd>
+<dt><code>%y</code></dt>
+<dd>
+<p>Year without century (00–99)</p>
+</dd>
+<dt><code>%Y</code></dt>
+<dd>
+<p>Year with century</p>
+</dd>
+</dl>
+<p>See the help page for the <code>strftime</code> function for a complete list of
+formatting codes.</p>
+</div>
+</div>
+<div id="recipe-id241" class="section level2 hasAnchor" number="7.10">
+<h2><span class="header-section-number">7.10</span> Converting Year, Month, and Day into a Date<a href="StringsAndDates.html#recipe-id241" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id241" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="StringsAndDates.html#problem-id241" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You have a date represented by its year, month, and day in different variables. You want to
+merge these elements into a single <code>Date</code> object representation.</p>
+</div>
+<div id="solution-id241" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="StringsAndDates.html#solution-id241" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use the <code>ISOdate</code> function:</p>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="StringsAndDates.html#cb480-1" tabindex="-1"></a><span class="fu">ISOdate</span>(year, month, day)</span></code></pre></div>
+<p>The result is a <code>POSIXct</code> object that you can convert into a <code>Date</code>
+object:</p>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="StringsAndDates.html#cb481-1" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="dv">2018</span></span>
+<span id="cb481-2"><a href="StringsAndDates.html#cb481-2" tabindex="-1"></a>month <span class="ot">&lt;-</span> <span class="dv">12</span></span>
+<span id="cb481-3"><a href="StringsAndDates.html#cb481-3" tabindex="-1"></a>day <span class="ot">&lt;-</span> <span class="dv">31</span></span>
+<span id="cb481-4"><a href="StringsAndDates.html#cb481-4" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="fu">ISOdate</span>(year, month, day))</span>
+<span id="cb481-5"><a href="StringsAndDates.html#cb481-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2018-12-31&quot;</span></span></code></pre></div>
+</div>
+<div id="discussion-id241" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="StringsAndDates.html#discussion-id241" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is common for input data to contain dates encoded as three numbers:
+year, month, and day. The <code>ISOdate</code> function can combine them into a
+<code>POSIXct</code> object:</p>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="StringsAndDates.html#cb482-1" tabindex="-1"></a><span class="fu">ISOdate</span>(<span class="dv">2020</span>, <span class="dv">2</span>, <span class="dv">29</span>)</span>
+<span id="cb482-2"><a href="StringsAndDates.html#cb482-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2020-02-29 12:00:00 GMT&quot;</span></span></code></pre></div>
+<p>You can keep your date in the <code>POSIXct</code> format. However, when working
+with pure dates (not dates and times), we often convert to a <code>Date</code>
+object and truncate the unused time information:</p>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="StringsAndDates.html#cb483-1" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="fu">ISOdate</span>(<span class="dv">2020</span>, <span class="dv">2</span>, <span class="dv">29</span>))</span>
+<span id="cb483-2"><a href="StringsAndDates.html#cb483-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2020-02-29&quot;</span></span></code></pre></div>
+<p>Trying to convert an invalid date results in <code>NA</code>:</p>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="StringsAndDates.html#cb484-1" tabindex="-1"></a><span class="fu">ISOdate</span>(<span class="dv">2013</span>, <span class="dv">2</span>, <span class="dv">29</span>) <span class="co"># Oops! 2013 is not a leap year</span></span>
+<span id="cb484-2"><a href="StringsAndDates.html#cb484-2" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
+<p><code>ISOdate</code> can process entire vectors of years, months, and days, which
+is quite handy for mass conversion of input data. The following example
+starts with the year/month/day numbers for the third Wednesday in
+January of several years and then combines them all into <code>Date</code> objects:</p>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="StringsAndDates.html#cb485-1" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2010</span>, <span class="dv">2011</span>, <span class="dv">2012</span>, <span class="dv">2014</span>)</span>
+<span id="cb485-2"><a href="StringsAndDates.html#cb485-2" tabindex="-1"></a>months <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb485-3"><a href="StringsAndDates.html#cb485-3" tabindex="-1"></a>days <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">21</span>, <span class="dv">20</span>, <span class="dv">18</span>, <span class="dv">17</span>)</span>
+<span id="cb485-4"><a href="StringsAndDates.html#cb485-4" tabindex="-1"></a><span class="fu">ISOdate</span>(years, months, days)</span>
+<span id="cb485-5"><a href="StringsAndDates.html#cb485-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2010-01-15 12:00:00 GMT&quot; &quot;2011-01-21 12:00:00 GMT&quot;</span></span>
+<span id="cb485-6"><a href="StringsAndDates.html#cb485-6" tabindex="-1"></a><span class="co">#&gt; [3] &quot;2012-01-20 12:00:00 GMT&quot; &quot;2014-01-18 12:00:00 GMT&quot;</span></span>
+<span id="cb485-7"><a href="StringsAndDates.html#cb485-7" tabindex="-1"></a><span class="co">#&gt; [5] &quot;2010-01-17 12:00:00 GMT&quot;</span></span>
+<span id="cb485-8"><a href="StringsAndDates.html#cb485-8" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="fu">ISOdate</span>(years, months, days))</span>
+<span id="cb485-9"><a href="StringsAndDates.html#cb485-9" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2010-01-15&quot; &quot;2011-01-21&quot; &quot;2012-01-20&quot; &quot;2014-01-18&quot; &quot;2010-01-17&quot;</span></span></code></pre></div>
+<p>Purists will note that the vector of months is redundant and that the
+last expression can therefore be further simplified by invoking the
+Recycling Rule:</p>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="StringsAndDates.html#cb486-1" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="fu">ISOdate</span>(years, <span class="dv">1</span>, days))</span>
+<span id="cb486-2"><a href="StringsAndDates.html#cb486-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2010-01-15&quot; &quot;2011-01-21&quot; &quot;2012-01-20&quot; &quot;2014-01-18&quot; &quot;2010-01-17&quot;</span></span></code></pre></div>
+<p>You can also extend this recipe to handle year, month, day, hour,
+minute, and second data by using the <code>ISOdatetime</code> function (see the
+help page for details):</p>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="StringsAndDates.html#cb487-1" tabindex="-1"></a><span class="fu">ISOdatetime</span>(year, month, day, hour, minute, second)</span></code></pre></div>
+</div>
+</div>
+<div id="recipe-id042" class="section level2 hasAnchor" number="7.11">
+<h2><span class="header-section-number">7.11</span> Getting the Julian Date<a href="StringsAndDates.html#recipe-id042" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id042" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="StringsAndDates.html#problem-id042" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Given a <code>Date</code> object, you want to extract the Julian date—which is, in
+R, the number of days since January 1, 1970.</p>
+</div>
+<div id="solution-id042" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="StringsAndDates.html#solution-id042" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Either convert the <code>Date</code> object to an integer or use the <code>julian</code>
+function:</p>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="StringsAndDates.html#cb488-1" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2019-03-15&quot;</span>)</span>
+<span id="cb488-2"><a href="StringsAndDates.html#cb488-2" tabindex="-1"></a><span class="fu">as.integer</span>(d)</span>
+<span id="cb488-3"><a href="StringsAndDates.html#cb488-3" tabindex="-1"></a><span class="co">#&gt; [1] 17970</span></span>
+<span id="cb488-4"><a href="StringsAndDates.html#cb488-4" tabindex="-1"></a>jd <span class="ot">&lt;-</span> <span class="fu">julian</span>(d)</span>
+<span id="cb488-5"><a href="StringsAndDates.html#cb488-5" tabindex="-1"></a>jd</span>
+<span id="cb488-6"><a href="StringsAndDates.html#cb488-6" tabindex="-1"></a><span class="co">#&gt; [1] 17970</span></span>
+<span id="cb488-7"><a href="StringsAndDates.html#cb488-7" tabindex="-1"></a><span class="co">#&gt; attr(,&quot;origin&quot;)</span></span>
+<span id="cb488-8"><a href="StringsAndDates.html#cb488-8" tabindex="-1"></a><span class="co">#&gt; [1] &quot;1970-01-01&quot;</span></span>
+<span id="cb488-9"><a href="StringsAndDates.html#cb488-9" tabindex="-1"></a><span class="fu">attr</span>(jd, <span class="st">&quot;origin&quot;</span>)</span>
+<span id="cb488-10"><a href="StringsAndDates.html#cb488-10" tabindex="-1"></a><span class="co">#&gt; [1] &quot;1970-01-01&quot;</span></span></code></pre></div>
+</div>
+<div id="discussion-id042" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="StringsAndDates.html#discussion-id042" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A Julian “date” is simply the number of days since a more-or-less
+arbitrary starting point. In the case of R, that starting point is
+January 1, 1970, the same starting point as Unix systems. So the Julian
+date for January 1, 1970 is zero, as shown here:</p>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="StringsAndDates.html#cb489-1" tabindex="-1"></a><span class="fu">as.integer</span>(<span class="fu">as.Date</span>(<span class="st">&quot;1970-01-01&quot;</span>))</span>
+<span id="cb489-2"><a href="StringsAndDates.html#cb489-2" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb489-3"><a href="StringsAndDates.html#cb489-3" tabindex="-1"></a><span class="fu">as.integer</span>(<span class="fu">as.Date</span>(<span class="st">&quot;1970-01-02&quot;</span>))</span>
+<span id="cb489-4"><a href="StringsAndDates.html#cb489-4" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb489-5"><a href="StringsAndDates.html#cb489-5" tabindex="-1"></a><span class="fu">as.integer</span>(<span class="fu">as.Date</span>(<span class="st">&quot;1970-01-03&quot;</span>))</span>
+<span id="cb489-6"><a href="StringsAndDates.html#cb489-6" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code></pre></div>
+</div>
+</div>
+<div id="recipe-id046" class="section level2 hasAnchor" number="7.12">
+<h2><span class="header-section-number">7.12</span> Extracting the Parts of a Date<a href="StringsAndDates.html#recipe-id046" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id046" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="StringsAndDates.html#problem-id046" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Given a <code>Date</code> object, you want to extract a date part such as the day
+of the week, the day of the year, the calendar day, the calendar month,
+or the calendar year.</p>
+</div>
+<div id="solution-id046" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="StringsAndDates.html#solution-id046" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Convert the <code>Date</code> object to a <code>POSIXlt</code> object, which is a list of date
+parts. Then extract the desired part from that list:</p>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="StringsAndDates.html#cb490-1" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2019-03-15&quot;</span>)</span>
+<span id="cb490-2"><a href="StringsAndDates.html#cb490-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(d)</span>
+<span id="cb490-3"><a href="StringsAndDates.html#cb490-3" tabindex="-1"></a>p<span class="sc">$</span>mday        <span class="co"># Day of the month</span></span>
+<span id="cb490-4"><a href="StringsAndDates.html#cb490-4" tabindex="-1"></a><span class="co">#&gt; [1] 15</span></span>
+<span id="cb490-5"><a href="StringsAndDates.html#cb490-5" tabindex="-1"></a>p<span class="sc">$</span>mon         <span class="co"># Month (0 = January)</span></span>
+<span id="cb490-6"><a href="StringsAndDates.html#cb490-6" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb490-7"><a href="StringsAndDates.html#cb490-7" tabindex="-1"></a>p<span class="sc">$</span>year <span class="sc">+</span> <span class="dv">1900</span> <span class="co"># Year</span></span>
+<span id="cb490-8"><a href="StringsAndDates.html#cb490-8" tabindex="-1"></a><span class="co">#&gt; [1] 2019</span></span></code></pre></div>
+</div>
+<div id="discussion-id046" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="StringsAndDates.html#discussion-id046" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>POSIXlt</code> object represents a date as a list of date parts. Convert
+your <code>Date</code> object to <code>POSIXlt</code> by using the <code>as.POSIXlt</code> function,
+which will give you a list with these members:</p>
+<dl>
+<dt><code>sec</code></dt>
+<dd>
+<p>Seconds (0–61)</p>
+</dd>
+<dt><code>min</code></dt>
+<dd>
+<p>Minutes (0–59)</p>
+</dd>
+<dt><code>hour</code></dt>
+<dd>
+<p>Hours (0–23)</p>
+</dd>
+<dt><code>mday</code></dt>
+<dd>
+<p>Day of the month (1–31)</p>
+</dd>
+<dt><code>mon</code></dt>
+<dd>
+<p>Month (0–11)</p>
+</dd>
+<dt><code>year</code></dt>
+<dd>
+<p>Years since 1900</p>
+</dd>
+<dt><code>wday</code></dt>
+<dd>
+<p>Day of the week (0–6, 0 = Sunday)</p>
+</dd>
+<dt><code>yday</code></dt>
+<dd>
+<p>Day of the year (0–365)</p>
+</dd>
+<dt><code>isdst</code></dt>
+<dd>
+<p>Daylight Saving Time flag</p>
+</dd>
+</dl>
+<p>Using these date parts, we can learn that April 2, 2020, is a Thursday
+(<code>wday</code> = 4) and the 93rd day of the year (because <code>yday</code> = 0 on January
+1):</p>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="StringsAndDates.html#cb491-1" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-04-02&quot;</span>)</span>
+<span id="cb491-2"><a href="StringsAndDates.html#cb491-2" tabindex="-1"></a><span class="fu">as.POSIXlt</span>(d)<span class="sc">$</span>wday</span>
+<span id="cb491-3"><a href="StringsAndDates.html#cb491-3" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb491-4"><a href="StringsAndDates.html#cb491-4" tabindex="-1"></a><span class="fu">as.POSIXlt</span>(d)<span class="sc">$</span>yday</span>
+<span id="cb491-5"><a href="StringsAndDates.html#cb491-5" tabindex="-1"></a><span class="co">#&gt; [1] 92</span></span></code></pre></div>
+<p>A common mistake is failing to add 1900 to the year, giving the
+impression you are living a long, long time ago:</p>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="StringsAndDates.html#cb492-1" tabindex="-1"></a><span class="fu">as.POSIXlt</span>(d)<span class="sc">$</span>year <span class="co"># Oops!</span></span>
+<span id="cb492-2"><a href="StringsAndDates.html#cb492-2" tabindex="-1"></a><span class="co">#&gt; [1] 120</span></span>
+<span id="cb492-3"><a href="StringsAndDates.html#cb492-3" tabindex="-1"></a><span class="fu">as.POSIXlt</span>(d)<span class="sc">$</span>year <span class="sc">+</span> <span class="dv">1900</span></span>
+<span id="cb492-4"><a href="StringsAndDates.html#cb492-4" tabindex="-1"></a><span class="co">#&gt; [1] 2020</span></span></code></pre></div>
+</div>
+</div>
+<div id="recipe-id047" class="section level2 hasAnchor" number="7.13">
+<h2><span class="header-section-number">7.13</span> Creating a Sequence of Dates<a href="StringsAndDates.html#recipe-id047" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id047" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="StringsAndDates.html#problem-id047" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You want to create a sequence of dates, such as a sequence of daily,
+monthly, or annual dates.</p>
+</div>
+<div id="solution-id047" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="StringsAndDates.html#solution-id047" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>seq</code> function is a generic function that has a version for <code>Date</code>
+objects. It can create a <code>Date</code> sequence similarly to the way it creates
+a sequence of numbers.</p>
+</div>
+<div id="discussion-id047" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="StringsAndDates.html#discussion-id047" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A typical use of <code>seq</code> specifies a starting date (<code>from</code>), ending date
+(<code>to</code>), and increment (<code>by</code>). An increment of 1 indicates daily dates:</p>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="StringsAndDates.html#cb493-1" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2019-01-01&quot;</span>)</span>
+<span id="cb493-2"><a href="StringsAndDates.html#cb493-2" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2019-02-01&quot;</span>)</span>
+<span id="cb493-3"><a href="StringsAndDates.html#cb493-3" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> s, <span class="at">to =</span> e, <span class="at">by =</span> <span class="dv">1</span>) <span class="co"># One month of dates</span></span>
+<span id="cb493-4"><a href="StringsAndDates.html#cb493-4" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;2019-01-01&quot; &quot;2019-01-02&quot; &quot;2019-01-03&quot; &quot;2019-01-04&quot; &quot;2019-01-05&quot;</span></span>
+<span id="cb493-5"><a href="StringsAndDates.html#cb493-5" tabindex="-1"></a><span class="co">#&gt;  [6] &quot;2019-01-06&quot; &quot;2019-01-07&quot; &quot;2019-01-08&quot; &quot;2019-01-09&quot; &quot;2019-01-10&quot;</span></span>
+<span id="cb493-6"><a href="StringsAndDates.html#cb493-6" tabindex="-1"></a><span class="co">#&gt; [11] &quot;2019-01-11&quot; &quot;2019-01-12&quot; &quot;2019-01-13&quot; &quot;2019-01-14&quot; &quot;2019-01-15&quot;</span></span>
+<span id="cb493-7"><a href="StringsAndDates.html#cb493-7" tabindex="-1"></a><span class="co">#&gt; [16] &quot;2019-01-16&quot; &quot;2019-01-17&quot; &quot;2019-01-18&quot; &quot;2019-01-19&quot; &quot;2019-01-20&quot;</span></span>
+<span id="cb493-8"><a href="StringsAndDates.html#cb493-8" tabindex="-1"></a><span class="co">#&gt; [21] &quot;2019-01-21&quot; &quot;2019-01-22&quot; &quot;2019-01-23&quot; &quot;2019-01-24&quot; &quot;2019-01-25&quot;</span></span>
+<span id="cb493-9"><a href="StringsAndDates.html#cb493-9" tabindex="-1"></a><span class="co">#&gt; [26] &quot;2019-01-26&quot; &quot;2019-01-27&quot; &quot;2019-01-28&quot; &quot;2019-01-29&quot; &quot;2019-01-30&quot;</span></span>
+<span id="cb493-10"><a href="StringsAndDates.html#cb493-10" tabindex="-1"></a><span class="co">#&gt; [31] &quot;2019-01-31&quot; &quot;2019-02-01&quot;</span></span></code></pre></div>
+<p>Another typical use specifies a starting date (<code>from</code>), increment
+(<code>by</code>), and number of dates (<code>length.out</code>):</p>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="StringsAndDates.html#cb494-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> s, <span class="at">by =</span> <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">7</span>) <span class="co"># Dates, one week apart</span></span>
+<span id="cb494-2"><a href="StringsAndDates.html#cb494-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2019-01-01&quot; &quot;2019-01-02&quot; &quot;2019-01-03&quot; &quot;2019-01-04&quot; &quot;2019-01-05&quot;</span></span>
+<span id="cb494-3"><a href="StringsAndDates.html#cb494-3" tabindex="-1"></a><span class="co">#&gt; [6] &quot;2019-01-06&quot; &quot;2019-01-07&quot;</span></span></code></pre></div>
+<p>The increment (<code>by</code>) is flexible and can be specified in days, weeks,
+months, or years:</p>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="StringsAndDates.html#cb495-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> s, <span class="at">by =</span> <span class="st">&quot;month&quot;</span>, <span class="at">length.out =</span> <span class="dv">12</span>)   <span class="co"># First of the month for one year</span></span>
+<span id="cb495-2"><a href="StringsAndDates.html#cb495-2" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;2019-01-01&quot; &quot;2019-02-01&quot; &quot;2019-03-01&quot; &quot;2019-04-01&quot; &quot;2019-05-01&quot;</span></span>
+<span id="cb495-3"><a href="StringsAndDates.html#cb495-3" tabindex="-1"></a><span class="co">#&gt;  [6] &quot;2019-06-01&quot; &quot;2019-07-01&quot; &quot;2019-08-01&quot; &quot;2019-09-01&quot; &quot;2019-10-01&quot;</span></span>
+<span id="cb495-4"><a href="StringsAndDates.html#cb495-4" tabindex="-1"></a><span class="co">#&gt; [11] &quot;2019-11-01&quot; &quot;2019-12-01&quot;</span></span>
+<span id="cb495-5"><a href="StringsAndDates.html#cb495-5" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> s, <span class="at">by =</span> <span class="st">&quot;3 months&quot;</span>, <span class="at">length.out =</span> <span class="dv">4</span>) <span class="co"># Quarterly dates for one year</span></span>
+<span id="cb495-6"><a href="StringsAndDates.html#cb495-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2019-01-01&quot; &quot;2019-04-01&quot; &quot;2019-07-01&quot; &quot;2019-10-01&quot;</span></span>
+<span id="cb495-7"><a href="StringsAndDates.html#cb495-7" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> s, <span class="at">by =</span> <span class="st">&quot;year&quot;</span>, <span class="at">length.out =</span> <span class="dv">10</span>)    <span class="co"># Year-start dates for one decade</span></span>
+<span id="cb495-8"><a href="StringsAndDates.html#cb495-8" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;2019-01-01&quot; &quot;2020-01-01&quot; &quot;2021-01-01&quot; &quot;2022-01-01&quot; &quot;2023-01-01&quot;</span></span>
+<span id="cb495-9"><a href="StringsAndDates.html#cb495-9" tabindex="-1"></a><span class="co">#&gt;  [6] &quot;2024-01-01&quot; &quot;2025-01-01&quot; &quot;2026-01-01&quot; &quot;2027-01-01&quot; &quot;2028-01-01&quot;</span></span></code></pre></div>
+<p>Be careful with <code>by="month"</code> near month-end. In this example, the end of
+February overflows into March, which is probably not what you wanted:</p>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="StringsAndDates.html#cb496-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">&quot;2019-01-29&quot;</span>), <span class="at">by =</span> <span class="st">&quot;month&quot;</span>, <span class="at">len =</span> <span class="dv">3</span>)</span>
+<span id="cb496-2"><a href="StringsAndDates.html#cb496-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2019-01-29&quot; &quot;2019-03-01&quot; &quot;2019-03-29&quot;</span></span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="DataTransformations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": true,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/CerebralMastication/R-Cookbook/edit/master/07_StringsAndDates.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

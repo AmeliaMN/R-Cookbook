@@ -630,7 +630,7 @@ arrange(df, month, day)
 Within months 7 and 8, the days are now sorted into ascending order.
 
 
-Stripping Attributes from a Variable {#recipe-id223}
+Stripping Attributes from a Variable {#recipe-id223} 
 ------------------------------------
 
 ### Problem {-#problem-id223}
@@ -715,7 +715,7 @@ attr(slope, "names") <- NULL
 See Recipe \@ref(recipe-id202), ["Revealing the Structure of an Object"](#recipe-id202), for more about
 seeing attributes.
 
-Revealing the Structure of an Object {#recipe-id202}
+Revealing the Structure of an Object {#recipe-id202} 
 ------------------------------------
 
 ### Problem {-#problem-id202}
@@ -1246,7 +1246,7 @@ To use `furrr` to parallelize our code, we call the `furrr::future_map` in place
 ```{r, eval=FALSE}
 library(furrr)
 
-plan(multiprocess)
+plan(multisession)
 
 future_map(my_list, some_function)
 ```
@@ -1296,7 +1296,7 @@ set.seed(42)
 ```
 ```{r, warning=FALSE}
 library(furrr)
-plan(multiprocess)
+plan(multisession)
 
 tic("simulate pi - parallel")
 sims_list <- future_map(draw_list, simulate_pi)

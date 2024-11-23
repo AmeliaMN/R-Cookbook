@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>15 Simple Programming | R Cookbook, 2nd Edition</title>
+  <meta name="description" content="Second edition of R Cookbook" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="15 Simple Programming | R Cookbook, 2nd Edition" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Second edition of R Cookbook" />
+  <meta name="github-repo" content="CerebralMastication/R-Cookbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="15 Simple Programming | R Cookbook, 2nd Edition" />
+  
+  <meta name="twitter:description" content="Second edition of R Cookbook" />
+  
+
+<meta name="author" content="James (JD) Long" />
+<meta name="author" content="Paul Teetor" />
+
+
+<meta name="date" content="2024-11-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="TimeSeriesAnalysis.html"/>
+<link rel="next" href="RMarkdown.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129487349-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-129487349-3');
+</script>
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">R Cookbook 2nd Edition</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome to the R Cookbook 2nd Edition</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#the-recipes"><i class="fa fa-check"></i>The Recipes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-note-on-terminology"><i class="fa fa-check"></i>A Note on Terminology</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-and-platform-notes"><i class="fa fa-check"></i>Software and Platform Notes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#other-resources"><i class="fa fa-check"></i>Other Resources</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#conventions-used-in-this-book"><i class="fa fa-check"></i>Conventions Used in This Book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#using-code-examples"><i class="fa fa-check"></i>Using Code Examples</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#safari-books-online"><i class="fa fa-check"></i>Safari® Books Online</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-contact-us"><i class="fa fa-check"></i>How to Contact Us</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="GettingStarted.html"><a href="GettingStarted.html"><i class="fa fa-check"></i><b>1</b> Getting Started and Getting Help</a>
+<ul>
+<li class="chapter" data-level="" data-path="GettingStarted.html"><a href="GettingStarted.html#intro-GettingStarted"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1.1" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id001"><i class="fa fa-check"></i><b>1.1</b> Downloading and Installing R</a></li>
+<li class="chapter" data-level="1.2" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id002b"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-startingrstudio"><i class="fa fa-check"></i><b>1.3</b> Starting RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id007"><i class="fa fa-check"></i><b>1.4</b> Entering Commands</a></li>
+<li class="chapter" data-level="1.5" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id097"><i class="fa fa-check"></i><b>1.5</b> Exiting from RStudio</a></li>
+<li class="chapter" data-level="1.6" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id100"><i class="fa fa-check"></i><b>1.6</b> Interrupting R</a></li>
+<li class="chapter" data-level="1.7" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id265"><i class="fa fa-check"></i><b>1.7</b> Viewing the Supplied Documentation</a></li>
+<li class="chapter" data-level="1.8" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id003"><i class="fa fa-check"></i><b>1.8</b> Getting Help on a Function</a></li>
+<li class="chapter" data-level="1.9" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id267"><i class="fa fa-check"></i><b>1.9</b> Searching the Supplied Documentation</a></li>
+<li class="chapter" data-level="1.10" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id266"><i class="fa fa-check"></i><b>1.10</b> Getting Help on a Package</a></li>
+<li class="chapter" data-level="1.11" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id005"><i class="fa fa-check"></i><b>1.11</b> Searching the Web for Help</a></li>
+<li class="chapter" data-level="1.12" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id270"><i class="fa fa-check"></i><b>1.12</b> Finding Relevant Functions and Packages</a></li>
+<li class="chapter" data-level="1.13" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id268"><i class="fa fa-check"></i><b>1.13</b> Searching the Mailing Lists</a></li>
+<li class="chapter" data-level="1.14" data-path="GettingStarted.html"><a href="GettingStarted.html#recipe-id269"><i class="fa fa-check"></i><b>1.14</b> Submitting Questions to Stack Overflow or Elsewhere in the Community</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="SomeBasics.html"><a href="SomeBasics.html"><i class="fa fa-check"></i><b>2</b> Some Basics</a>
+<ul>
+<li class="chapter" data-level="" data-path="SomeBasics.html"><a href="SomeBasics.html#intro-SomeBasics"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="2.1" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id017"><i class="fa fa-check"></i><b>2.1</b> Printing Something to the Screen</a></li>
+<li class="chapter" data-level="2.2" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id016"><i class="fa fa-check"></i><b>2.2</b> Setting Variables</a></li>
+<li class="chapter" data-level="2.3" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id091"><i class="fa fa-check"></i><b>2.3</b> Listing Variables</a></li>
+<li class="chapter" data-level="2.4" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id075"><i class="fa fa-check"></i><b>2.4</b> Deleting Variables</a></li>
+<li class="chapter" data-level="2.5" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id038"><i class="fa fa-check"></i><b>2.5</b> Creating a Vector</a></li>
+<li class="chapter" data-level="2.6" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id101"><i class="fa fa-check"></i><b>2.6</b> Computing Basic Statistics</a></li>
+<li class="chapter" data-level="2.7" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id021"><i class="fa fa-check"></i><b>2.7</b> Creating Sequences</a></li>
+<li class="chapter" data-level="2.8" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id020"><i class="fa fa-check"></i><b>2.8</b> Comparing Vectors</a></li>
+<li class="chapter" data-level="2.9" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id039"><i class="fa fa-check"></i><b>2.9</b> Selecting Vector Elements</a></li>
+<li class="chapter" data-level="2.10" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id019"><i class="fa fa-check"></i><b>2.10</b> Performing Vector Arithmetic</a></li>
+<li class="chapter" data-level="2.11" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id018"><i class="fa fa-check"></i><b>2.11</b> Getting Operator Precedence Right</a></li>
+<li class="chapter" data-level="2.12" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id022"><i class="fa fa-check"></i><b>2.12</b> Typing Less and Accomplishing More</a></li>
+<li class="chapter" data-level="2.13" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-pipe-2"><i class="fa fa-check"></i><b>2.13</b> Creating a Pipeline of Function Calls</a></li>
+<li class="chapter" data-level="2.14" data-path="SomeBasics.html"><a href="SomeBasics.html#recipe-id025"><i class="fa fa-check"></i><b>2.14</b> Avoiding Some Common Mistakes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html"><i class="fa fa-check"></i><b>3</b> Navigating the Software</a>
+<ul>
+<li class="chapter" data-level="" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#intro-NavigatingTheSoftware"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="3.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id008"><i class="fa fa-check"></i><b>3.1</b> Getting and Setting the Working Directory</a></li>
+<li class="chapter" data-level="3.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-CreateProject"><i class="fa fa-check"></i><b>3.2</b> Creating a New RStudio Project</a></li>
+<li class="chapter" data-level="3.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id009"><i class="fa fa-check"></i><b>3.3</b> Saving Your Workspace</a></li>
+<li class="chapter" data-level="3.4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id023"><i class="fa fa-check"></i><b>3.4</b> Viewing Your Command History</a></li>
+<li class="chapter" data-level="3.5" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id024"><i class="fa fa-check"></i><b>3.5</b> Saving the Result of the Previous Command</a></li>
+<li class="chapter" data-level="3.6" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id010"><i class="fa fa-check"></i><b>3.6</b> Displaying Loaded Packages via the Search Path</a></li>
+<li class="chapter" data-level="3.7" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id094"><i class="fa fa-check"></i><b>3.7</b> Viewing the List of Installed Packages</a></li>
+<li class="chapter" data-level="3.8" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id013"><i class="fa fa-check"></i><b>3.8</b> Accessing the Functions in a Package</a></li>
+<li class="chapter" data-level="3.9" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id257"><i class="fa fa-check"></i><b>3.9</b> Accessing Built-in Datasets</a></li>
+<li class="chapter" data-level="3.10" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id012"><i class="fa fa-check"></i><b>3.10</b> Installing Packages from CRAN</a></li>
+<li class="chapter" data-level="3.11" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-installGH"><i class="fa fa-check"></i><b>3.11</b> Installing a Package from GitHub</a></li>
+<li class="chapter" data-level="3.12" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id272"><i class="fa fa-check"></i><b>3.12</b> Setting or Changing a Default CRAN Mirror</a></li>
+<li class="chapter" data-level="3.13" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id014"><i class="fa fa-check"></i><b>3.13</b> Running a Script</a></li>
+<li class="chapter" data-level="3.14" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id015"><i class="fa fa-check"></i><b>3.14</b> Running a Batch Script</a></li>
+<li class="chapter" data-level="3.15" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id102"><i class="fa fa-check"></i><b>3.15</b> Locating the R Home Directory</a></li>
+<li class="chapter" data-level="3.16" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-id099"><i class="fa fa-check"></i><b>3.16</b> Customizing R Startup</a></li>
+<li class="chapter" data-level="3.17" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#recipe-Rcloud"><i class="fa fa-check"></i><b>3.17</b> Using R and RStudio in the Cloud</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="InputAndOutput.html"><a href="InputAndOutput.html"><i class="fa fa-check"></i><b>4</b> Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="InputAndOutput.html"><a href="InputAndOutput.html#intro-InputAndOutput"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="4.1" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id035"><i class="fa fa-check"></i><b>4.1</b> Entering Data from the Keyboard</a></li>
+<li class="chapter" data-level="4.2" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id036"><i class="fa fa-check"></i><b>4.2</b> Printing Fewer Digits (or More Digits)</a></li>
+<li class="chapter" data-level="4.3" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id034"><i class="fa fa-check"></i><b>4.3</b> Redirecting Output to a File</a></li>
+<li class="chapter" data-level="4.4" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id030"><i class="fa fa-check"></i><b>4.4</b> Listing Files</a></li>
+<li class="chapter" data-level="4.5" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id033"><i class="fa fa-check"></i><b>4.5</b> Dealing with “Cannot Open File” in Windows</a></li>
+<li class="chapter" data-level="4.6" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id136"><i class="fa fa-check"></i><b>4.6</b> Reading Fixed-Width Records</a></li>
+<li class="chapter" data-level="4.7" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id245"><i class="fa fa-check"></i><b>4.7</b> Reading Tabular Data Files</a></li>
+<li class="chapter" data-level="4.8" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id027"><i class="fa fa-check"></i><b>4.8</b> Reading from CSV Files</a></li>
+<li class="chapter" data-level="4.9" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id028"><i class="fa fa-check"></i><b>4.9</b> Writing to CSV Files</a></li>
+<li class="chapter" data-level="4.10" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id031"><i class="fa fa-check"></i><b>4.10</b> Reading Tabular or CSV Data from the Web</a></li>
+<li class="chapter" data-level="4.11" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-readexcel"><i class="fa fa-check"></i><b>4.11</b> Reading Data from Excel</a></li>
+<li class="chapter" data-level="4.12" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-writeexcel"><i class="fa fa-check"></i><b>4.12</b> Writing a Data Frame to Excel</a></li>
+<li class="chapter" data-level="4.13" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-readsas"><i class="fa fa-check"></i><b>4.13</b> Reading Data from a SAS file</a></li>
+<li class="chapter" data-level="4.14" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id246"><i class="fa fa-check"></i><b>4.14</b> Reading Data from HTML Tables</a></li>
+<li class="chapter" data-level="4.15" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id098"><i class="fa fa-check"></i><b>4.15</b> Reading Files with a Complex Structure</a></li>
+<li class="chapter" data-level="4.16" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id037"><i class="fa fa-check"></i><b>4.16</b> Reading from MySQL Databases</a></li>
+<li class="chapter" data-level="4.17" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-dbplyr"><i class="fa fa-check"></i><b>4.17</b> Accessing a Database with dbplyr</a></li>
+<li class="chapter" data-level="4.18" data-path="InputAndOutput.html"><a href="InputAndOutput.html#recipe-id029"><i class="fa fa-check"></i><b>4.18</b> Saving and Transporting Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="DataStructures.html"><a href="DataStructures.html"><i class="fa fa-check"></i><b>5</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="DataStructures.html"><a href="DataStructures.html#intro-DataStructures"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="5.1" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id048"><i class="fa fa-check"></i><b>5.1</b> Appending Data to a Vector</a></li>
+<li class="chapter" data-level="5.2" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id049"><i class="fa fa-check"></i><b>5.2</b> Inserting Data into a Vector</a></li>
+<li class="chapter" data-level="5.3" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id050"><i class="fa fa-check"></i><b>5.3</b> Understanding the Recycling Rule</a></li>
+<li class="chapter" data-level="5.4" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id051"><i class="fa fa-check"></i><b>5.4</b> Creating a Factor (Categorical Variable)</a></li>
+<li class="chapter" data-level="5.5" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id227"><i class="fa fa-check"></i><b>5.5</b> Combining Multiple Vectors into One Vector and a Factor</a></li>
+<li class="chapter" data-level="5.6" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id053"><i class="fa fa-check"></i><b>5.6</b> Creating a List</a></li>
+<li class="chapter" data-level="5.7" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id054"><i class="fa fa-check"></i><b>5.7</b> Selecting List Elements by Position</a></li>
+<li class="chapter" data-level="5.8" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id253"><i class="fa fa-check"></i><b>5.8</b> Selecting List Elements by Name</a></li>
+<li class="chapter" data-level="5.9" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id158"><i class="fa fa-check"></i><b>5.9</b> Building a Name/Value Association List</a></li>
+<li class="chapter" data-level="5.10" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id056"><i class="fa fa-check"></i><b>5.10</b> Removing an Element from a List</a></li>
+<li class="chapter" data-level="5.11" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id152"><i class="fa fa-check"></i><b>5.11</b> Flatten a List into a Vector</a></li>
+<li class="chapter" data-level="5.12" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id058"><i class="fa fa-check"></i><b>5.12</b> Removing NULL Elements from a List</a></li>
+<li class="chapter" data-level="5.13" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id060"><i class="fa fa-check"></i><b>5.13</b> Removing List Elements Using a Condition</a></li>
+<li class="chapter" data-level="5.14" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id062"><i class="fa fa-check"></i><b>5.14</b> Initializing a Matrix</a></li>
+<li class="chapter" data-level="5.15" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id139"><i class="fa fa-check"></i><b>5.15</b> Performing Matrix Operations</a></li>
+<li class="chapter" data-level="5.16" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id063"><i class="fa fa-check"></i><b>5.16</b> Giving Descriptive Names to the Rows and Columns of a Matrix</a></li>
+<li class="chapter" data-level="5.17" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id250"><i class="fa fa-check"></i><b>5.17</b> Selecting One Row or Column from a Matrix</a></li>
+<li class="chapter" data-level="5.18" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id251"><i class="fa fa-check"></i><b>5.18</b> Initializing a Data Frame from Column Data</a></li>
+<li class="chapter" data-level="5.19" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id252"><i class="fa fa-check"></i><b>5.19</b> Initializing a Data Frame from Row Data</a></li>
+<li class="chapter" data-level="5.20" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id071"><i class="fa fa-check"></i><b>5.20</b> Appending Rows to a Data Frame</a></li>
+<li class="chapter" data-level="5.21" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id068"><i class="fa fa-check"></i><b>5.21</b> Selecting Data Frame Columns by Position</a></li>
+<li class="chapter" data-level="5.22" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id254"><i class="fa fa-check"></i><b>5.22</b> Selecting Data Frame Columns by Name</a></li>
+<li class="chapter" data-level="5.23" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id069"><i class="fa fa-check"></i><b>5.23</b> Changing the Names of Data Frame Columns</a></li>
+<li class="chapter" data-level="5.24" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id249"><i class="fa fa-check"></i><b>5.24</b> Removing NAs from a Data Frame</a></li>
+<li class="chapter" data-level="5.25" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id072"><i class="fa fa-check"></i><b>5.25</b> Excluding Columns by Name</a></li>
+<li class="chapter" data-level="5.26" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id155"><i class="fa fa-check"></i><b>5.26</b> Combining Two Data Frames</a></li>
+<li class="chapter" data-level="5.27" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id057"><i class="fa fa-check"></i><b>5.27</b> Merging Data Frames by Common Column</a></li>
+<li class="chapter" data-level="5.28" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id248"><i class="fa fa-check"></i><b>5.28</b> Converting One Atomic Value into Another</a></li>
+<li class="chapter" data-level="5.29" data-path="DataStructures.html"><a href="DataStructures.html#recipe-id074"><i class="fa fa-check"></i><b>5.29</b> Converting One Structured Data Type into Another</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="DataTransformations.html"><a href="DataTransformations.html"><i class="fa fa-check"></i><b>6</b> Data Transformations</a>
+<ul>
+<li class="chapter" data-level="" data-path="DataTransformations.html"><a href="DataTransformations.html#intro-DataTransformations"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="6.1" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id149"><i class="fa fa-check"></i><b>6.1</b> Applying a Function to Each List Element</a></li>
+<li class="chapter" data-level="6.2" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-row_df"><i class="fa fa-check"></i><b>6.2</b> Applying a Function to Every Row of a Data Frame</a></li>
+<li class="chapter" data-level="6.3" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id146"><i class="fa fa-check"></i><b>6.3</b> Applying a Function to Every Row of a Matrix</a></li>
+<li class="chapter" data-level="6.4" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id157"><i class="fa fa-check"></i><b>6.4</b> Applying a Function to Every Column</a></li>
+<li class="chapter" data-level="6.5" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id275"><i class="fa fa-check"></i><b>6.5</b> Applying a Function to Parallel Vectors or Lists</a></li>
+<li class="chapter" data-level="6.6" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-id148"><i class="fa fa-check"></i><b>6.6</b> Applying a Function to Groups of Data</a></li>
+<li class="chapter" data-level="6.7" data-path="DataTransformations.html"><a href="DataTransformations.html#recipe-casewhen"><i class="fa fa-check"></i><b>6.7</b> Creating a New Column Based on Some Condition</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="StringsAndDates.html"><a href="StringsAndDates.html"><i class="fa fa-check"></i><b>7</b> Strings and Dates</a>
+<ul>
+<li class="chapter" data-level="" data-path="StringsAndDates.html"><a href="StringsAndDates.html#I_sect17_d1e17434"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="7.1" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id093"><i class="fa fa-check"></i><b>7.1</b> Getting the Length of a String</a></li>
+<li class="chapter" data-level="7.2" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id040"><i class="fa fa-check"></i><b>7.2</b> Concatenating Strings</a></li>
+<li class="chapter" data-level="7.3" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id041"><i class="fa fa-check"></i><b>7.3</b> Extracting Substrings</a></li>
+<li class="chapter" data-level="7.4" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id276"><i class="fa fa-check"></i><b>7.4</b> Splitting a String According to a Delimiter</a></li>
+<li class="chapter" data-level="7.5" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id277"><i class="fa fa-check"></i><b>7.5</b> Replacing Substrings</a></li>
+<li class="chapter" data-level="7.6" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id109"><i class="fa fa-check"></i><b>7.6</b> Generating All Pairwise Combinations of Strings</a></li>
+<li class="chapter" data-level="7.7" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id045"><i class="fa fa-check"></i><b>7.7</b> Getting the Current Date</a></li>
+<li class="chapter" data-level="7.8" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id043"><i class="fa fa-check"></i><b>7.8</b> Converting a String into a Date</a></li>
+<li class="chapter" data-level="7.9" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id044"><i class="fa fa-check"></i><b>7.9</b> Converting a Date into a String</a></li>
+<li class="chapter" data-level="7.10" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id241"><i class="fa fa-check"></i><b>7.10</b> Converting Year, Month, and Day into a Date</a></li>
+<li class="chapter" data-level="7.11" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id042"><i class="fa fa-check"></i><b>7.11</b> Getting the Julian Date</a></li>
+<li class="chapter" data-level="7.12" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id046"><i class="fa fa-check"></i><b>7.12</b> Extracting the Parts of a Date</a></li>
+<li class="chapter" data-level="7.13" data-path="StringsAndDates.html"><a href="StringsAndDates.html#recipe-id047"><i class="fa fa-check"></i><b>7.13</b> Creating a Sequence of Dates</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="Probability.html"><a href="Probability.html"><i class="fa fa-check"></i><b>8</b> Probability</a>
+<ul>
+<li class="chapter" data-level="" data-path="Probability.html"><a href="Probability.html#intro-Probability"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="8.1" data-path="Probability.html"><a href="Probability.html#recipe-id163"><i class="fa fa-check"></i><b>8.1</b> Counting the Number of Combinations</a></li>
+<li class="chapter" data-level="8.2" data-path="Probability.html"><a href="Probability.html#recipe-id198"><i class="fa fa-check"></i><b>8.2</b> Generating Combinations</a></li>
+<li class="chapter" data-level="8.3" data-path="Probability.html"><a href="Probability.html#recipe-id165"><i class="fa fa-check"></i><b>8.3</b> Generating Random Numbers</a></li>
+<li class="chapter" data-level="8.4" data-path="Probability.html"><a href="Probability.html#recipe-id201"><i class="fa fa-check"></i><b>8.4</b> Generating Reproducible Random Numbers</a></li>
+<li class="chapter" data-level="8.5" data-path="Probability.html"><a href="Probability.html#recipe-id199"><i class="fa fa-check"></i><b>8.5</b> Generating a Random Sample</a></li>
+<li class="chapter" data-level="8.6" data-path="Probability.html"><a href="Probability.html#recipe-id200"><i class="fa fa-check"></i><b>8.6</b> Generating Random Sequences</a></li>
+<li class="chapter" data-level="8.7" data-path="Probability.html"><a href="Probability.html#recipe-id151"><i class="fa fa-check"></i><b>8.7</b> Randomly Permuting a Vector</a></li>
+<li class="chapter" data-level="8.8" data-path="Probability.html"><a href="Probability.html#recipe-id196"><i class="fa fa-check"></i><b>8.8</b> Calculating Probabilities for Discrete Distributions</a></li>
+<li class="chapter" data-level="8.9" data-path="Probability.html"><a href="Probability.html#recipe-id197"><i class="fa fa-check"></i><b>8.9</b> Calculating Probabilities for Continuous Distributions</a></li>
+<li class="chapter" data-level="8.10" data-path="Probability.html"><a href="Probability.html#recipe-id168"><i class="fa fa-check"></i><b>8.10</b> Converting Probabilities to Quantiles</a></li>
+<li class="chapter" data-level="8.11" data-path="Probability.html"><a href="Probability.html#recipe-id166"><i class="fa fa-check"></i><b>8.11</b> Plotting a Density Function</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html"><i class="fa fa-check"></i><b>9</b> General Statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#intro-GeneralStatistics"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="9.1" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id119"><i class="fa fa-check"></i><b>9.1</b> Summarizing Your Data</a></li>
+<li class="chapter" data-level="9.2" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id229"><i class="fa fa-check"></i><b>9.2</b> Calculating Relative Frequencies</a></li>
+<li class="chapter" data-level="9.3" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id124"><i class="fa fa-check"></i><b>9.3</b> Tabulating Factors and Creating Contingency Tables</a></li>
+<li class="chapter" data-level="9.4" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id125"><i class="fa fa-check"></i><b>9.4</b> Testing Categorical Variables for Independence</a></li>
+<li class="chapter" data-level="9.5" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id143"><i class="fa fa-check"></i><b>9.5</b> Calculating Quantiles (and Quartiles) of a Dataset</a></li>
+<li class="chapter" data-level="9.6" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id142"><i class="fa fa-check"></i><b>9.6</b> Inverting a Quantile</a></li>
+<li class="chapter" data-level="9.7" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id133"><i class="fa fa-check"></i><b>9.7</b> Converting Data to z-Scores</a></li>
+<li class="chapter" data-level="9.8" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id121"><i class="fa fa-check"></i><b>9.8</b> Testing the Mean of a Sample (t Test)</a></li>
+<li class="chapter" data-level="9.9" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id123"><i class="fa fa-check"></i><b>9.9</b> Forming a Confidence Interval for a Mean</a></li>
+<li class="chapter" data-level="9.10" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id135"><i class="fa fa-check"></i><b>9.10</b> Forming a Confidence Interval for a Median</a></li>
+<li class="chapter" data-level="9.11" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id225"><i class="fa fa-check"></i><b>9.11</b> Testing a Sample Proportion</a></li>
+<li class="chapter" data-level="9.12" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id226"><i class="fa fa-check"></i><b>9.12</b> Forming a Confidence Interval for a Proportion</a></li>
+<li class="chapter" data-level="9.13" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id126"><i class="fa fa-check"></i><b>9.13</b> Testing for Normality</a></li>
+<li class="chapter" data-level="9.14" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id131"><i class="fa fa-check"></i><b>9.14</b> Testing for Runs</a></li>
+<li class="chapter" data-level="9.15" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id122"><i class="fa fa-check"></i><b>9.15</b> Comparing the Means of Two Samples</a></li>
+<li class="chapter" data-level="9.16" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id130"><i class="fa fa-check"></i><b>9.16</b> Comparing the Locations of Two Samples Nonparametrically</a></li>
+<li class="chapter" data-level="9.17" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id132"><i class="fa fa-check"></i><b>9.17</b> Testing a Correlation for Significance</a></li>
+<li class="chapter" data-level="9.18" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id134"><i class="fa fa-check"></i><b>9.18</b> Testing Groups for Equal Proportions</a></li>
+<li class="chapter" data-level="9.19" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id127"><i class="fa fa-check"></i><b>9.19</b> Performing Pairwise Comparisons Between Group Means</a></li>
+<li class="chapter" data-level="9.20" data-path="GeneralStatistics.html"><a href="GeneralStatistics.html#recipe-id129"><i class="fa fa-check"></i><b>9.20</b> Testing Two Samples for the Same Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="Graphics.html"><a href="Graphics.html"><i class="fa fa-check"></i><b>10</b> Graphics</a>
+<ul>
+<li class="chapter" data-level="" data-path="Graphics.html"><a href="Graphics.html#intro-Graphics"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="10.1" data-path="Graphics.html"><a href="Graphics.html#recipe-id171"><i class="fa fa-check"></i><b>10.1</b> Creating a Scatter Plot</a></li>
+<li class="chapter" data-level="10.2" data-path="Graphics.html"><a href="Graphics.html#recipe-id259"><i class="fa fa-check"></i><b>10.2</b> Adding a Title and Labels</a></li>
+<li class="chapter" data-level="10.3" data-path="Graphics.html"><a href="Graphics.html#recipe-id261"><i class="fa fa-check"></i><b>10.3</b> Adding (or Removing) a Grid</a></li>
+<li class="chapter" data-level="10.4" data-path="Graphics.html"><a href="Graphics.html#recipe-theme"><i class="fa fa-check"></i><b>10.4</b> Applying a Theme to a ggplot Figure</a></li>
+<li class="chapter" data-level="10.5" data-path="Graphics.html"><a href="Graphics.html#recipe-id262"><i class="fa fa-check"></i><b>10.5</b> Creating a Scatter Plot of Multiple Groups</a></li>
+<li class="chapter" data-level="10.6" data-path="Graphics.html"><a href="Graphics.html#recipe-id260"><i class="fa fa-check"></i><b>10.6</b> Adding (or Removing) a Legend</a></li>
+<li class="chapter" data-level="10.7" data-path="Graphics.html"><a href="Graphics.html#recipe-id217"><i class="fa fa-check"></i><b>10.7</b> Plotting the Regression Line of a Scatter Plot</a></li>
+<li class="chapter" data-level="10.8" data-path="Graphics.html"><a href="Graphics.html#recipe-id184"><i class="fa fa-check"></i><b>10.8</b> Plotting All Variables Against All Other Variables</a></li>
+<li class="chapter" data-level="10.9" data-path="Graphics.html"><a href="Graphics.html#recipe-id185"><i class="fa fa-check"></i><b>10.9</b> Creating One Scatter Plot for Each Group</a></li>
+<li class="chapter" data-level="10.10" data-path="Graphics.html"><a href="Graphics.html#recipe-id175"><i class="fa fa-check"></i><b>10.10</b> Creating a Bar Chart</a></li>
+<li class="chapter" data-level="10.11" data-path="Graphics.html"><a href="Graphics.html#recipe-id177"><i class="fa fa-check"></i><b>10.11</b> Adding Confidence Intervals to a Bar Chart</a></li>
+<li class="chapter" data-level="10.12" data-path="Graphics.html"><a href="Graphics.html#recipe-id176"><i class="fa fa-check"></i><b>10.12</b> Coloring a Bar Chart</a></li>
+<li class="chapter" data-level="10.13" data-path="Graphics.html"><a href="Graphics.html#recipe-id174"><i class="fa fa-check"></i><b>10.13</b> Plotting a Line from x and y Points</a></li>
+<li class="chapter" data-level="10.14" data-path="Graphics.html"><a href="Graphics.html#recipe-id256"><i class="fa fa-check"></i><b>10.14</b> Changing the Type, Width, or Color of a Line</a></li>
+<li class="chapter" data-level="10.15" data-path="Graphics.html"><a href="Graphics.html#recipe-id263"><i class="fa fa-check"></i><b>10.15</b> Plotting Multiple Datasets</a></li>
+<li class="chapter" data-level="10.16" data-path="Graphics.html"><a href="Graphics.html#recipe-id186"><i class="fa fa-check"></i><b>10.16</b> Adding Vertical or Horizontal Lines</a></li>
+<li class="chapter" data-level="10.17" data-path="Graphics.html"><a href="Graphics.html#recipe-id178"><i class="fa fa-check"></i><b>10.17</b> Creating a Boxplot</a></li>
+<li class="chapter" data-level="10.18" data-path="Graphics.html"><a href="Graphics.html#recipe-id179"><i class="fa fa-check"></i><b>10.18</b> Creating One Boxplot for Each Factor Level</a></li>
+<li class="chapter" data-level="10.19" data-path="Graphics.html"><a href="Graphics.html#recipe-id182"><i class="fa fa-check"></i><b>10.19</b> Creating a Histogram</a></li>
+<li class="chapter" data-level="10.20" data-path="Graphics.html"><a href="Graphics.html#recipe-id183"><i class="fa fa-check"></i><b>10.20</b> Adding a Density Estimate to a Histogram</a></li>
+<li class="chapter" data-level="10.21" data-path="Graphics.html"><a href="Graphics.html#recipe-id180"><i class="fa fa-check"></i><b>10.21</b> Creating a Normal Quantile–Quantile Plot</a></li>
+<li class="chapter" data-level="10.22" data-path="Graphics.html"><a href="Graphics.html#recipe-id181"><i class="fa fa-check"></i><b>10.22</b> Creating Other Quantile–Quantile Plots</a></li>
+<li class="chapter" data-level="10.23" data-path="Graphics.html"><a href="Graphics.html#recipe-id191"><i class="fa fa-check"></i><b>10.23</b> Plotting a Variable in Multiple Colors</a></li>
+<li class="chapter" data-level="10.24" data-path="Graphics.html"><a href="Graphics.html#recipe-id192"><i class="fa fa-check"></i><b>10.24</b> Graphing a Function</a></li>
+<li class="chapter" data-level="10.25" data-path="Graphics.html"><a href="Graphics.html#recipe-id190"><i class="fa fa-check"></i><b>10.25</b> Displaying Several Figures on One Page</a></li>
+<li class="chapter" data-level="10.26" data-path="Graphics.html"><a href="Graphics.html#recipe-id188"><i class="fa fa-check"></i><b>10.26</b> Writing Your Plot to a File</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html"><i class="fa fa-check"></i><b>11</b> Linear Regression and ANOVA</a>
+<ul>
+<li class="chapter" data-level="" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#intro-LinearRegressionAndANOVA"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="11.1" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id203"><i class="fa fa-check"></i><b>11.1</b> Performing Simple Linear Regression</a></li>
+<li class="chapter" data-level="11.2" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id204"><i class="fa fa-check"></i><b>11.2</b> Performing Multiple Linear Regression</a></li>
+<li class="chapter" data-level="11.3" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id231"><i class="fa fa-check"></i><b>11.3</b> Getting Regression Statistics</a></li>
+<li class="chapter" data-level="11.4" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id240"><i class="fa fa-check"></i><b>11.4</b> Understanding the Regression Summary</a></li>
+<li class="chapter" data-level="11.5" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id205"><i class="fa fa-check"></i><b>11.5</b> Performing Linear Regression Without an Intercept</a></li>
+<li class="chapter" data-level="11.6" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#title-highcor"><i class="fa fa-check"></i><b>11.6</b> Regressing Only Variables That Highly Correlate with Your Dependent Variable</a></li>
+<li class="chapter" data-level="11.7" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id206"><i class="fa fa-check"></i><b>11.7</b> Performing Linear Regression with Interaction Terms</a></li>
+<li class="chapter" data-level="11.8" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id236"><i class="fa fa-check"></i><b>11.8</b> Selecting the Best Regression Variables</a></li>
+<li class="chapter" data-level="11.9" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id209"><i class="fa fa-check"></i><b>11.9</b> Regressing on a Subset of Your Data</a></li>
+<li class="chapter" data-level="11.10" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id244"><i class="fa fa-check"></i><b>11.10</b> Using an Expression Inside a Regression Formula</a></li>
+<li class="chapter" data-level="11.11" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id243"><i class="fa fa-check"></i><b>11.11</b> Regressing on a Polynomial</a></li>
+<li class="chapter" data-level="11.12" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id208"><i class="fa fa-check"></i><b>11.12</b> Regressing on Transformed Data</a></li>
+<li class="chapter" data-level="11.13" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id210"><i class="fa fa-check"></i><b>11.13</b> Finding the Best Power Transformation (Box–Cox Procedure)</a></li>
+<li class="chapter" data-level="11.14" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id211"><i class="fa fa-check"></i><b>11.14</b> Forming Confidence Intervals for Regression Coefficients</a></li>
+<li class="chapter" data-level="11.15" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id216"><i class="fa fa-check"></i><b>11.15</b> Plotting Regression Residuals</a></li>
+<li class="chapter" data-level="11.16" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id212"><i class="fa fa-check"></i><b>11.16</b> Diagnosing a Linear Regression</a></li>
+<li class="chapter" data-level="11.17" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id233"><i class="fa fa-check"></i><b>11.17</b> Identifying Influential Observations</a></li>
+<li class="chapter" data-level="11.18" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id213"><i class="fa fa-check"></i><b>11.18</b> Testing Residuals for Autocorrelation (Durbin–Watson Test)</a></li>
+<li class="chapter" data-level="11.19" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id214"><i class="fa fa-check"></i><b>11.19</b> Predicting New Values</a></li>
+<li class="chapter" data-level="11.20" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id215"><i class="fa fa-check"></i><b>11.20</b> Forming Prediction Intervals</a></li>
+<li class="chapter" data-level="11.21" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id218"><i class="fa fa-check"></i><b>11.21</b> Performing One-Way ANOVA</a></li>
+<li class="chapter" data-level="11.22" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id221"><i class="fa fa-check"></i><b>11.22</b> Creating an Interaction Plot</a></li>
+<li class="chapter" data-level="11.23" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id220"><i class="fa fa-check"></i><b>11.23</b> Finding Differences Between Means of Groups</a></li>
+<li class="chapter" data-level="11.24" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id228"><i class="fa fa-check"></i><b>11.24</b> Performing Robust ANOVA (Kruskal–Wallis Test)</a></li>
+<li class="chapter" data-level="11.25" data-path="LinearRegressionAndANOVA.html"><a href="LinearRegressionAndANOVA.html#recipe-id232"><i class="fa fa-check"></i><b>11.25</b> Comparing Models by Using ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="UsefulTricks.html"><a href="UsefulTricks.html"><i class="fa fa-check"></i><b>12</b> Useful Tricks</a>
+<ul>
+<li class="chapter" data-level="" data-path="UsefulTricks.html"><a href="UsefulTricks.html#intro-UsefulTricks"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="12.1" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id278"><i class="fa fa-check"></i><b>12.1</b> Peeking at Your Data</a></li>
+<li class="chapter" data-level="12.2" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id271"><i class="fa fa-check"></i><b>12.2</b> Printing the Result of an Assignment</a></li>
+<li class="chapter" data-level="12.3" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id138"><i class="fa fa-check"></i><b>12.3</b> Summing Rows and Columns</a></li>
+<li class="chapter" data-level="12.4" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id112"><i class="fa fa-check"></i><b>12.4</b> Printing Data in Columns</a></li>
+<li class="chapter" data-level="12.5" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id137"><i class="fa fa-check"></i><b>12.5</b> Binning Your Data</a></li>
+<li class="chapter" data-level="12.6" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id116"><i class="fa fa-check"></i><b>12.6</b> Finding the Position of a Particular Value</a></li>
+<li class="chapter" data-level="12.7" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id103"><i class="fa fa-check"></i><b>12.7</b> Selecting Every nth Element of a Vector</a></li>
+<li class="chapter" data-level="12.8" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id107"><i class="fa fa-check"></i><b>12.8</b> Finding Minimums or Maximums</a></li>
+<li class="chapter" data-level="12.9" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id110"><i class="fa fa-check"></i><b>12.9</b> Generating All Combinations of Several Variables</a></li>
+<li class="chapter" data-level="12.10" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id153"><i class="fa fa-check"></i><b>12.10</b> Flattening a Data Frame</a></li>
+<li class="chapter" data-level="12.11" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id247"><i class="fa fa-check"></i><b>12.11</b> Sorting a Data Frame</a></li>
+<li class="chapter" data-level="12.12" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id223"><i class="fa fa-check"></i><b>12.12</b> Stripping Attributes from a Variable</a></li>
+<li class="chapter" data-level="12.13" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id202"><i class="fa fa-check"></i><b>12.13</b> Revealing the Structure of an Object</a></li>
+<li class="chapter" data-level="12.14" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id224"><i class="fa fa-check"></i><b>12.14</b> Timing Your Code</a></li>
+<li class="chapter" data-level="12.15" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id113"><i class="fa fa-check"></i><b>12.15</b> Suppressing Warnings and Error Messages</a></li>
+<li class="chapter" data-level="12.16" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id118"><i class="fa fa-check"></i><b>12.16</b> Taking Function Arguments from a List</a></li>
+<li class="chapter" data-level="12.17" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id114"><i class="fa fa-check"></i><b>12.17</b> Defining Your Own Binary Operators</a></li>
+<li class="chapter" data-level="12.18" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id111"><i class="fa fa-check"></i><b>12.18</b> Suppressing the Startup Message</a></li>
+<li class="chapter" data-level="12.19" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-id106"><i class="fa fa-check"></i><b>12.19</b> Getting and Setting Environment Variables</a></li>
+<li class="chapter" data-level="12.20" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-codesections"><i class="fa fa-check"></i><b>12.20</b> Use Code Sections</a></li>
+<li class="chapter" data-level="12.21" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-parallel_local"><i class="fa fa-check"></i><b>12.21</b> Executing R in Parallel Locally</a></li>
+<li class="chapter" data-level="12.22" data-path="UsefulTricks.html"><a href="UsefulTricks.html#recipe-parallel_remote"><i class="fa fa-check"></i><b>12.22</b> Executing R in Parallel Remotely</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="BeyondBasics.html"><a href="BeyondBasics.html"><i class="fa fa-check"></i><b>13</b> Beyond Basic Numerics and Statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="BeyondBasics.html"><a href="BeyondBasics.html#intro-BeyondBasics"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="13.1" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id234"><i class="fa fa-check"></i><b>13.1</b> Minimizing or Maximizing a Single-Parameter Function</a></li>
+<li class="chapter" data-level="13.2" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id235"><i class="fa fa-check"></i><b>13.2</b> Minimizing or Maximizing a Multiparameter Function</a></li>
+<li class="chapter" data-level="13.3" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id140"><i class="fa fa-check"></i><b>13.3</b> Calculating Eigenvalues and Eigenvectors</a></li>
+<li class="chapter" data-level="13.4" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id162"><i class="fa fa-check"></i><b>13.4</b> Performing Principal Component Analysis</a></li>
+<li class="chapter" data-level="13.5" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id264"><i class="fa fa-check"></i><b>13.5</b> Performing Simple Orthogonal Regression</a></li>
+<li class="chapter" data-level="13.6" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id160"><i class="fa fa-check"></i><b>13.6</b> Finding Clusters in Your Data</a></li>
+<li class="chapter" data-level="13.7" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id161"><i class="fa fa-check"></i><b>13.7</b> Predicting a Binary-Valued Variable (Logistic Regression)</a></li>
+<li class="chapter" data-level="13.8" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id159"><i class="fa fa-check"></i><b>13.8</b> Bootstrapping a Statistic</a></li>
+<li class="chapter" data-level="13.9" data-path="BeyondBasics.html"><a href="BeyondBasics.html#recipe-id193"><i class="fa fa-check"></i><b>13.9</b> Factor Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html"><i class="fa fa-check"></i><b>14</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="14.1" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id076"><i class="fa fa-check"></i><b>14.1</b> Representing Time Series Data</a></li>
+<li class="chapter" data-level="14.2" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id089"><i class="fa fa-check"></i><b>14.2</b> Plotting Time Series Data</a></li>
+<li class="chapter" data-level="14.3" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id077"><i class="fa fa-check"></i><b>14.3</b> Extracting the Oldest or Newest Observations</a></li>
+<li class="chapter" data-level="14.4" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id281"><i class="fa fa-check"></i><b>14.4</b> Subsetting a Time Series</a></li>
+<li class="chapter" data-level="14.5" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id079"><i class="fa fa-check"></i><b>14.5</b> Merging Several Time Series</a></li>
+<li class="chapter" data-level="14.6" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id239"><i class="fa fa-check"></i><b>14.6</b> Filling or Padding a Time Series</a></li>
+<li class="chapter" data-level="14.7" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id280"><i class="fa fa-check"></i><b>14.7</b> Lagging a Time Series</a></li>
+<li class="chapter" data-level="14.8" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id141"><i class="fa fa-check"></i><b>14.8</b> Computing Successive Differences</a></li>
+<li class="chapter" data-level="14.9" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id080"><i class="fa fa-check"></i><b>14.9</b> Performing Calculations on Time Series</a></li>
+<li class="chapter" data-level="14.10" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id279"><i class="fa fa-check"></i><b>14.10</b> Computing a Moving Average</a></li>
+<li class="chapter" data-level="14.11" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id282"><i class="fa fa-check"></i><b>14.11</b> Applying a Function by Calendar Period</a></li>
+<li class="chapter" data-level="14.12" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id081"><i class="fa fa-check"></i><b>14.12</b> Applying a Rolling Function</a></li>
+<li class="chapter" data-level="14.13" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id082"><i class="fa fa-check"></i><b>14.13</b> Plotting the Autocorrelation Function</a></li>
+<li class="chapter" data-level="14.14" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id104"><i class="fa fa-check"></i><b>14.14</b> Testing a Time Series for Autocorrelation</a></li>
+<li class="chapter" data-level="14.15" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id083"><i class="fa fa-check"></i><b>14.15</b> Plotting the Partial Autocorrelation Function</a></li>
+<li class="chapter" data-level="14.16" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id084"><i class="fa fa-check"></i><b>14.16</b> Finding Lagged Correlations Between Two Time Series</a></li>
+<li class="chapter" data-level="14.17" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id088"><i class="fa fa-check"></i><b>14.17</b> Detrending a Time Series</a></li>
+<li class="chapter" data-level="14.18" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id085"><i class="fa fa-check"></i><b>14.18</b> Fitting an ARIMA Model</a></li>
+<li class="chapter" data-level="14.19" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id237"><i class="fa fa-check"></i><b>14.19</b> Removing Insignificant ARIMA Coefficients</a></li>
+<li class="chapter" data-level="14.20" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id238"><i class="fa fa-check"></i><b>14.20</b> Running Diagnostics on an ARIMA Model</a></li>
+<li class="chapter" data-level="14.21" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id086"><i class="fa fa-check"></i><b>14.21</b> Making Forecasts from an ARIMA Model</a></li>
+<li class="chapter" data-level="14.22" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-plotting_forecast"><i class="fa fa-check"></i><b>14.22</b> Plotting a Forecast</a></li>
+<li class="chapter" data-level="14.23" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id087"><i class="fa fa-check"></i><b>14.23</b> Testing for Mean Reversion</a></li>
+<li class="chapter" data-level="14.24" data-path="TimeSeriesAnalysis.html"><a href="TimeSeriesAnalysis.html#recipe-id195"><i class="fa fa-check"></i><b>14.24</b> Smoothing a Time Series</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html"><i class="fa fa-check"></i><b>15</b> Simple Programming</a>
+<ul>
+<li class="chapter" data-level="" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#intro-SimpleProgramming"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="15.1" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-creating_if_logic"><i class="fa fa-check"></i><b>15.1</b> Choosing Between Two Alternatives: if-else</a></li>
+<li class="chapter" data-level="15.2" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-for_loop"><i class="fa fa-check"></i><b>15.2</b> Iterating with a Loop</a></li>
+<li class="chapter" data-level="15.3" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-id117"><i class="fa fa-check"></i><b>15.3</b> Defining a Function</a></li>
+<li class="chapter" data-level="15.4" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-variable"><i class="fa fa-check"></i><b>15.4</b> Creating a Local Variable</a></li>
+<li class="chapter" data-level="15.5" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#choosing-between-multiple-alternatives-switch"><i class="fa fa-check"></i><b>15.5</b> Choosing Between Multiple Alternatives: switch</a></li>
+<li class="chapter" data-level="15.6" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-title"><i class="fa fa-check"></i><b>15.6</b> Defining Defaults for Function Parameters</a></li>
+<li class="chapter" data-level="15.7" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#signaling-errors"><i class="fa fa-check"></i><b>15.7</b> Signaling Errors</a></li>
+<li class="chapter" data-level="15.8" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#protecting-against-errors"><i class="fa fa-check"></i><b>15.8</b> Protecting Against Errors</a></li>
+<li class="chapter" data-level="15.9" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-anon-function"><i class="fa fa-check"></i><b>15.9</b> Creating an Anonymous Function</a></li>
+<li class="chapter" data-level="15.10" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#creating-a-collection-of-reusable-functions"><i class="fa fa-check"></i><b>15.10</b> Creating a Collection of Reusable Functions</a></li>
+<li class="chapter" data-level="15.11" data-path="SimpleProgramming.html"><a href="SimpleProgramming.html#recipe-indent"><i class="fa fa-check"></i><b>15.11</b> Automatically Reindent Code</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="RMarkdown.html"><a href="RMarkdown.html"><i class="fa fa-check"></i><b>16</b> R Markdown and Publishing</a>
+<ul>
+<li class="chapter" data-level="" data-path="RMarkdown.html"><a href="RMarkdown.html#intro-Rmd_pub"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="16.1" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-new_doc"><i class="fa fa-check"></i><b>16.1</b> Creating a New Document</a></li>
+<li class="chapter" data-level="16.2" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-metadata"><i class="fa fa-check"></i><b>16.2</b> Adding a Title, Author, or Date</a></li>
+<li class="chapter" data-level="16.3" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-doc-text"><i class="fa fa-check"></i><b>16.3</b> Formatting Document Text</a></li>
+<li class="chapter" data-level="16.4" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-headings"><i class="fa fa-check"></i><b>16.4</b> Inserting Document Headings</a></li>
+<li class="chapter" data-level="16.5" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-list"><i class="fa fa-check"></i><b>16.5</b> Inserting a List</a></li>
+<li class="chapter" data-level="16.6" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-exec_r"><i class="fa fa-check"></i><b>16.6</b> Showing Output from R Code</a></li>
+<li class="chapter" data-level="16.7" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-code-results"><i class="fa fa-check"></i><b>16.7</b> Controlling Which Code and Results Are Shown</a></li>
+<li class="chapter" data-level="16.8" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-doc_plot"><i class="fa fa-check"></i><b>16.8</b> Inserting a Plot</a></li>
+<li class="chapter" data-level="16.9" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-static-table"><i class="fa fa-check"></i><b>16.9</b> Inserting a Table</a></li>
+<li class="chapter" data-level="16.10" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-tables"><i class="fa fa-check"></i><b>16.10</b> Inserting a Table of Data</a></li>
+<li class="chapter" data-level="16.11" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-equations"><i class="fa fa-check"></i><b>16.11</b> Inserting Math Equations</a></li>
+<li class="chapter" data-level="16.12" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-html"><i class="fa fa-check"></i><b>16.12</b> Generating HTML Output</a></li>
+<li class="chapter" data-level="16.13" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-pdf"><i class="fa fa-check"></i><b>16.13</b> Generating PDF Output</a></li>
+<li class="chapter" data-level="16.14" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-word"><i class="fa fa-check"></i><b>16.14</b> Generating Microsoft Word Output</a></li>
+<li class="chapter" data-level="16.15" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-prez"><i class="fa fa-check"></i><b>16.15</b> Generating Presentation Output</a></li>
+<li class="chapter" data-level="16.16" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-param_report"><i class="fa fa-check"></i><b>16.16</b> Creating a Parameterized Report</a></li>
+<li class="chapter" data-level="16.17" data-path="RMarkdown.html"><a href="RMarkdown.html#recipe-rmd_org"><i class="fa fa-check"></i><b>16.17</b> Organizing Your R Markdown Workflow</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Cookbook, 2nd Edition</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="SimpleProgramming" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">15</span> Simple Programming<a href="SimpleProgramming.html#SimpleProgramming" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="intro-SimpleProgramming" class="section level2 unnumbered hasAnchor">
+<h2>Introduction<a href="SimpleProgramming.html#intro-SimpleProgramming" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R lets you accomplish a lot without knowing anything about programming.
+Programming opens the door to accomplishing more, however,
+and most serious users eventually perform some level of programming,
+starting simply and possibly becoming quite proficient.
+While this is not a programming book, this chapter lays out some programming recipes
+that R users typically find useful to begin their journey.</p>
+<p>If you are already familiar with programming and programming languages,
+a few notes here may help you quickly adapt to the technical details of R.
+(If these terms are unfamiliar to you, you can skip this section.)</p>
+<dl>
+<dt>Typeless</dt>
+<dd>
+<p>Variables do not have a fixed type, such as integer or character,
+unlike typed languages such as C and Java. A variable could
+contain a number in one moment and a data frame in the next.</p>
+</dd>
+<dt>Return value</dt>
+<dd>
+<p>All functions return a value. Normally, a function returns the value
+of the last expression in its body. You can also use <code>return(expr)</code>
+anywhere within the body.</p>
+</dd>
+<dt>Call by value</dt>
+<dd>
+<p>Function parameters are “call by value”—in other words,
+parameters are strictly local variables, and changes
+to those variable do not affect the caller’s value.</p>
+</dd>
+<dt>Local variables</dt>
+<dd>
+<p>You create a local variable simply by assigning a value to it.
+Explicit declaration is not required.
+When the function exits, local variables are lost.</p>
+</dd>
+<dt>Global variables</dt>
+<dd>
+<p>Global variables are held in the user’s workspace.
+Within a function you can change a global variable by using the
+<code>&lt;&lt;-</code> assignment operator, but this is not encouraged.</p>
+</dd>
+<dt>Conditional execution</dt>
+<dd>
+<p>The R syntax includes an <code>if</code> statement. See <code>help(Control)</code>
+for details.</p>
+</dd>
+<dt>Loops</dt>
+<dd>
+<p>The R syntax also includes <code>for</code> loops, <code>while</code> loops, and
+<code>repeat</code> loops. For details, see <code>help(Control)</code>.</p>
+</dd>
+<dt>Case or switch statements</dt>
+<dd>
+<p>A special function called <code>switch</code> provides a basic case statement.
+The semantics may strike you as odd, however.
+See <code>help(switch)</code> for details.</p>
+</dd>
+<dt>Lazy evaluation</dt>
+<dd>
+<p>R does not immediately evaluate function arguments when the function is called.
+Rather, it waits until the argument is actually used within the function,
+then evaluates it. This gives the language an especially rich and powerful
+semantics. Most of the time, it’s not noticeable, but occasionally
+it results in situations that are baffling to programmers familiar only
+with “eager” evaluation, where arguments are evaluated when the function is called.</p>
+</dd>
+<dt>Functional semantics</dt>
+<dd>
+<p>Functions are “first-class citizens” and can be treated like other objects:
+assigned to variables, passed to functions, printed, inspected,
+and so forth.</p>
+</dd>
+<dt>Object orientation</dt>
+<dd>
+<p>R supports object-oriented programming.
+In fact, there are several different paradigms for object
+orientation, which is a blessing if you enjoy having a choice
+and baffling if you don’t.</p>
+</dd>
+</dl>
+</div>
+<div id="recipe-creating_if_logic" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> Choosing Between Two Alternatives: if-else<a href="SimpleProgramming.html#recipe-creating_if_logic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-creating_if_logic" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="SimpleProgramming.html#problem-creating_if_logic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You want to write a <em>conditional branch</em>
+that will choose between two paths based on a simple test.</p>
+</div>
+<div id="solution-creating_if_logic" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="SimpleProgramming.html#solution-creating_if_logic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>An <code>if</code> block can implement conditional logic by testing a simple
+condition.</p>
+<div class="sourceCode" id="cb1098"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1098-1"><a href="SimpleProgramming.html#cb1098-1" tabindex="-1"></a><span class="cf">if</span> (condition) {</span>
+<span id="cb1098-2"><a href="SimpleProgramming.html#cb1098-2" tabindex="-1"></a>  <span class="do">## do this if condition is TRUE</span></span>
+<span id="cb1098-3"><a href="SimpleProgramming.html#cb1098-3" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb1098-4"><a href="SimpleProgramming.html#cb1098-4" tabindex="-1"></a>  <span class="do">## do this if condition is FALSE</span></span>
+<span id="cb1098-5"><a href="SimpleProgramming.html#cb1098-5" tabindex="-1"></a>}</span></code></pre></div>
+<p>Notice the parentheses around the condition, which are required,
+and the curly braces around the subsequent two blocks of code.</p>
+</div>
+<div id="discussion-creating_if_logic" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="SimpleProgramming.html#discussion-creating_if_logic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>if</code> structure lets you choose between two alternative code paths by
+testing some condition, such as <code>x == 0</code> or <code>y &gt; 1</code>,
+and then following one path or the other accordingly.
+This <code>if</code>, for example, checks for negative numbers before calculating a square root:</p>
+<div class="sourceCode" id="cb1099"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1099-1"><a href="SimpleProgramming.html#cb1099-1" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;=</span> <span class="dv">0</span>) {</span>
+<span id="cb1099-2"><a href="SimpleProgramming.html#cb1099-2" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">sqrt</span>(x))             <span class="co"># do this if x &gt;= 0</span></span>
+<span id="cb1099-3"><a href="SimpleProgramming.html#cb1099-3" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb1099-4"><a href="SimpleProgramming.html#cb1099-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;negative number&quot;</span>)   <span class="co"># do this otherwise</span></span>
+<span id="cb1099-5"><a href="SimpleProgramming.html#cb1099-5" tabindex="-1"></a>}</span></code></pre></div>
+<p>You can chain a series of if/else structures to make a series of decisions.
+Let’s suppose we want a value to be cupped at 0 (no negative values) and capped at 1.
+We could code that as follows:</p>
+<div class="sourceCode" id="cb1100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1100-1"><a href="SimpleProgramming.html#cb1100-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">0.3</span></span>
+<span id="cb1100-2"><a href="SimpleProgramming.html#cb1100-2" tabindex="-1"></a></span>
+<span id="cb1100-3"><a href="SimpleProgramming.html#cb1100-3" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb1100-4"><a href="SimpleProgramming.html#cb1100-4" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1100-5"><a href="SimpleProgramming.html#cb1100-5" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb1100-6"><a href="SimpleProgramming.html#cb1100-6" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1100-7"><a href="SimpleProgramming.html#cb1100-7" tabindex="-1"></a>}</span>
+<span id="cb1100-8"><a href="SimpleProgramming.html#cb1100-8" tabindex="-1"></a></span>
+<span id="cb1100-9"><a href="SimpleProgramming.html#cb1100-9" tabindex="-1"></a><span class="fu">print</span>(x)</span>
+<span id="cb1100-10"><a href="SimpleProgramming.html#cb1100-10" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span></code></pre></div>
+<p>It is important that the conditional test (the expression after <code>if</code>)
+is a <em>simple</em> test;
+that is, it must return a single, logical value of either <code>TRUE</code> or <code>FALSE</code>.
+A common problem is mistakenly using a <em>vector</em> of logical values,
+such as this example:</p>
+<div class="sourceCode" id="cb1101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1101-1"><a href="SimpleProgramming.html#cb1101-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb1101-2"><a href="SimpleProgramming.html#cb1101-2" tabindex="-1"></a></span>
+<span id="cb1101-3"><a href="SimpleProgramming.html#cb1101-3" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb1101-4"><a href="SimpleProgramming.html#cb1101-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;values are negative&quot;</span>)</span>
+<span id="cb1101-5"><a href="SimpleProgramming.html#cb1101-5" tabindex="-1"></a>}</span>
+<span id="cb1101-6"><a href="SimpleProgramming.html#cb1101-6" tabindex="-1"></a><span class="co">#&gt; Error in if (x &lt; 0) {: the condition has length &gt; 1</span></span></code></pre></div>
+<p>The problem arises because <code>x &lt; 0</code> is ambiguous when <code>x</code> is a vector:
+are you testing for <em>all</em> values being negative or <em>some</em> values being negative?
+R provides the helper functions <code>all</code> and <code>any</code> to address the situation.
+They take a vector of logical values and reduce them to one, single value.</p>
+<div class="sourceCode" id="cb1102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1102-1"><a href="SimpleProgramming.html#cb1102-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb1102-2"><a href="SimpleProgramming.html#cb1102-2" tabindex="-1"></a></span>
+<span id="cb1102-3"><a href="SimpleProgramming.html#cb1102-3" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">all</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>)) {</span>
+<span id="cb1102-4"><a href="SimpleProgramming.html#cb1102-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;all are negative&quot;</span>)</span>
+<span id="cb1102-5"><a href="SimpleProgramming.html#cb1102-5" tabindex="-1"></a>}</span>
+<span id="cb1102-6"><a href="SimpleProgramming.html#cb1102-6" tabindex="-1"></a></span>
+<span id="cb1102-7"><a href="SimpleProgramming.html#cb1102-7" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">any</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>)) {</span>
+<span id="cb1102-8"><a href="SimpleProgramming.html#cb1102-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;some are negative&quot;</span>)</span>
+<span id="cb1102-9"><a href="SimpleProgramming.html#cb1102-9" tabindex="-1"></a>}</span>
+<span id="cb1102-10"><a href="SimpleProgramming.html#cb1102-10" tabindex="-1"></a><span class="co">#&gt; [1] &quot;some are negative&quot;</span></span></code></pre></div>
+</div>
+<div id="see_also-creating_if_logic" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="SimpleProgramming.html#see_also-creating_if_logic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>if</code> structure presented here is intended for programming.
+There is also a function, <code>ifelse</code> that implements
+a vectorized if/else structure, useful for transforming entire vectors.
+See <code>help(ifelse)</code>.</p>
+</div>
+</div>
+<div id="recipe-for_loop" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">15.2</span> Iterating with a Loop<a href="SimpleProgramming.html#recipe-for_loop" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-for_loop" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="SimpleProgramming.html#problem-for_loop" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You want to iterate over the elements of a vector or list.</p>
+</div>
+<div id="solution-for_loop" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="SimpleProgramming.html#solution-for_loop" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A common iteration technique uses the <code>for</code> structure.
+If <code>v</code> is a vector or list, this <code>for</code> loop selects each element of <code>v</code> one by one,
+assigns the element to <code>x</code>, and does something with it.</p>
+<div class="sourceCode" id="cb1103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1103-1"><a href="SimpleProgramming.html#cb1103-1" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> v) {</span>
+<span id="cb1103-2"><a href="SimpleProgramming.html#cb1103-2" tabindex="-1"></a>  <span class="co"># do something with x</span></span>
+<span id="cb1103-3"><a href="SimpleProgramming.html#cb1103-3" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="discussion-for_loop" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="SimpleProgramming.html#discussion-for_loop" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Programmers from C and Python will recoginze <code>for</code> loops.
+They are less common in R but still occasionally useful.</p>
+<p>For illustration, this <code>for</code> loop prints the first five integers and their squares.
+It sets <code>x</code> to <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, and <code>5</code> successively, executing the body of the loop each time.</p>
+<div class="sourceCode" id="cb1104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1104-1"><a href="SimpleProgramming.html#cb1104-1" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb1104-2"><a href="SimpleProgramming.html#cb1104-2" tabindex="-1"></a>  <span class="fu">cat</span>(x, x<span class="sc">^</span><span class="dv">2</span>, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb1104-3"><a href="SimpleProgramming.html#cb1104-3" tabindex="-1"></a>}</span>
+<span id="cb1104-4"><a href="SimpleProgramming.html#cb1104-4" tabindex="-1"></a><span class="co">#&gt; 1 1 </span></span>
+<span id="cb1104-5"><a href="SimpleProgramming.html#cb1104-5" tabindex="-1"></a><span class="co">#&gt; 2 4 </span></span>
+<span id="cb1104-6"><a href="SimpleProgramming.html#cb1104-6" tabindex="-1"></a><span class="co">#&gt; 3 9 </span></span>
+<span id="cb1104-7"><a href="SimpleProgramming.html#cb1104-7" tabindex="-1"></a><span class="co">#&gt; 4 16 </span></span>
+<span id="cb1104-8"><a href="SimpleProgramming.html#cb1104-8" tabindex="-1"></a><span class="co">#&gt; 5 25</span></span></code></pre></div>
+<p>We can also iterate over the <em>subscripts</em> of a vector or list,
+which is useful for updating the data in place.
+Here, we initialize <code>v</code> with the vector <code>1:5</code>, then update its elements
+by squaring each one:</p>
+<div class="sourceCode" id="cb1105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1105-1"><a href="SimpleProgramming.html#cb1105-1" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb1105-2"><a href="SimpleProgramming.html#cb1105-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb1105-3"><a href="SimpleProgramming.html#cb1105-3" tabindex="-1"></a>  v[[i]] <span class="ot">&lt;-</span> v[[i]] <span class="sc">^</span> <span class="dv">2</span></span>
+<span id="cb1105-4"><a href="SimpleProgramming.html#cb1105-4" tabindex="-1"></a>}</span>
+<span id="cb1105-5"><a href="SimpleProgramming.html#cb1105-5" tabindex="-1"></a><span class="fu">print</span>(v)</span>
+<span id="cb1105-6"><a href="SimpleProgramming.html#cb1105-6" tabindex="-1"></a><span class="co">#&gt; [1]  1  4  9 16 25</span></span></code></pre></div>
+<p>But, frankly, this also illustrates one reason why loops are less common in R
+than in other programming languages.
+The vectorized operations of R are fast and easy,
+often eliminating the need for looping altogether.
+Here is the vectorized version of the previous example:</p>
+<div class="sourceCode" id="cb1106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1106-1"><a href="SimpleProgramming.html#cb1106-1" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb1106-2"><a href="SimpleProgramming.html#cb1106-2" tabindex="-1"></a>v <span class="ot">&lt;-</span> v<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb1106-3"><a href="SimpleProgramming.html#cb1106-3" tabindex="-1"></a><span class="fu">print</span>(v)</span>
+<span id="cb1106-4"><a href="SimpleProgramming.html#cb1106-4" tabindex="-1"></a><span class="co">#&gt; [1]  1  4  9 16 25</span></span></code></pre></div>
+</div>
+<div id="see_also-for_loop" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="SimpleProgramming.html#see_also-for_loop" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Another reason loops are rare is that <code>map</code> and similar functions
+can process entire vectors and lists at once,
+usually more quickly and easily than a loop.
+For example, see Recipe <a href="DataTransformations.html#recipe-id149">6.1</a>, <a href="DataTransformations.html#recipe-id149">“Applying a Function to Each List Element”</a>,
+for details on using the <code>purrr</code> package to apply functions to lists.</p>
+</div>
+</div>
+<div id="recipe-id117" class="section level2 hasAnchor" number="15.3">
+<h2><span class="header-section-number">15.3</span> Defining a Function<a href="SimpleProgramming.html#recipe-id117" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-id117" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="SimpleProgramming.html#problem-id117" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You want to define a new R function.</p>
+</div>
+<div id="solution-id117" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="SimpleProgramming.html#solution-id117" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Create the function by using the <code>function</code> keyword followed by a list of
+parameter names and then the function body.</p>
+<div class="sourceCode" id="cb1107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1107-1"><a href="SimpleProgramming.html#cb1107-1" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="cf">function</span>(param1, ..., paramN) {</span>
+<span id="cb1107-2"><a href="SimpleProgramming.html#cb1107-2" tabindex="-1"></a>          expr1</span>
+<span id="cb1107-3"><a href="SimpleProgramming.html#cb1107-3" tabindex="-1"></a>          .</span>
+<span id="cb1107-4"><a href="SimpleProgramming.html#cb1107-4" tabindex="-1"></a>          .</span>
+<span id="cb1107-5"><a href="SimpleProgramming.html#cb1107-5" tabindex="-1"></a>          .</span>
+<span id="cb1107-6"><a href="SimpleProgramming.html#cb1107-6" tabindex="-1"></a>          exprM</span>
+<span id="cb1107-7"><a href="SimpleProgramming.html#cb1107-7" tabindex="-1"></a>        }</span></code></pre></div>
+<p>Put parentheses around the parameter names.
+Put curly braces around the function body,
+which is a sequence of one or more expressions.
+R will evaluate each expression in order and return the value of the last one,
+denoted here as <code>*exprM*</code>.</p>
+</div>
+<div id="discussion-id117" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="SimpleProgramming.html#discussion-id117" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Function definitions are how you tell R, “Here’s how to calculate
+<em>this</em>.” For example, R does not have a built-in function for
+calculating the coefficient of variation,
+but we can create such a function, calling it <code>cv</code>:</p>
+<div class="sourceCode" id="cb1108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1108-1"><a href="SimpleProgramming.html#cb1108-1" tabindex="-1"></a>cv <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb1108-2"><a href="SimpleProgramming.html#cb1108-2" tabindex="-1"></a>  <span class="fu">sd</span>(x) <span class="sc">/</span> <span class="fu">mean</span>(x)</span>
+<span id="cb1108-3"><a href="SimpleProgramming.html#cb1108-3" tabindex="-1"></a>}</span></code></pre></div>
+<p>This function has one parameter, <code>x</code>,
+and the body of the function is <code>sd(x) / mean(x)</code>.</p>
+<p>When we call the function with an argument,
+R will set the parameter <code>x</code> to that value,
+then evaluate the body of the function:</p>
+<div class="sourceCode" id="cb1109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1109-1"><a href="SimpleProgramming.html#cb1109-1" tabindex="-1"></a><span class="fu">cv</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)     <span class="co"># Set x = 1:10 and evaluate sd(x)/mean(x)</span></span>
+<span id="cb1109-2"><a href="SimpleProgramming.html#cb1109-2" tabindex="-1"></a><span class="co">#&gt; [1] 0.550482</span></span></code></pre></div>
+<p>Note that the parameter <code>x</code> is distinct from any other variable called <code>x</code>.
+If you have a global variable <code>x</code> in your workspace, for example,
+that <code>x</code> is distinct from this <code>x</code> and won’t be affected by <code>cv</code>.
+Furthermore, the parameter <code>x</code> exists only while the <code>cv</code> function
+is executing and disappears after that.</p>
+<p>A function can have more than one argument.
+This function has two arguments, both integers,
+and implements Euclid’s algorithm
+for computing their greatest common divisor:</p>
+<div class="sourceCode" id="cb1110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1110-1"><a href="SimpleProgramming.html#cb1110-1" tabindex="-1"></a>gcd <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb1110-2"><a href="SimpleProgramming.html#cb1110-2" tabindex="-1"></a>  <span class="cf">if</span> (b <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb1110-3"><a href="SimpleProgramming.html#cb1110-3" tabindex="-1"></a>    a                <span class="co"># Return a to caller</span></span>
+<span id="cb1110-4"><a href="SimpleProgramming.html#cb1110-4" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb1110-5"><a href="SimpleProgramming.html#cb1110-5" tabindex="-1"></a>    <span class="fu">gcd</span>(b, a <span class="sc">%%</span> b)   <span class="co"># Recurseively call ourselves</span></span>
+<span id="cb1110-6"><a href="SimpleProgramming.html#cb1110-6" tabindex="-1"></a>  }</span>
+<span id="cb1110-7"><a href="SimpleProgramming.html#cb1110-7" tabindex="-1"></a>}</span>
+<span id="cb1110-8"><a href="SimpleProgramming.html#cb1110-8" tabindex="-1"></a></span>
+<span id="cb1110-9"><a href="SimpleProgramming.html#cb1110-9" tabindex="-1"></a><span class="co"># What&#39;s the greatest common denominator of 14 and 21?</span></span>
+<span id="cb1110-10"><a href="SimpleProgramming.html#cb1110-10" tabindex="-1"></a><span class="fu">gcd</span>(<span class="dv">14</span>, <span class="dv">21</span>)</span>
+<span id="cb1110-11"><a href="SimpleProgramming.html#cb1110-11" tabindex="-1"></a><span class="co">#&gt; [1] 7</span></span></code></pre></div>
+<p>(This function definition is <em>recursive</em> because it calls itself when <code>b</code> is nonzero.)</p>
+<p>Normally, the function returns the value of the last expression in the function body.
+You can choose to return a value earlier, however, by writing <code>return(*expr*)</code>,
+forcing the function to stop and immediately return <code>*expr*</code> to the caller.
+We can illustrate this by coding <code>gcd</code> in a subtly different way using an explicit <code>return</code>.</p>
+<div class="sourceCode" id="cb1111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1111-1"><a href="SimpleProgramming.html#cb1111-1" tabindex="-1"></a>gcd <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb1111-2"><a href="SimpleProgramming.html#cb1111-2" tabindex="-1"></a>  <span class="cf">if</span> (b <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb1111-3"><a href="SimpleProgramming.html#cb1111-3" tabindex="-1"></a>    <span class="fu">return</span>(a)    <span class="co"># Stop and return a</span></span>
+<span id="cb1111-4"><a href="SimpleProgramming.html#cb1111-4" tabindex="-1"></a>  }</span>
+<span id="cb1111-5"><a href="SimpleProgramming.html#cb1111-5" tabindex="-1"></a>  <span class="fu">gcd</span>(b, a <span class="sc">%%</span> b)</span>
+<span id="cb1111-6"><a href="SimpleProgramming.html#cb1111-6" tabindex="-1"></a>}</span></code></pre></div>
+<p>When parameter <code>b</code> is zero, <code>gcd</code> executes <code>return(a)</code>, returning that value immediately to the caller.</p>
+</div>
+<div id="see_also-id117" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="SimpleProgramming.html#see_also-id117" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Functions are a central component of R programming,
+so they are covered well in books such as
+<a href="http://shop.oreilly.com/product/0636920034407.do"><em>R for Data Science</em></a> by Hadley Wickham and Garrett Grolemund (O’Reilly)
+and <em>The Art of R Programming</em> by Norman Matloff (No Starch Press).</p>
+</div>
+</div>
+<div id="recipe-variable" class="section level2 hasAnchor" number="15.4">
+<h2><span class="header-section-number">15.4</span> Creating a Local Variable<a href="SimpleProgramming.html#recipe-variable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-variable" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="SimpleProgramming.html#problem-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You want to create a variable that is <em>local</em> to a function—that is, a variable that is created inside the function, used inside the function,
+and removed when the function is done.</p>
+</div>
+<div id="solution-variable" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="SimpleProgramming.html#solution-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Inside the function, simply assign a value to the name.
+The name automatically becomes a local variable
+and will be removed when the function finishes.</p>
+</div>
+<div id="discussion-variable" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="SimpleProgramming.html#discussion-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This function will map a vector, <code>x</code>, into the unit interval.
+It requires two intermediate values, <code>low</code> and <code>high</code>.</p>
+<div class="sourceCode" id="cb1112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1112-1"><a href="SimpleProgramming.html#cb1112-1" tabindex="-1"></a>unitInt <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb1112-2"><a href="SimpleProgramming.html#cb1112-2" tabindex="-1"></a>  low <span class="ot">&lt;-</span> <span class="fu">min</span>(x)</span>
+<span id="cb1112-3"><a href="SimpleProgramming.html#cb1112-3" tabindex="-1"></a>  high <span class="ot">&lt;-</span> <span class="fu">max</span>(x)</span>
+<span id="cb1112-4"><a href="SimpleProgramming.html#cb1112-4" tabindex="-1"></a>  (x <span class="sc">-</span> low) <span class="sc">/</span> (high <span class="sc">-</span> low)</span>
+<span id="cb1112-5"><a href="SimpleProgramming.html#cb1112-5" tabindex="-1"></a>}</span></code></pre></div>
+<p>The <code>low</code> and <code>high</code> values are automatically created by the assignment statements.
+Because the assignments occur within the function body, the variables
+are <em>local</em> to the function. That brings two important advantages.</p>
+<p>First, the local variables named <code>low</code> and <code>high</code> are distinct from any global
+variables named <code>low</code> and <code>high</code> in your workspace.
+Because they are distinct, there is no “collision”:
+changes to the local variables do not change the global variables.</p>
+<p>Second, local variables disappear when the function is done.
+That prevents clutter and automatically frees the space they used.</p>
+</div>
+</div>
+<div id="choosing-between-multiple-alternatives-switch" class="section level2 hasAnchor" number="15.5">
+<h2><span class="header-section-number">15.5</span> Choosing Between Multiple Alternatives: switch<a href="SimpleProgramming.html#choosing-between-multiple-alternatives-switch" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="SimpleProgramming.html#problem" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A variable can take on several different values.
+You want your program to handle each case separately, according to the value.</p>
+</div>
+<div id="solution" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="SimpleProgramming.html#solution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>switch</code> function will branch according a value,
+letting you select how you handle each case.</p>
+</div>
+<div id="discussion-1" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="SimpleProgramming.html#discussion-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The first argument to <code>switch</code> is a value for R to consider.
+The remaining arguments show how to handle each possible value.
+For example, this call to <code>switch</code> considers the value of <code>who</code>,
+then returns one of three possible results:</p>
+<div class="sourceCode" id="cb1113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1113-1"><a href="SimpleProgramming.html#cb1113-1" tabindex="-1"></a>hair_type <span class="ot">=</span> <span class="cf">switch</span>(who,</span>
+<span id="cb1113-2"><a href="SimpleProgramming.html#cb1113-2" tabindex="-1"></a>                   <span class="at">Moe =</span> <span class="st">&quot;long&quot;</span>,</span>
+<span id="cb1113-3"><a href="SimpleProgramming.html#cb1113-3" tabindex="-1"></a>                   <span class="at">Larry =</span> <span class="st">&quot;fuzzy&quot;</span>,</span>
+<span id="cb1113-4"><a href="SimpleProgramming.html#cb1113-4" tabindex="-1"></a>                   <span class="at">Curly =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p>Notice that each expression after the initial <code>who</code> is labeled
+with a possible value for <code>who</code>.
+If <code>who</code> is <code>Moe</code>, then the <code>switch</code> returns <code>"long"</code>;
+if it is <code>Larry</code>, the <code>switch</code> returns <code>"fuzzy"</code>;
+and if <code>Curly</code>, it returns <code>"none"</code>.</p>
+<p>Very often, you cannot anticipate all possible values to be considered,
+so <code>switch</code> lets you define a default for the situation where no label matches.
+Simply put the default last with no label.
+This <code>switch</code>, for example, will translate the contents of <code>s</code> from
+<code>"one"</code>, <code>"two"</code>, or <code>"three"</code>
+into the corresponding integer. It returns <code>NA</code> for any other value.</p>
+<div class="sourceCode" id="cb1114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1114-1"><a href="SimpleProgramming.html#cb1114-1" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="cf">switch</span>(s,</span>
+<span id="cb1114-2"><a href="SimpleProgramming.html#cb1114-2" tabindex="-1"></a>              <span class="at">one =</span> <span class="dv">1</span>,</span>
+<span id="cb1114-3"><a href="SimpleProgramming.html#cb1114-3" tabindex="-1"></a>              <span class="at">two =</span> <span class="dv">2</span>,</span>
+<span id="cb1114-4"><a href="SimpleProgramming.html#cb1114-4" tabindex="-1"></a>              <span class="at">three =</span> <span class="dv">3</span>,</span>
+<span id="cb1114-5"><a href="SimpleProgramming.html#cb1114-5" tabindex="-1"></a>              <span class="cn">NA</span>)</span></code></pre></div>
+<p>An annoying quirk of <code>switch</code> arises when the labels are integers.
+This won’t do what you expect, for example.</p>
+<div class="sourceCode" id="cb1115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1115-1"><a href="SimpleProgramming.html#cb1115-1" tabindex="-1"></a><span class="cf">switch</span>(i,            <span class="co"># Does not work the way you expect</span></span>
+<span id="cb1115-2"><a href="SimpleProgramming.html#cb1115-2" tabindex="-1"></a>       <span class="dv">10</span> <span class="ot">=</span> <span class="st">&quot;ten&quot;</span>,</span>
+<span id="cb1115-3"><a href="SimpleProgramming.html#cb1115-3" tabindex="-1"></a>       <span class="dv">20</span> <span class="ot">=</span> <span class="st">&quot;twenty&quot;</span>,</span>
+<span id="cb1115-4"><a href="SimpleProgramming.html#cb1115-4" tabindex="-1"></a>       <span class="dv">30</span> <span class="ot">=</span> <span class="st">&quot;thirty&quot;</span>,</span>
+<span id="cb1115-5"><a href="SimpleProgramming.html#cb1115-5" tabindex="-1"></a>       <span class="st">&quot;other&quot;</span>)</span></code></pre></div>
+<p>But there is a workaround: convert the integer to a character string,
+then use character strings for the labels.</p>
+<div class="sourceCode" id="cb1116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1116-1"><a href="SimpleProgramming.html#cb1116-1" tabindex="-1"></a><span class="cf">switch</span>(<span class="fu">as.character</span>(i),</span>
+<span id="cb1116-2"><a href="SimpleProgramming.html#cb1116-2" tabindex="-1"></a>       <span class="st">&quot;10&quot;</span> <span class="ot">=</span> <span class="st">&quot;ten&quot;</span>,</span>
+<span id="cb1116-3"><a href="SimpleProgramming.html#cb1116-3" tabindex="-1"></a>       <span class="st">&quot;20&quot;</span> <span class="ot">=</span> <span class="st">&quot;twenty&quot;</span>,</span>
+<span id="cb1116-4"><a href="SimpleProgramming.html#cb1116-4" tabindex="-1"></a>       <span class="st">&quot;30&quot;</span> <span class="ot">=</span> <span class="st">&quot;thirty&quot;</span>,</span>
+<span id="cb1116-5"><a href="SimpleProgramming.html#cb1116-5" tabindex="-1"></a>       <span class="st">&quot;other&quot;</span>)</span></code></pre></div>
+</div>
+<div id="see-also-7" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="SimpleProgramming.html#see-also-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>See <code>help(switch)</code> for more details.</p>
+<p>This sort of feature is quite common in other programming languages,
+where it’s usually called a <em>switch</em> or <em>case</em> statement.</p>
+<p>The <code>switch</code> function works only with scalars.
+Switching on the contents of a data frame is more complicated.
+See the function <code>case_when</code> in the <code>dplyr</code> package
+for a powerful mechanism to handle that situation.</p>
+</div>
+</div>
+<div id="recipe-title" class="section level2 hasAnchor" number="15.6">
+<h2><span class="header-section-number">15.6</span> Defining Defaults for Function Parameters<a href="SimpleProgramming.html#recipe-title" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-default_params" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="SimpleProgramming.html#problem-default_params" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You want to define default parameters for a function—that is, values to use when the caller does not provide explicit arguments.</p>
+</div>
+<div id="solution-default_params" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="SimpleProgramming.html#solution-default_params" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R lets you set default values for parameters by including them in the <code>function</code> definition:</p>
+<div class="sourceCode" id="cb1117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1117-1"><a href="SimpleProgramming.html#cb1117-1" tabindex="-1"></a>my_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">param =</span> default_value) {</span>
+<span id="cb1117-2"><a href="SimpleProgramming.html#cb1117-2" tabindex="-1"></a>  ...</span>
+<span id="cb1117-3"><a href="SimpleProgramming.html#cb1117-3" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="discussion-default_params" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="SimpleProgramming.html#discussion-default_params" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s create a toy function that greets someone by name.</p>
+<div class="sourceCode" id="cb1118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1118-1"><a href="SimpleProgramming.html#cb1118-1" tabindex="-1"></a>greet <span class="ot">&lt;-</span> <span class="cf">function</span>(name) {</span>
+<span id="cb1118-2"><a href="SimpleProgramming.html#cb1118-2" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Hello,&quot;</span>, name, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb1118-3"><a href="SimpleProgramming.html#cb1118-3" tabindex="-1"></a>}</span>
+<span id="cb1118-4"><a href="SimpleProgramming.html#cb1118-4" tabindex="-1"></a></span>
+<span id="cb1118-5"><a href="SimpleProgramming.html#cb1118-5" tabindex="-1"></a><span class="fu">greet</span>(<span class="st">&quot;Fred&quot;</span>)</span>
+<span id="cb1118-6"><a href="SimpleProgramming.html#cb1118-6" tabindex="-1"></a><span class="co">#&gt; Hello, Fred</span></span></code></pre></div>
+<p>If we call <code>greet</code> without a <code>name</code> argument, we get this error:</p>
+<div class="sourceCode" id="cb1119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1119-1"><a href="SimpleProgramming.html#cb1119-1" tabindex="-1"></a><span class="fu">greet</span>()</span>
+<span id="cb1119-2"><a href="SimpleProgramming.html#cb1119-2" tabindex="-1"></a><span class="co">#&gt; Error in cat(&quot;Hello,&quot;, name, &quot;\n&quot;) : </span></span>
+<span id="cb1119-3"><a href="SimpleProgramming.html#cb1119-3" tabindex="-1"></a><span class="co">#&gt;   argument &quot;name&quot; is missing, with no default</span></span></code></pre></div>
+<p>We can change the function definition, however, to define a default name.
+In this case, we’ll default to the generic name <code>world</code>.</p>
+<div class="sourceCode" id="cb1120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1120-1"><a href="SimpleProgramming.html#cb1120-1" tabindex="-1"></a>greet <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">name =</span> <span class="st">&quot;world&quot;</span>) {</span>
+<span id="cb1120-2"><a href="SimpleProgramming.html#cb1120-2" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Hello,&quot;</span>, name, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb1120-3"><a href="SimpleProgramming.html#cb1120-3" tabindex="-1"></a>}</span></code></pre></div>
+<p>Now if we omit the argument, R supplies a default:</p>
+<div class="sourceCode" id="cb1121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1121-1"><a href="SimpleProgramming.html#cb1121-1" tabindex="-1"></a><span class="fu">greet</span>()</span>
+<span id="cb1121-2"><a href="SimpleProgramming.html#cb1121-2" tabindex="-1"></a><span class="co">#&gt; Hello, world</span></span></code></pre></div>
+<p>This mechanism for defaults is handy. Nonetheless, we recommend using it judiciously.
+We’ve seen too many cases where the function <em>creator</em> defined defaults
+and the function <em>caller</em> accepted the defaults without much thought,
+leading to questionable results.
+For example, if you are using the <em>k</em>-nearest neighbors algorithm,
+the choice of <em>k</em> is critical and providing a default makes no sense.
+Sometimes it’s better to force the caller to make a choice.</p>
+</div>
+</div>
+<div id="signaling-errors" class="section level2 hasAnchor" number="15.7">
+<h2><span class="header-section-number">15.7</span> Signaling Errors<a href="SimpleProgramming.html#signaling-errors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-1" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="SimpleProgramming.html#problem-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When your code encounters a serious problem,
+you want to halt and alert the user.</p>
+</div>
+<div id="solution-1" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="SimpleProgramming.html#solution-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Call the <code>stop</code> function, which will print your message and terminate all processing.</p>
+</div>
+<div id="discussion-2" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="SimpleProgramming.html#discussion-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is critical to halt processing when your code encounters fatal errors,
+such as this check that an account still has a positive balance:</p>
+<div class="sourceCode" id="cb1122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1122-1"><a href="SimpleProgramming.html#cb1122-1" tabindex="-1"></a><span class="cf">if</span> (balance <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb1122-2"><a href="SimpleProgramming.html#cb1122-2" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">&quot;Funds exhausted.&quot;</span>)</span>
+<span id="cb1122-3"><a href="SimpleProgramming.html#cb1122-3" tabindex="-1"></a>}</span></code></pre></div>
+<p>This call to <code>stop</code> would display the message,
+terminate processing, and put the user back at the console prompt:</p>
+<pre><code>#&gt; Error in eval(expr, envir, enclos): Funds exhausted</code></pre>
+<p>Problems arise for all sorts of reasons:
+bad data, user error, network failures, and bugs in code, to name a few. The list is endless.
+It is important that you anticipate potential problems
+and code appropriately:</p>
+<ul>
+<li><em>Detect</em> - At a minimum, detect possible errors. Halt if further processing is impossible.
+Undetected errors are a major source of program failures.</li>
+<li><em>Report</em> - If you must halt, give users a reasonable explanation of why.
+That will help them diagnose and fix the problem.</li>
+<li><em>Recover</em> - In some cases, the code may be able to correct the situation
+itself and continue. We recommend, however, warning the user that your code encountered
+a problem and corrected it.</li>
+</ul>
+<p>Error handling is part of <em>defensive programming</em>, the practice of making your code robust.</p>
+</div>
+<div id="see-also-8" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="SimpleProgramming.html#see-also-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>An alternative to <code>stop</code> is the <code>warning</code> function,
+which prints its message and continues without halting.
+Be sure, however, that it is actually reasonable to continue.</p>
+</div>
+</div>
+<div id="protecting-against-errors" class="section level2 hasAnchor" number="15.8">
+<h2><span class="header-section-number">15.8</span> Protecting Against Errors<a href="SimpleProgramming.html#protecting-against-errors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-2" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="SimpleProgramming.html#problem-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You anticipate the possibility of fatal errors,
+and you want to handle them rather than halt altogether.</p>
+</div>
+<div id="solution-2" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="SimpleProgramming.html#solution-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use the <code>possibly</code> function to “wrap” the problematic code.
+It will trap errors and let you respond to them.</p>
+</div>
+<div id="discussion-3" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="SimpleProgramming.html#discussion-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>purrr</code> package contains a function called <code>possibly</code>,
+which takes two parameters.
+The first parameter is a function, and <code>possibly</code> will protect against failures in that function.
+The second parameter is a value called <code>otherwise</code>.</p>
+<p>A concrete example is useful here.
+The <code>read.csv</code> function tries to read a file,
+but it simply halts if the file does not exist.
+That could be undesireable. We might want to recover and continue instead.</p>
+<p>We can “wrap” the <code>read.csv</code> function in a protective layer this way:</p>
+<div class="sourceCode" id="cb1124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1124-1"><a href="SimpleProgramming.html#cb1124-1" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb1124-2"><a href="SimpleProgramming.html#cb1124-2" tabindex="-1"></a>safe_read <span class="ot">&lt;-</span> <span class="fu">possibly</span>(read.csv, <span class="at">otherwise=</span><span class="cn">NULL</span>)</span></code></pre></div>
+<p>It may seem strange, but <code>possibly</code> returns a <em>new function</em>.
+The new function, called <code>safe_read</code> here, behaves exactly like the old function, <code>read.csv</code>,
+but with one very important difference.
+When <code>read.csv</code> would fail and halt, <code>safe_read</code> will instead return the <code>otherwise</code> value (<code>NULL</code>)
+and let you continue. (If <code>read.csv</code> succeeds, you get its usual result: a data frame.)</p>
+<p>You could use <code>safe_read</code> like this to handle optional files:</p>
+<div class="sourceCode" id="cb1125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1125-1"><a href="SimpleProgramming.html#cb1125-1" tabindex="-1"></a>details <span class="ot">=</span> <span class="fu">safe_read</span>(<span class="st">&quot;details.csv&quot;</span>)    <span class="co"># Try to read details.csv file</span></span>
+<span id="cb1125-2"><a href="SimpleProgramming.html#cb1125-2" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">is.null</span>(details)) {               <span class="co"># NULL means read.csv failed</span></span>
+<span id="cb1125-3"><a href="SimpleProgramming.html#cb1125-3" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Details are not available</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb1125-4"><a href="SimpleProgramming.html#cb1125-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb1125-5"><a href="SimpleProgramming.html#cb1125-5" tabindex="-1"></a>  <span class="fu">print</span>(details)                      <span class="co"># We got the contents!</span></span>
+<span id="cb1125-6"><a href="SimpleProgramming.html#cb1125-6" tabindex="-1"></a>}</span></code></pre></div>
+<p>If the <em>details.csv</em> file exists, <code>safe_read</code> returns the contents and this code will print them.
+If it does not exist, then <code>read.csv</code> fails, <code>safe_read</code> returns <code>NULL</code>,
+and this code prints a message.</p>
+<p>The <code>otherwise</code> value in this case is <code>NULL</code>, but it can be anything.
+It could be a data frame, for example, which provides a default.
+In that case, when the <em>details.csv</em> file is unavailable, <code>safe_read</code> would return
+that default.</p>
+</div>
+<div id="see-also-9" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="SimpleProgramming.html#see-also-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>purrr</code> package contains other functions for protecting against errors.
+Check out the <code>safely</code> and <code>quietly</code> functions.</p>
+<p>If you need even higher-powered tools, use <code>help(tryCatch)</code> to see the mechanism
+behind <code>possibly</code>, which has sophisticated bells and whistles for handling
+both errors and warnings. It mirrors the familiar try/catch paradigm of
+other programming languages.</p>
+</div>
+</div>
+<div id="recipe-anon-function" class="section level2 hasAnchor" number="15.9">
+<h2><span class="header-section-number">15.9</span> Creating an Anonymous Function<a href="SimpleProgramming.html#recipe-anon-function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-3" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="SimpleProgramming.html#problem-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You are using tidyverse functions such as <code>map</code> or <code>discard</code>
+that require a function.
+You want a shortcut for easily defining the required function.</p>
+</div>
+<div id="solution-3" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="SimpleProgramming.html#solution-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use the <code>function</code> keyword to define a function with parameters and a body,
+but instead of giving the function a name, simply use its definition inline.</p>
+</div>
+<div id="discussion-4" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="SimpleProgramming.html#discussion-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It may seem strange to create a function with no name,
+but it can be a handy convenience.</p>
+<p>In Recipe <a href="DataStructures.html#recipe-id060">5.13</a>, <a href="DataStructures.html#recipe-id060">“Removing List Elements Using a Condition”</a>, we defined a function, <code>is_na_or_null</code>,
+and used it to remove <code>NA</code> and <code>NULL</code> elements from a list:</p>
+<div class="sourceCode" id="cb1126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1126-1"><a href="SimpleProgramming.html#cb1126-1" tabindex="-1"></a>is_na_or_null <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb1126-2"><a href="SimpleProgramming.html#cb1126-2" tabindex="-1"></a>  <span class="fu">is.na</span>(x) <span class="sc">||</span> <span class="fu">is.null</span>(x)</span>
+<span id="cb1126-3"><a href="SimpleProgramming.html#cb1126-3" tabindex="-1"></a>}</span>
+<span id="cb1126-4"><a href="SimpleProgramming.html#cb1126-4" tabindex="-1"></a></span>
+<span id="cb1126-5"><a href="SimpleProgramming.html#cb1126-5" tabindex="-1"></a>lst <span class="sc">%&gt;%</span></span>
+<span id="cb1126-6"><a href="SimpleProgramming.html#cb1126-6" tabindex="-1"></a>  <span class="fu">discard</span>(is_na_or_null)</span></code></pre></div>
+<p>Sometimes, writing a tiny, one-off function such as <code>is_na_or_null</code> is annoying.
+You can avoid that hassle by using the function definition directly,
+not giving it a name:</p>
+<div class="sourceCode" id="cb1127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1127-1"><a href="SimpleProgramming.html#cb1127-1" tabindex="-1"></a>lst <span class="sc">%&gt;%</span></span>
+<span id="cb1127-2"><a href="SimpleProgramming.html#cb1127-2" tabindex="-1"></a>  <span class="fu">discard</span>(<span class="cf">function</span>(x) <span class="fu">is.na</span>(x) <span class="sc">||</span> <span class="fu">is.null</span>(x))</span></code></pre></div>
+<p>This kind of function is called an <em>anonymous function</em>, for the obvious reason that
+it has no name.</p>
+</div>
+<div id="see-also-10" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="SimpleProgramming.html#see-also-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Function definitions are described in Recipe <a href="SimpleProgramming.html#recipe-id117">15.3</a>, <a href="SimpleProgramming.html#recipe-id117">“Defining a Function”</a>.</p>
+</div>
+</div>
+<div id="creating-a-collection-of-reusable-functions" class="section level2 hasAnchor" number="15.10">
+<h2><span class="header-section-number">15.10</span> Creating a Collection of Reusable Functions<a href="SimpleProgramming.html#creating-a-collection-of-reusable-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-4" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="SimpleProgramming.html#problem-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You want to reuse one or more functions across several scripts.</p>
+</div>
+<div id="solution-4" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="SimpleProgramming.html#solution-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Save the functions in a local file, say <em>myLibrary.R</em>, then use the <code>source</code>
+function to load those functions into your script.</p>
+<div class="sourceCode" id="cb1128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1128-1"><a href="SimpleProgramming.html#cb1128-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;myLibrary.R&quot;</span>)</span></code></pre></div>
+</div>
+<div id="discussion-5" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="SimpleProgramming.html#discussion-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Quite often, you will write functions that are useful in several scripts.
+For example, you could have one function that loads, checks, and cleans your data;
+now you want to reuse that function in every script that needs the data.</p>
+<p>Most beginners simply cut and paste the reusable function into each script,
+duplicating the code.
+That creates a serious problem. What if you discover a bug in that duplicated code?
+Or what if you must change the code to accommodate new circumstances?
+You’re forced to hunt down every copy and make the identical change everywhere,
+an annoying and error-prone process.</p>
+<p>Instead, create a file, say <em>myLibrary.R</em>, and save the function definition there.
+The file contents could look like this:</p>
+<div class="sourceCode" id="cb1129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1129-1"><a href="SimpleProgramming.html#cb1129-1" tabindex="-1"></a>loadMyData <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb1129-2"><a href="SimpleProgramming.html#cb1129-2" tabindex="-1"></a>  <span class="co"># code for data loading, checking, and cleaning here</span></span>
+<span id="cb1129-3"><a href="SimpleProgramming.html#cb1129-3" tabindex="-1"></a>}</span></code></pre></div>
+<p>Then, inside each script use the <code>source</code> function to read the code from the file.</p>
+<div class="sourceCode" id="cb1130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1130-1"><a href="SimpleProgramming.html#cb1130-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;myLibrary.R&quot;</span>)</span></code></pre></div>
+<p>When you run the script, the <code>source</code> function reads the indicated file,
+just as if you’d typed the file contents there at that location in the script.
+It’s better than cutting and pasting because
+you’ve isolated the function’s definition into one, known place.</p>
+<p>This example has only one function in the sourced file,
+but the file can contain multiple functions, of course.
+We suggest gathering related functions into their own file,
+creating a group of related, reusable functions.</p>
+</div>
+<div id="see-also-11" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="SimpleProgramming.html#see-also-11" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This recipe is a very simple method for reusing code,
+appropriate for small projects.
+A more powerful approach is to create your own R package of functions,
+which is especially useful for collaborating with other people.
+Package creation is a large topic, but getting started is pretty easy.
+We suggest the excellent book <em>R Packages</em> by Hadley Wickham (O’Reilly),
+available in printed form or <a href="http://r-pkgs.had.co.nz">online</a>.</p>
+</div>
+</div>
+<div id="recipe-indent" class="section level2 hasAnchor" number="15.11">
+<h2><span class="header-section-number">15.11</span> Automatically Reindent Code<a href="SimpleProgramming.html#recipe-indent" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-indent" class="section level3 unnumbered hasAnchor">
+<h3>Problem<a href="SimpleProgramming.html#problem-indent" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You want to reformat your code so that it lines up nicely and is indented consistently.</p>
+</div>
+<div id="solution-indent" class="section level3 unnumbered hasAnchor">
+<h3>Solution<a href="SimpleProgramming.html#solution-indent" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To consistently indent a block of code, highlight the text in RStudio,
+then press Ctrl-i (Windows or Linux) or press Cmd-i (Mac).</p>
+</div>
+<div id="discussion-indent" class="section level3 unnumbered hasAnchor">
+<h3>Discussion<a href="SimpleProgramming.html#discussion-indent" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One of the many features of the RStudio IDE is that it helps with routine code maintenance, such as reformatting.
+When you’re editing code it’s easy to end up with indentation that is inconsistent and a little confusing.
+The IDE can fix that.</p>
+<p>Take the following code, for example:</p>
+<div class="sourceCode" id="cb1131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1131-1"><a href="SimpleProgramming.html#cb1131-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb1131-2"><a href="SimpleProgramming.html#cb1131-2" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">3</span>) {</span>
+<span id="cb1131-3"><a href="SimpleProgramming.html#cb1131-3" tabindex="-1"></a>  <span class="fu">print</span>(i<span class="sc">**</span><span class="dv">2</span>)</span>
+<span id="cb1131-4"><a href="SimpleProgramming.html#cb1131-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb1131-5"><a href="SimpleProgramming.html#cb1131-5" tabindex="-1"></a>  <span class="fu">print</span>(i <span class="sc">*</span> <span class="dv">3</span>)</span>
+<span id="cb1131-6"><a href="SimpleProgramming.html#cb1131-6" tabindex="-1"></a>}</span>
+<span id="cb1131-7"><a href="SimpleProgramming.html#cb1131-7" tabindex="-1"></a>  }</span></code></pre></div>
+<p>While that’s valid code, it can be tricky to read because of the odd indentation.
+If we highlight the text in the RStudio IDE and press Ctrl-i (or Cmd-i on Mac), then our code gets consistent indentation:</p>
+<div class="sourceCode" id="cb1132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1132-1"><a href="SimpleProgramming.html#cb1132-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb1132-2"><a href="SimpleProgramming.html#cb1132-2" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">3</span>) {</span>
+<span id="cb1132-3"><a href="SimpleProgramming.html#cb1132-3" tabindex="-1"></a>    <span class="fu">print</span>(i<span class="sc">**</span><span class="dv">2</span>)</span>
+<span id="cb1132-4"><a href="SimpleProgramming.html#cb1132-4" tabindex="-1"></a>  }</span>
+<span id="cb1132-5"><a href="SimpleProgramming.html#cb1132-5" tabindex="-1"></a>  <span class="cf">else</span> {</span>
+<span id="cb1132-6"><a href="SimpleProgramming.html#cb1132-6" tabindex="-1"></a>    <span class="fu">print</span>(i <span class="sc">*</span> <span class="dv">3</span>)</span>
+<span id="cb1132-7"><a href="SimpleProgramming.html#cb1132-7" tabindex="-1"></a>  }</span>
+<span id="cb1132-8"><a href="SimpleProgramming.html#cb1132-8" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="see_also-indent" class="section level3 unnumbered hasAnchor">
+<h3>See Also<a href="SimpleProgramming.html#see_also-indent" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>RStudio has several helpful features for code editing.
+You can access cheat sheets by clicking Help → Cheatsheets
+or by going directly to <a href="https://www.rstudio.com/resources/cheatsheets/">https://www.rstudio.com/resources/cheatsheets/</a>.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="TimeSeriesAnalysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="RMarkdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": true,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/CerebralMastication/R-Cookbook/edit/master/15_SimpleProgramming.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

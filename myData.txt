@@ -1,13 +1,15 @@
 tbl <-
-structure(list(Rank = 1:10, `Country / Territory` = c("China[note 4]", 
-"India", "United States", "Indonesia", "Pakistan", "Brazil", 
-"Nigeria", "Bangladesh", "Russia[note 5]", "Japan"), Population = c("1,397,860,000", 
-"1,348,710,000", "329,408,000", "265,015,300", "212,742,631", 
-"210,063,000", "188,500,000", "166,757,000", "146,877,088", "126,440,000"
-), Date = c("June 20, 2019", "June 20, 2019", "June 20, 2019", 
-"July 1, 2018", "May 25, 2017", "June 20, 2019", "October 31, 2016", 
-"June 20, 2019", "January 1, 2018", "October 1, 2018"), `% of worldpopulation` = c("18.1%", 
-"17.5%", "4.27%", "3.44%", "2.76%", "2.72%", "2.44%", "2.16%", 
-"1.9%", "1.64%"), Source = c("[85]", "[86]", "[87]", "[88]", 
-"[89]", "[90]", "[91]", "[92]", "[93]", "[94]")), class = "data.frame", row.names = c(NA, 
--10L))
+structure(list(`Country / Dependency` = c("India", "China", "United States", 
+"Indonesia", "Pakistan", "Nigeria", "Brazil", "Bangladesh", "Russia", 
+"Mexico"), Population = c("1,425,775,850", "1,409,670,000", "337,189,834", 
+"278,696,200", "229,488,994", "216,746,934", "218,449,999", "168,220,000", 
+"147,190,000", "128,271,248"), `% ofworld` = c("17.5%", "17.3%", 
+"4.14%", "3.42%", "2.82%", "2.66%", "2.68%", "2.07%", "1.81%", 
+"1.58%"), Date = c("14 Apr 2023", "17 Jan 2024", "22 Nov 2024", 
+"1 Jul 2023", "1 Jul 2022", "1 Jul 2022", "22 Nov 2024", "1 Jul 2020", 
+"1 Oct 2021", "31 Mar 2022"), `Source (official or fromthe United Nations)` = c("UN projection[89]", 
+"National annual estimate[90]", "National population clock[91]", 
+"National annual estimate[92]", "UN projection[93]", "UN projection[93]", 
+"National population clock[94]", "Annual Population Estimate[95]", 
+"2021 preliminary census results[96]", "")), row.names = c(NA, 
+-10L), class = c("tbl_df", "tbl", "data.frame"))
